@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/blu_sfondo"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_marginTop="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="150dip"
+        android:layout_height="150dip"
+        app:srcCompat="@drawable/logo_rotondo"/>
+
+
+    <RelativeLayout
+        android:id="@+id/LoginForm"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:layout_marginTop="50dp"
+        android:layout_centerInParent="true">
+
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Email o nickname"
+            android:textColorHint="@color/white"
+            android:layout_centerHorizontal="true"
+            android:textSize="20dp"
+            android:selectAllOnFocus="true"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="20dp"
+            android:layout_below="@id/username"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:selectAllOnFocus="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:hint="@string/prompt_password"
+            android:imeActionLabel="@string/action_sign_in_short"
+            app:layout_constraintTop_toBottomOf="@id/username" />
+
+        <Button
+            android:id="@+id/LoginButton"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/password"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="Login"
+            android:onClick="onClickLogin"
+            android:textSize="20dp"
+            android:textColor="#0000FF"
+            android:backgroundTint="@color/white"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/RegistrazioneLink"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/LoginForm"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickRegistrazioneLogin"
+        android:text="Sei un nuovo utente? Registrati"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textIsSelectable="true"
+        android:textSize="20dp" />
+
+
+</RelativeLayout>
