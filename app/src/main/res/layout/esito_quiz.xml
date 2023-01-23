@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/sfondo_azzurro"
+    android:layout_height="match_parent">
+
+    <!-- HEADER -->
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/white"
+        android:gravity="center" >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:src="@drawable/logo_scritta"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/logo_rotondo"/>
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/textViewTempoImpiegato"
+        android:layout_marginTop="100dp"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:textColor="@color/white"
+        android:text="Tempo impiegato"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tempoImpiegato"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textColor="@color/white"
+        android:text="00:10:00"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/textViewTempoImpiegato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/layoutDomandeCorrette"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/tempoImpiegato"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icona_corretto"/>
+
+        <TextView
+            android:id="@+id/numeroDomandeCorrette"
+            android:textSize="25dp"
+            android:textColor="@color/white"
+            android:text="Numero domande corrette: "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutDomandeErrate"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/layoutDomandeCorrette"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/corretto"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icona_errato"/>
+
+        <TextView
+            android:id="@+id/numeroDomandeErrate"
+            android:textSize="25dp"
+            android:textColor="#FF0000"
+            android:layout_marginLeft="2dp"
+            android:text="Numero domande errate: "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listViewDomandeErrate"
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        android:layout_below="@id/layoutDomandeErrate"
+        android:layout_marginTop="50dp" />
+
+
+    <!--FOOTER -->
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#87CEFA"
+        android:gravity="center" >
+
+
+        <ImageButton
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginLeft="15dp"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/logo"/>
+
+        <ImageButton
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/logo"/>
+
+        <ImageButton
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/logo"/>
+    </RelativeLayout>
+
+</RelativeLayout>
