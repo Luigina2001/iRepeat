@@ -7,6 +7,15 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/back"
+        android:layout_alignParentLeft="true"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/back"/>
+
+    <ImageView
         android:id="@+id/logo"
         android:layout_marginTop="120dp"
         android:layout_centerHorizontal="true"
@@ -29,6 +38,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:hint="Email o nickname"
+            android:backgroundTint="@color/white"
             android:textColorHint="@color/white"
             android:layout_centerHorizontal="true"
             android:textSize="20dp"
@@ -44,6 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textSize="20dp"
+            android:backgroundTint="@color/white"
             android:layout_below="@id/username"
             android:layout_centerHorizontal="true"
             android:textColor="@color/white"

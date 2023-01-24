@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/sfondo_esagono"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/back"
+        android:layout_alignParentLeft="true"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/back"/>
+
+    <ScrollView
+        android:id="@+id/scrollerCreazioneQuiz"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="500dp">
+
+            <TextView
+                android:id="@+id/textViewCreaQuiz"
+                android:layout_width="match_parent"
+                android:text="CREA IL TUO QUIZ"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_marginTop="50dp"
+                android:layout_height="wrap_content"/>
+
+            <RelativeLayout
+                android:id="@+id/layoutCreaQuiz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewCreaQuiz"
+                android:layout_marginTop="40dp" >
+
+                <EditText
+                    android:id="@+id/nomeQuiz"
+                    android:layout_width="300dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"
+                    android:hint="Nome"
+                    android:backgroundTint="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="25dp"
+                    android:selectAllOnFocus="true"
+                    android:textColor="@color/white" />
+
+                <EditText
+                    android:id="@+id/descrizioneQuiz"
+                    android:layout_width="300dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"
+                    android:hint="Descrizione"
+                    android:textColorHint="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:layout_below="@id/nomeQuiz"
+                    android:textSize="25dp"
+                    android:selectAllOnFocus="true"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/textViewVisibilita"
+                    android:layout_width="match_parent"
+                    android:text="Visibilità"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="20dp"
+                    android:textSize="25dp"
+                    android:textAlignment="center"
+                    android:layout_below="@id/descrizioneQuiz"
+                    android:layout_height="wrap_content"/>
+
+                <RadioGroup
+                    android:id="@+id/visibilitaQuiz"
+                    android:layout_width="300dp"
+                    android:orientation="horizontal"
+                    android:textAlignment="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textViewVisibilita">
+
+                    <RadioButton
+                        android:layout_marginLeft="40dp"
+                        android:id="@+id/visibilitaQuizPublic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="25dp"
+                        android:text="Public"/>
+
+                    <RadioButton
+                        android:id="@+id/visibilitaQuizPrivate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="Private"
+                        android:textColor="@color/white"
+                        android:textSize="25dp" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/textViewTempo"
+                    android:layout_width="match_parent"
+                    android:text="Tempo"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="20dp"
+                    android:textSize="25dp"
+                    android:textAlignment="center"
+                    android:layout_below="@id/visibilitaQuiz"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_centerInParent="true"
+                    android:backgroundTint="@color/white"
+                    android:layout_below="@id/textViewTempo"
+                    android:layout_centerHorizontal="true">
+
+                    <NumberPicker
+                        android:layout_marginLeft="45dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="80dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="80dp"
+                        android:textColor="@color/white"
+                        android:textSize="50dp"
+                        android:text=":"/>
+
+                    <NumberPicker
+                        android:layout_width="wrap_content"
+                        android:layout_height="80dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="80dp"
+                        android:textColor="@color/white"
+                        android:textSize="50dp"
+                        android:text=":"/>
+
+                    <NumberPicker
+                        android:layout_width="wrap_content"
+                        android:layout_height="80dp"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutDomande"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/layoutCreaQuiz"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="Domande"
+                    android:layout_width="wrap_content"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_height="40dp"/>
+
+                <ImageView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/icona_piu"/>
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/listViewCreazioneDomande"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutDomande"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
