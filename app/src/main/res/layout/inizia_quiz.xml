@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- HEADER -->
+    <RelativeLayout
+        android:id="@+id/header"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentTop="true"
+        android:background="#6495ed">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/logo_rotondo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="iRepeat"
+            android:textSize="25dp"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@id/logo"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tempo rimasto"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="250dp"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/header"
+        android:background="@android:color/black"/>
+
+    <RelativeLayout
+        android:id="@+id/quiz"
+        android:layout_width="match_parent"
+        android:layout_height="620dp"
+        android:layout_below="@id/header"
+        android:background="@drawable/sfondo_ciano">
+
+
+        <TextView
+            android:id="@+id/numeroDomanda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Quesito n. x"
+            android:textSize="30dp"
+            android:textColor="#6495ed"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/testoDomanda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/numeroDomanda"
+            android:layout_marginTop="15dp"
+            android:text="testo Domanda"
+            android:textSize="20dp"
+            android:textColor="@color/white"/>
+
+        <ListView
+            android:id="@+id/opzioniRisposte"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/testoDomanda"/>
+
+        <LinearLayout
+            android:id="@+id/altraDomandaButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/opzioniRisposte"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/PrecendenteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#6495ed"
+                android:text="Precedente" />
+
+            <Button
+                android:id="@+id/SuccessivaButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:backgroundTint="#6495ed"
+                android:text="Successiva" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <!--FOOTER -->
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:layout_below="@id/quiz">
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:text="Termina quiz"
+            android:backgroundTint="#6495ed"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
