@@ -29,7 +29,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/cuoreVuoto"
+        android:src="@drawable/cuore_vuoto"
         android:layout_marginLeft="350dp"
         android:backgroundTint="@color/white"/>
 

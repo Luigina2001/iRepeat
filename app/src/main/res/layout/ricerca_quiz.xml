@@ -40,7 +40,6 @@
             android:layout_height="wrap_content"
             android:src="@drawable/cerca"
             android:layout_marginLeft="360dp"
-            android:background=""
             android:layout_marginTop="5dp"/>
 
 
@@ -119,7 +118,7 @@
             android:layout_width="50dip"
             android:layout_height="50dip"
             android:layout_marginLeft="150dip"
-            android:src="@drawable/listaDesideri"
+            android:src="@drawable/lista_desideri"
             android:backgroundTint="#6495ed"/>
 
         <ImageButton
