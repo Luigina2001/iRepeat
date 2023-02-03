@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/sfondo_azzurro"
+    android:layout_height="match_parent"
+    tools:ignore="MissingDefaultResource">
+
+    <!-- HEADER -->
+    <RelativeLayout
+        android:id="@+id/header"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_scritta"/>
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginRight="150dip"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/homepage"
+            android:backgroundTint="@color/white"/>
+
+        <ImageView
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginRight="85dip"
+            android:src="@drawable/lista_desideri"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/white"/>
+
+        <ImageView
+            android:layout_marginTop="0dp"
+            android:layout_width="80dip"
+            android:layout_height="80dip"
+            android:layout_marginRight="8dip"
+            android:layout_alignParentRight="true"
+            android:onClick="onClickProfilo"
+            android:src="@drawable/menu"
+            android:backgroundTint="@color/white"/>
+    </RelativeLayout>
+
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="200dp">
+
+            <TextView
+                android:id="@+id/textViewTempoImpiegato"
+                android:layout_marginTop="30dp"
+                android:textAlignment="center"
+                android:textSize="45dp"
+                android:textColor="@color/white"
+                android:text="Tempo impiegato"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tempoImpiegato"
+                android:textAlignment="center"
+                android:textSize="40dp"
+                android:textColor="@color/white"
+                android:text="00:10:00"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/textViewTempoImpiegato"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:id="@+id/layoutDomandeCorrette"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_below="@id/tempoImpiegato"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/icona_corretto"/>
+
+                <TextView
+                    android:id="@+id/numeroDomandeCorrette"
+                    android:textSize="40dp"
+                    android:textColor="@color/white"
+                    android:text="Numero domande corrette: "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutDomandeErrate"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_below="@id/layoutDomandeCorrette"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="43dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="13dp"
+                        android:src="@drawable/icona_errato_bianca"/>
+
+                    <ImageView
+                        android:id="@+id/corretto"
+                        android:layout_width="35dp"
+                        android:layout_marginTop="2.5dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="17dp"
+                        android:src="@drawable/icona_errato"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textSize="40dp"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="3dp"
+                        android:text="Numero domande errate: "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/numeroDomandeErrate"
+                        android:textSize="40dp"
+                        android:textColor="#FF0000"
+                        android:layout_marginLeft="2dp"
+                        android:text="Numero domande errate: "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/listViewDomandeErrate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutDomandeErrate"
+                android:layout_marginTop="50dp" />
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
