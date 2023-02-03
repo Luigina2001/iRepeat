@@ -15,7 +15,7 @@
         android:layout_height="55dp"
         android:layout_alignParentTop="true"
         android:gravity="center"
-        android:background="@drawable/sfondo_azzurro">
+        android:background="@drawable/sfondo_azzurro_orizzontale">
 
         <ImageView
             android:layout_width="50dp"
@@ -41,7 +41,6 @@
             android:src="@drawable/cerca"
             android:layout_marginLeft="360dp"
             android:layout_marginTop="5dp"/>
-
 
     </RelativeLayout>
     <View

@@ -3,11 +3,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- HEADER -->
+    <RelativeLayout
+        android:id="@+id/header"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_scritta"/>
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:layout_marginRight="110dip"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/homepage"
+            android:backgroundTint="@color/white"/>
+
+        <ImageView
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:layout_marginRight="65dip"
+            android:src="@drawable/lista_desideri"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/white"/>
+
+        <ImageView
+            android:layout_marginTop="0dp"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginRight="8dip"
+            android:layout_alignParentRight="true"
+            android:onClick="onClickProfilo"
+            android:src="@drawable/menu"
+            android:backgroundTint="@color/white"/>
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/sfondoProfilo"
+        android:layout_below="@id/header"
         android:layout_width="match_parent"
-        android:layout_height="202dp"
+        android:layout_height="170dp"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
@@ -30,20 +76,13 @@
         android:layout_height="130dp"
         android:src="@drawable/immagine_profilo"/>
 
-    <ImageView
-        android:id="@+id/menuProfilo"
-        android:layout_alignParentRight="true"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/menu"/>
-
     <TextView
         android:id="@+id/nicknameProfilo"
         android:text="Nickname"
         android:textSize="30dp"
         android:textStyle="bold"
         android:layout_below="@id/immagineProfilo"
-        android:textColor="@color/black"
+        android:textColor="#0000FF"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:textAlignment="center"
@@ -52,45 +91,9 @@
 
     <ListView
         android:id="@+id/listViewQuiz"
-        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="345dp"
         android:layout_below="@id/nicknameProfilo"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"/>
-
-
-    <!--FOOTER -->
-    <RelativeLayout
-        android:id="@+id/footer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#6495ed"
-        android:gravity="center" >
-
-        <ImageButton
-            android:id="@+id/chatBotButton"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_marginLeft="5dip"
-            android:src="@drawable/homepage"
-            android:backgroundTint="#6495ed"/>
-
-        <ImageButton
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_marginLeft="150dip"
-            android:src="@drawable/lista_desideri"
-            android:backgroundTint="#6495ed"/>
-
-        <ImageButton
-            android:id="@+id/profiloButton"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_marginLeft="300dip"
-            android:onClick="onClickProfilo"
-            android:src="@drawable/utente"
-            android:backgroundTint="#6495ed"/>
-
-    </RelativeLayout>
+        android:layout_marginTop="30dp" />
 
 </RelativeLayout>
