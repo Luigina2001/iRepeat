@@ -14,6 +14,7 @@
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:src="@drawable/cuore_vuoto"
+            android:background="@drawable/sfondo_azzurro"
             android:layout_marginLeft="180dp"/>
 
         <TextView
