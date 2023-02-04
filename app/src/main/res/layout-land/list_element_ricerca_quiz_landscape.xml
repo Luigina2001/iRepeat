@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="MissingDefaultResource">
+
+    <LinearLayout
+        android:id="@+id/ricercaElement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/titoloQuiz"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:text="Titolo quiz"
+            android:textSize="20dp"
+            android:paddingLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/creatorQuiz"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Creator Quiz"
+            android:paddingLeft="20dp"/>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cuore_vuoto"
+        android:layout_marginLeft="350dp"
+        android:backgroundTint="@color/white"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/ricercaElement"
+        android:background="@color/black"/>
+
+
+</RelativeLayout>

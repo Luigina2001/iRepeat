@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="MissingDefaultResource">
 
     <!-- HEADER -->
     <RelativeLayout
@@ -51,7 +53,7 @@
     <RelativeLayout
         android:id="@+id/quiz"
         android:layout_width="match_parent"
-        android:layout_height="620dp"
+        android:layout_height="310dp"
         android:layout_below="@id/header"
         android:background="@drawable/sfondo_ciano">
 
@@ -62,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="Quesito n. x"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:textColor="#6495ed"
             android:layout_marginTop="10dp"/>
 
@@ -72,7 +74,6 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/numeroDomanda"
-            android:layout_marginTop="15dp"
             android:text="testo Domanda"
             android:textSize="20dp"
             android:textColor="@color/white"/>
@@ -80,8 +81,7 @@
         <ListView
             android:id="@+id/opzioniRisposte"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="200dp"
             android:layout_below="@id/testoDomanda"/>
 
         <LinearLayout
