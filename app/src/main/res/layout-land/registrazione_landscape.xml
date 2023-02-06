@@ -175,6 +175,8 @@
         android:layout_below="@id/RegistrazioneForm"
         android:layout_centerHorizontal="true"
         android:text="Registrati"
-        android:backgroundTint="#0000ff"/>
+        android:backgroundTint="#0000ff"
+        android:textAllCaps="false"
+        android:textSize="15dp"/>
 
 </RelativeLayout>

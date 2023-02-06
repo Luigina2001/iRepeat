@@ -96,7 +96,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#6495ed"
-                android:text="Precedente" />
+                android:text="Precedente"
+                android:textAllCaps="false"
+                android:textSize="15dp"/>
 
             <Button
                 android:id="@+id/SuccessivaButton"
@@ -104,7 +106,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:backgroundTint="#6495ed"
-                android:text="Successiva" />
+                android:text="Successiva"
+                android:textAllCaps="false"
+                android:textSize="15dp"/>
 
         </LinearLayout>
 
@@ -125,7 +129,9 @@
             android:layout_height="match_parent"
             android:text="Termina quiz"
             android:backgroundTint="#6495ed"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:textAllCaps="false"
+            android:textSize="20dp"/>
 
     </RelativeLayout>
 

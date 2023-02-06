@@ -56,7 +56,9 @@
         android:layout_below="@id/header"
         android:layout_marginTop="10dp"
         android:backgroundTint="#0000FF"
-        android:text="Crea nuovo quiz"/>
+        android:text="Crea nuovo quiz"
+        android:textAllCaps="false"
+        android:textSize="15dp"/>
 
     <TextView
         android:id="@+id/titolo"

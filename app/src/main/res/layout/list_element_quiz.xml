@@ -29,12 +29,12 @@
             android:textStyle="italic|bold"/>
 
         <TextView
-            android:id="@+id/descrizioneQuiz"
+            android:id="@+id/disciplinaQuiz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/titoloQuiz"
             android:layout_centerHorizontal="true"
-            android:text="Descrizione quiz"
+            android:text="Disciplina quiz"
             android:textColor="#FFFFFF"
             android:textSize="12dp"/>
 
@@ -42,7 +42,7 @@
             android:id="@+id/numDomandeQuiz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/descrizioneQuiz"
+            android:layout_below="@id/disciplinaQuiz"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
             android:text="Numero domande quiz"
