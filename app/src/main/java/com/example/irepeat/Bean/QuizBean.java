@@ -2,14 +2,14 @@ package com.example.irepeat.Bean;
 
 public class QuizBean {
 
-    public QuizBean(String descrizione, String nome, String disciplina, int preferito, String durata, int visibilita, String emailUtente) {
+    public QuizBean(String descrizione, String nome, String disciplina, int preferito, String durata, int visibilita, UtenteBean utente) {
         this.descrizione = descrizione;
         this.nome = nome;
         this.disciplina = disciplina;
         this.preferito = preferito;
         this.durata = durata;
         this.visibilita = visibilita;
-        this.emailUtente = emailUtente;
+        this.utente = utente;
     }
 
     public int getId() {
@@ -68,12 +68,12 @@ public class QuizBean {
         this.visibilita = visibilita;
     }
 
-    public String getEmailUtente() {
-        return emailUtente;
+    public UtenteBean getUtente() {
+        return utente;
     }
 
-    public void setEmailUtente(String emailUtente) {
-        this.emailUtente = emailUtente;
+    public void setUtente(UtenteBean utente) {
+        this.utente = utente;
     }
 
     @Override
@@ -86,7 +86,7 @@ public class QuizBean {
                 ", preferito=" + preferito +
                 ", durata='" + durata + '\'' +
                 ", visibilita=" + visibilita +
-                ", emailUtente='" + emailUtente + '\'' +
+                ", utente='" + utente.getEmail() + '\'' +
                 '}';
     }
 
@@ -97,5 +97,5 @@ public class QuizBean {
     private int preferito; //0= FALSE, 1= TRUE
     private String durata;
     private int visibilita; //0= FALSE, 1= TRUE
-    private String emailUtente;
+    private UtenteBean utente;
 }
