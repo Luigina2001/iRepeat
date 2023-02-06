@@ -12,6 +12,8 @@ public class QuizBean {
         this.utente = utente;
     }
 
+    public QuizBean(){}
+
     public int getId() {
         return id;
     }
@@ -88,6 +90,21 @@ public class QuizBean {
                 ", visibilita=" + visibilita +
                 ", utente='" + utente.getEmail() + '\'' +
                 '}';
+    }
+
+    public boolean checkQuiz(){
+
+        if (descrizione==null || nome==null || disciplina==null || durata==null || utente==null){
+           return false;
+        }
+
+        if (visibilita!=0 && visibilita!=1)
+            return false;
+
+        if (preferito!=0 && preferito!=1)
+            return false;
+
+        return true;
     }
 
     private int id;

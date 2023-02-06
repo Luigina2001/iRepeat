@@ -78,6 +78,58 @@ public class UtenteDAO implements BaseColumns {
         return null;
     }
 
+    public UtenteBean doRetrieveByEmail(String email){
+
+        // Specifichiamo le colonne che ci interessano
+        String[] projection = {
+                COLUMN_EMAIL,
+                COLUMN_BIO,
+                COLUMN_NOME,
+                COLUMN_COGNOME,
+                COLUMN_NICKNAME,
+                COLUMN_PASSWORD
+        };
+
+
+        // Definiamo la parte 'where' della query.
+        // es. selection="EMAIL = ? AND PASSWORD = ?(crittografata)"
+        String selection;
+        selection = COLUMN_EMAIL + " = ? ";
+
+
+        // Specifchiamo gli argomenti per i segnaposto (ovvero i ? nella stringa selection)
+        String[] selectionArgs = {email};
+
+        // Specifichiamo come le vogliamo ordinare le righe
+        String sortOrder = null;
+
+        // Eseguiamo la query: es. SELECT <nomi colonne> FROM <nome tavola> WHERE ...
+        Cursor cursor = database.query(
+                TABLE_NAME,                 // The table to query
+                projection,                 // The columns to return
+                selection,                  // The columns for the WHERE clause
+                selectionArgs,              // The values for the WHERE clause
+                null,                       // don't group the rows
+                null,                       // don't filter by row groups
+                sortOrder                   // The sort order
+        );
+
+        if (cursor!=null){
+            cursor.moveToFirst();
+            UtenteBean utente= new UtenteBean();
+            utente.setEmail(cursor.getString(0));
+            utente.setBio(cursor.getString(1));
+            utente.setNome(cursor.getString(2));
+            utente.setCognome(cursor.getString(3));
+            utente.setNickname(cursor.getString(4));
+            utente.setPassword(cursor.getString(5));
+            return utente;
+        }
+
+        return null;
+    }
+
+
     public boolean insert(UtenteBean utente){
 
         ContentValues values= new ContentValues();
