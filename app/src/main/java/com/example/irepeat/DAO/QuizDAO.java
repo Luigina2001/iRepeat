@@ -60,7 +60,7 @@ public class QuizDAO {
                 sortOrder                   // The sort order
         );
 
-        if (cursor!=null){
+        if (cursor.getCount()>0){
             cursor.moveToFirst();
             QuizBean quiz= new QuizBean();
             quiz.setId(cursor.getInt(0));
@@ -91,8 +91,10 @@ public class QuizDAO {
 
         if (quiz.checkQuiz()) {
 
-            if ((id=doRetrieveMaxId())>0)
+            if ((id=doRetrieveMaxId())>=0) {
                 id++;
+                quiz.setId(id);
+            }
             else
                 return false;
             values.put(COLUMN_ID, id);
@@ -121,7 +123,10 @@ public class QuizDAO {
 
         if (cursor!=null){
             cursor.moveToFirst();
-            return cursor.getInt(0);
+            if (cursor.getCount()>0)
+                return cursor.getInt(0);
+            else
+                return 0;
         }
 
         return -1;
