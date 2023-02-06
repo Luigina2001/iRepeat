@@ -1,5 +1,9 @@
 package com.example.irepeat.Bean;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -8,7 +12,11 @@ public class UtenteBean {
 
     public UtenteBean(String email, String password, String bio, String nome, String cognome, String nickname) {
         this.email = email;
-        this.password = this.saveEncryptedPassword(password);
+        try {
+            this.password = this.saveEncryptedPassword(password);
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println("NoSuchAlgorithmException");
+        }
         this.bio = bio;
         this.nome = nome;
         this.cognome = cognome;
@@ -83,7 +91,18 @@ public class UtenteBean {
         return true;
     }
 
-    private String saveEncryptedPassword(String password) {
+    public String saveEncryptedPassword(String passwordUtente) throws NoSuchAlgorithmException {
+        MessageDigest digest = MessageDigest.getInstance("SHA-512");
+        byte[] hashedPwd = digest.digest(passwordUtente.getBytes(StandardCharsets.UTF_8));
+        StringBuilder builder = new StringBuilder();
+        for(byte bit: hashedPwd){
+            builder.append(String.format("%02x", bit));
+        }
+        return builder.toString();
+    }
+
+
+    /*private String saveEncryptedPassword(String password) {
         try {
             SecretKey secretKey = KeyGenerator.getInstance("AES").generateKey();
             Cipher cipher = Cipher.getInstance("AES");
@@ -107,7 +126,7 @@ public class UtenteBean {
             hexChars[j * 2 + 1] = HEX_ARRAY[v & 0x0F];
         }
         return new String(hexChars);
-    }
+    }*/
 
 
     private String email;

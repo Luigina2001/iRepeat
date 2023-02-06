@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
+import android.util.Log;
 
 import com.example.irepeat.Bean.UtenteBean;
 
@@ -47,7 +48,8 @@ public class UtenteDAO implements BaseColumns {
 
 
         // Specifchiamo gli argomenti per i segnaposto (ovvero i ? nella stringa selection)
-        String[] selectionArgs = {email, this.saveEncryptedPassword(password)};
+        String[] selectionArgs = {email, password};
+
 
         // Specifichiamo come le vogliamo ordinare le righe
         String sortOrder = null;
@@ -63,7 +65,7 @@ public class UtenteDAO implements BaseColumns {
                 sortOrder                   // The sort order
         );
 
-        if (cursor!=null){
+        if (cursor.getCount()>0){
             cursor.moveToFirst();
             UtenteBean utente= new UtenteBean();
             utente.setEmail(cursor.getString(0));
@@ -208,7 +210,7 @@ public class UtenteDAO implements BaseColumns {
     }
 
 
-    private String saveEncryptedPassword(String password) {
+    /*private String saveEncryptedPassword(String password) {
 
         try {
             SecretKey secretKey = KeyGenerator.getInstance("AES").generateKey();
@@ -236,7 +238,7 @@ public class UtenteDAO implements BaseColumns {
         }
         return new String(hexChars);
 
-    }
+    }*/
 
 
     private static final String TABLE_NAME = "Utente";

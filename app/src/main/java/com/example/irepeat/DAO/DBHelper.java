@@ -6,18 +6,22 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final String DB_NAME="iRepeat.db";
-    private static final int DB_VERSION= 1;
+    private static final String DB_NAME="iRepeat";
+    private static final int DB_VERSION= 4;
+    private Context context;
 
     public DBHelper(Context context){
+
         super (context, DB_NAME,null, DB_VERSION);
+        this.context=context;
+
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
 
         //TABELLA UTENTE
-        String sql= "CREATE TABLE Utente (email TEXT PRIMARY KEY, " +
+        String sql= "CREATE TABLE IF NOT EXISTS Utente (email TEXT PRIMARY KEY, " +
                 "bio TEXT, " +
                 "nome TEXT, " +
                 "cognome TEXT, " +
@@ -27,7 +31,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
 
         //TABELLA QUIZ
-        sql= "CREATE TABLE Quiz (id INTEGER PRIMARY KEY, " +
+        sql= "CREATE TABLE IF NOT EXISTS Quiz (id INTEGER PRIMARY KEY, " +
                 "descrizione TEXT, " +
                 "nome TEXT, " +
                 "disciplina TEXT, " +
@@ -35,12 +39,12 @@ public class DBHelper extends SQLiteOpenHelper {
                 "durata TEXT, "+
                 "visibilita INTEGER, "+ //0= FALSE, 1= TRUE
                 "utente TEXT, "+
-                "FOREIGN KEY (email) REFERENCES Utente(email));";
+                "FOREIGN KEY (utente) REFERENCES Utente(email));";
 
         db.execSQL(sql);
 
         //TABELLA DOMANDA
-        sql= "CREATE TABLE Domanda (id INTEGER PRIMARY KEY, " +
+        sql= "CREATE TABLE IF NOT EXISTS Domanda (id INTEGER PRIMARY KEY, " +
                 "testo TEXT, "+
                 "quiz INTEGER, "+
                 "FOREIGN KEY (quiz) REFERENCES Quiz(id));";
@@ -48,7 +52,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
 
         //TABELLA RISPOSTA
-        sql= "CREATE TABLE Risposta (id INTEGER PRIMARY KEY, " +
+        sql= "CREATE TABLE IF NOT EXISTS Risposta (id INTEGER PRIMARY KEY, " +
                 "testo TEXT, "+
                 "domanda INTEGER, "+
                 "FOREIGN KEY (domanda) REFERENCES Domanda(id));";
@@ -57,5 +61,19 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS Utente");
+        db.execSQL("DROP TABLE IF EXISTS Quiz");
+        db.execSQL("DROP TABLE IF EXISTS Domanda");
+        db.execSQL("DROP TABLE IF EXISTS Risposta");
+        context.deleteDatabase("iRepeat");
+        onCreate(db);
+    }
+
+
+    public void deleteDatabase(Context context) {
+
+        context.deleteDatabase(DB_NAME);
+
+    }
 }
