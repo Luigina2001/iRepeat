@@ -30,7 +30,7 @@ public class UtenteBean {
     }
 
     public void setPassword(String password) {
-        this.password = this.saveEncryptedPassword(password);
+        this.password = password;
     }
 
     public String getBio() {
@@ -75,6 +75,12 @@ public class UtenteBean {
                 ", cognome='" + cognome + '\'' +
                 ", nickname='" + nickname + '\'' +
                 '}';
+    }
+
+    public boolean checkUtente(){
+        if (email==null || password==null || nome==null || cognome==null || nickname==null)
+            return false;
+        return true;
     }
 
     private String saveEncryptedPassword(String password) {
