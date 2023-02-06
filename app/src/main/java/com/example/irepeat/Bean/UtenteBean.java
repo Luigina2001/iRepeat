@@ -1,10 +1,14 @@
 package com.example.irepeat.Bean;
 
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+
 public class UtenteBean {
 
     public UtenteBean(String email, String password, String bio, String nome, String cognome, String nickname) {
         this.email = email;
-        this.password = password;
+        this.password = this.saveEncryptedPassword(password);
         this.bio = bio;
         this.nome = nome;
         this.cognome = cognome;
@@ -26,7 +30,7 @@ public class UtenteBean {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = this.saveEncryptedPassword(password);
     }
 
     public String getBio() {
@@ -72,6 +76,33 @@ public class UtenteBean {
                 ", nickname='" + nickname + '\'' +
                 '}';
     }
+
+    private String saveEncryptedPassword(String password) {
+        try {
+            SecretKey secretKey = KeyGenerator.getInstance("AES").generateKey();
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+            byte[] encryptedPassword = cipher.doFinal(password.getBytes());
+            String hexEncryptedPassword = bytesToHex(encryptedPassword);
+
+            return hexEncryptedPassword;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
+    private static String bytesToHex(byte[] bytes) {
+        char[] hexChars = new char[bytes.length * 2];
+        for (int j = 0; j < bytes.length; j++) {
+            int v = bytes[j] & 0xFF;
+            hexChars[j * 2] = HEX_ARRAY[v >>> 4];
+            hexChars[j * 2 + 1] = HEX_ARRAY[v & 0x0F];
+        }
+        return new String(hexChars);
+    }
+
 
     private String email;
     private String password;
