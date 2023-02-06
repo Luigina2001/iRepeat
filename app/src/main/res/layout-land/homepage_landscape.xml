@@ -91,7 +91,7 @@
         android:gravity="center" >
 
         <ImageButton
-            android:id="@+id/chatBotButton"
+            android:id="@+id/homepageButton"
             android:layout_width="50dip"
             android:layout_height="50dip"
             android:layout_marginLeft="5dip"
@@ -99,6 +99,7 @@
             android:backgroundTint="#6495ed"/>
 
         <ImageButton
+            android:id="@+id/listaPreferitiButton"
             android:layout_width="50dip"
             android:layout_height="50dip"
             android:layout_marginLeft="150dip"
