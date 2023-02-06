@@ -28,11 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         DBHelper db= new DBHelper(this);
-        //db.onUpgrade(db.getWritableDatabase(), 1, 4);
-        //db= new DBHelper(this);
-        //db.deleteDatabase(this);
-        //db= new DBHelper(this);
-        //db.onCreate(db.getWritableDatabase());
         /*UtenteDAO utenteDAO= new UtenteDAO(db);
         utenteDAO.open();
         UtenteBean utente= new UtenteBean("luigina@iRepeat.it", "luigina01", "prova bio", "luigina", "costante", "luigina01");
@@ -45,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         utenteDAO.close();*/
 
-        QuizDAO quizDAO = new QuizDAO(db);
+        /*QuizDAO quizDAO = new QuizDAO(db);
         quizDAO.open();
         UtenteBean utente= new UtenteBean("luigina@iRepeat.it", "luigina01", "prova bio", "luigina", "costante", "luigina01");
         QuizBean quiz= new QuizBean("descrizione", "nome", "disciplina", 1, "durata", 0, utente);
@@ -53,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         quizDAO.insert(quiz);
 
         Log.d("MYDEBUG", String.valueOf(quizDAO.select(quiz.getId())));
+
+        quizDAO.close();*/
 
     }
 }
