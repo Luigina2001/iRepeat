@@ -70,6 +70,21 @@
                     android:selectAllOnFocus="true"
                     android:textColor="@color/white" />
 
+                <EditText
+                    android:id="@+id/disciplinaQuiz"
+                    android:layout_width="300dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"
+                    android:hint="Disciplina"
+                    android:textColorHint="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:layout_below="@id/descrizioneQuiz"
+                    android:textSize="35dp"
+                    android:layout_marginTop="20dp"
+                    android:selectAllOnFocus="true"
+                    android:textColor="@color/white" />
+
+
                 <TextView
                     android:id="@+id/textViewVisibilita"
                     android:layout_width="match_parent"
@@ -78,7 +93,7 @@
                     android:layout_marginTop="40dp"
                     android:textSize="35dp"
                     android:textAlignment="center"
-                    android:layout_below="@id/descrizioneQuiz"
+                    android:layout_below="@id/disciplinaQuiz"
                     android:layout_height="wrap_content"/>
 
                 <RadioGroup
@@ -109,9 +124,9 @@
                 </RadioGroup>
 
                 <TextView
-                    android:id="@+id/textViewTempo"
+                    android:id="@+id/textViewDurata"
                     android:layout_width="match_parent"
-                    android:text="Tempo"
+                    android:text="Durata"
                     android:textColor="@color/white"
                     android:layout_marginTop="40dp"
                     android:textSize="35dp"
@@ -125,7 +140,7 @@
                     android:orientation="horizontal"
                     android:layout_centerInParent="true"
                     android:backgroundTint="@color/white"
-                    android:layout_below="@id/textViewTempo"
+                    android:layout_below="@id/textViewDurata"
                     android:layout_centerHorizontal="true">
 
                     <NumberPicker
