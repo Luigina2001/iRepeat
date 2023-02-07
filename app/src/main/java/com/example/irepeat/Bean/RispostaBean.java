@@ -5,10 +5,10 @@ public class RispostaBean {
     public RispostaBean() {
     }
 
-    public RispostaBean(int id, String testo, DomandaBean domanda) {
-        this.id = id;
+    public RispostaBean(String testo, DomandaBean domanda, int corretta) {
         this.testo = testo;
         this.domanda = domanda;
+        this.corretta=corretta;
     }
 
     public int getId() {
@@ -35,7 +35,26 @@ public class RispostaBean {
         this.domanda = domanda;
     }
 
+    public int getCorretta() {
+        return corretta;
+    }
+
+    public void setCorretta(int corretta) {
+        this.corretta = corretta;
+    }
+
+    @Override
+    public String toString() {
+        return "RispostaBean{" +
+                "id=" + id +
+                ", testo='" + testo + '\'' +
+                ", domanda=" + domanda.getId() +
+                ", corretta=" + corretta +
+                '}';
+    }
+
     private int id;
     private String testo;
     private DomandaBean domanda;
+    private int corretta; //0 se la risposta è corretta, 1 se è errata
 }

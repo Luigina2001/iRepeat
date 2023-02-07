@@ -1,5 +1,10 @@
 package com.example.irepeat.Bean;
 
+import com.example.irepeat.DAO.DBHelper;
+import com.example.irepeat.DAO.DomandaDAO;
+
+import java.util.ArrayList;
+
 public class QuizBean {
 
     public QuizBean(String descrizione, String nome, String disciplina, int preferito, String durata, int visibilita, UtenteBean utente) {
@@ -13,6 +18,7 @@ public class QuizBean {
     }
 
     public QuizBean(){}
+
 
     public int getId() {
         return id;
@@ -78,19 +84,6 @@ public class QuizBean {
         this.utente = utente;
     }
 
-    @Override
-    public String toString() {
-        return "QuizBean{" +
-                "id=" + id +
-                ", descrizione='" + descrizione + '\'' +
-                ", nome='" + nome + '\'' +
-                ", disciplina='" + disciplina + '\'' +
-                ", preferito=" + preferito +
-                ", durata='" + durata + '\'' +
-                ", visibilita=" + visibilita +
-                ", utente='" + utente.getEmail() + '\'' +
-                '}';
-    }
 
     public boolean checkQuiz(){
 
@@ -107,6 +100,42 @@ public class QuizBean {
         return true;
     }
 
+    public ArrayList<DomandaBean> getDomande() {
+        return domande;
+    }
+
+    public boolean setDomande(DBHelper db) {
+        if(this.id>0){
+            DomandaDAO domandaDAO = new DomandaDAO(db);
+            domandaDAO.open();
+            if ((this.domande=domandaDAO.selectByQuiz(this))!=null)
+                return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        String s= "QuizBean{" +
+                "id=" + id +
+                ", descrizione='" + descrizione + '\'' +
+                ", nome='" + nome + '\'' +
+                ", disciplina='" + disciplina + '\'' +
+                ", preferito=" + preferito +
+                ", durata='" + durata + '\'' +
+                ", visibilita=" + visibilita +
+                ", utente=" + utente.getEmail()+
+                ", id domande= [";
+
+        for (DomandaBean d: domande){
+            s+=d.getId();
+            s+=", ";
+        }
+
+        s+="] };";
+        return s;
+    }
+
     private int id;
     private String descrizione;
     private String nome;
@@ -115,4 +144,5 @@ public class QuizBean {
     private String durata;
     private int visibilita; //0= FALSE, 1= TRUE
     private UtenteBean utente;
+    private ArrayList<DomandaBean> domande;
 }

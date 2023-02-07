@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.irepeat.Bean.QuizBean;
 import com.example.irepeat.Bean.UtenteBean;
 
+import java.util.ArrayList;
+
 public class QuizDAO {
 
     public QuizDAO(DBHelper dbHelper){
@@ -83,6 +85,68 @@ public class QuizDAO {
         }
         return null;
     }
+
+    public ArrayList<QuizBean> selectByUtente(UtenteBean utente){
+
+        ArrayList<QuizBean> quizUtente= new ArrayList<>();
+
+        // Specifichiamo le colonne che ci interessano
+        String[] projection = {
+                COLUMN_ID,
+                COLUMN_DESCRIZIONE,
+                COLUMN_NOME,
+                COLUMN_DISCIPLINA,
+                COLUMN_PREFERITO,
+                COLUMN_DURATA,
+                COLUMN_VISIBILITA,
+                COLUMN_UTENTE
+        };
+
+
+        // Definiamo la parte 'where' della query.
+        // es. selection="ID = ? "
+        String selection;
+        selection = COLUMN_UTENTE + " = ? ";
+
+
+        // Specifchiamo gli argomenti per i segnaposto (ovvero i ? nella stringa selection)
+        String[] selectionArgs = {utente.getEmail()};
+
+        // Specifichiamo come le vogliamo ordinare le righe
+        String sortOrder = null;
+
+        // Eseguiamo la query: es. SELECT <nomi colonne> FROM <nome tavola> WHERE ...
+        Cursor cursor = database.query(
+                TABLE_NAME,                 // The table to query
+                projection,                 // The columns to return
+                selection,                  // The columns for the WHERE clause
+                selectionArgs,              // The values for the WHERE clause
+                null,                       // don't group the rows
+                null,                       // don't filter by row groups
+                sortOrder                   // The sort order
+        );
+
+        if (cursor.getCount()>0){
+            cursor.moveToFirst();
+            do {
+                QuizBean quiz = new QuizBean();
+                quiz.setId(cursor.getInt(0));
+                quiz.setDescrizione(cursor.getString(1));
+                quiz.setNome(cursor.getString(2));
+                quiz.setDisciplina(cursor.getString(3));
+                quiz.setPreferito(cursor.getInt(4));
+                quiz.setDurata(cursor.getString(5));
+                quiz.setVisibilita(cursor.getInt(6));
+                quiz.setUtente(utente);
+                quizUtente.add(quiz);
+            }
+            while (cursor.moveToNext());
+        }
+        else
+            return null;
+        return quizUtente;
+    }
+
 
     public boolean insert(QuizBean quiz){
 

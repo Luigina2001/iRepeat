@@ -55,6 +55,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sql= "CREATE TABLE IF NOT EXISTS Risposta (id INTEGER PRIMARY KEY, " +
                 "testo TEXT, "+
                 "domanda INTEGER, "+
+                "corretta INTEGER, "+
                 "FOREIGN KEY (domanda) REFERENCES Domanda(id));";
 
         db.execSQL(sql);
