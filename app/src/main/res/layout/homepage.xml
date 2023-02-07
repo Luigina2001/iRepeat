@@ -29,15 +29,19 @@
             android:backgroundTint="#d1d1d1"
             android:layout_height="match_parent"
             android:text="Cerca quiz..."
+            android:onClick="onClickRicerca"
+            android:editable="false"
             android:textColor="#d1d1d1"/>
 
-        <ImageButton
+        <ImageView
             android:id="@+id/cercaButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/cerca"
-            android:layout_marginLeft="360dp"
-            android:layout_marginTop="5dp"/>
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:onClick="onClickRicerca"
+            android:layout_marginTop="10dp"/>
 
 
     </RelativeLayout>
@@ -56,6 +60,7 @@
         android:backgroundTint="#0000FF"
         android:text="Crea nuovo quiz"
         android:textAllCaps="false"
+        android:onClick="onClickCreaNuovoQuiz"
         android:textSize="15dp"/>
 
     <TextView
@@ -102,6 +107,7 @@
             android:layout_height="50dip"
             android:layout_marginLeft="150dip"
             android:src="@drawable/lista_desideri"
+            android:onClick="onClickListaPreferiti"
             android:backgroundTint="#6495ed"/>
 
         <ImageButton

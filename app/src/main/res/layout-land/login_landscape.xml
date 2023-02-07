@@ -16,10 +16,12 @@
         android:layout_alignParentLeft="true"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:onClick="onClickBack"
         android:src="@drawable/back"/>
 
     <ScrollView
         android:layout_width="match_parent"
+        android:layout_below="@id/back"
         android:layout_height="match_parent">
 
         <RelativeLayout
@@ -106,7 +108,7 @@
             android:layout_below="@id/LoginForm"
             android:layout_marginTop="50dp"
             android:layout_centerHorizontal="true"
-            android:onClick="onClickRegistrazioneLogin"
+            android:onClick="onClickRegistrazione"
             android:text="Sei un nuovo utente? Registrati"
             android:textAlignment="center"
             android:textColor="@color/white"

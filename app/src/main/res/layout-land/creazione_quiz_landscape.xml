@@ -13,12 +13,14 @@
         android:layout_alignParentLeft="true"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:onClick="onClickBack"
         android:src="@drawable/back"/>
 
     <ScrollView
         android:id="@+id/scrollerCreazioneQuiz"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/back"
         android:layout_marginTop="0dp">
 
         <RelativeLayout
@@ -183,6 +185,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_width="55dp"
                     android:layout_height="55dp"
+                    android:onClick="onClickAggiungiDomanda"
                     android:src="@drawable/icona_piu"/>
             </LinearLayout>
 
@@ -191,7 +194,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/layoutDomande"/>
+
+            <Button
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/listViewCreazioneDomande"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:textSize="35dp"
+                android:textColor="#00BFFF"
+                android:onClick="onClickCreaQuiz"
+                android:backgroundTint="@color/white"
+                android:layout_marginTop="20dp"
+                android:text="Crea Quiz"/>
+
         </RelativeLayout>
+
     </ScrollView>
 
 </RelativeLayout>

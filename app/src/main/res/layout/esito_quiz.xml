@@ -18,6 +18,7 @@
             android:layout_width="150dp"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="20dp"
+            android:onClick="onClickHomepage"
             android:layout_height="wrap_content"
             android:src="@drawable/logo_scritta"/>
 
@@ -28,6 +29,7 @@
             android:layout_marginRight="110dip"
             android:layout_alignParentRight="true"
             android:src="@drawable/homepage"
+            android:onClick="onClickHomepage"
             android:backgroundTint="@color/white"/>
 
         <ImageView
@@ -37,6 +39,7 @@
             android:src="@drawable/lista_desideri"
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
+            android:onClick="onClickListaPreferiti"
             android:backgroundTint="@color/white"/>
 
         <ImageView

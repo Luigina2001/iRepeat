@@ -25,23 +25,24 @@
             android:layout_alignParentLeft="true"
             android:src="@drawable/logo_rotondo"/>
 
-        <EditText
+        <SearchView
             android:id="@+id/testoRicerca"
             android:layout_width="match_parent"
             android:layout_marginLeft="55dp"
             android:layout_marginRight="50dp"
             android:backgroundTint="#d1d1d1"
             android:layout_height="match_parent"
-            android:text="Cerca quiz..."
             android:textColor="#d1d1d1"/>
 
-        <ImageButton
+        <ImageView
             android:id="@+id/cercaButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/cerca"
-            android:layout_marginLeft="680dp"
-            android:layout_marginTop="5dp"/>
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:onClick="onClickRicerca"
+            android:layout_marginTop="10dp"/>
 
     </RelativeLayout>
     <View
@@ -65,6 +66,7 @@
             android:layout_marginLeft="3dp"
             android:textStyle="bold"
             android:text="Nome"
+            android:onClick="onClickFiltroNome"
             android:textAllCaps="false"
             android:textSize="15dp"/>
 
@@ -76,8 +78,8 @@
             android:backgroundTint="#0000ff"
             android:textColor="#ffffff"
             android:textStyle="bold"
-            android:enabled="false"
             android:text="Disciplina"
+            android:onClick="onClickFiltroDisciplina"
             android:textAllCaps="false"
             android:textSize="15dp"/>
 
@@ -116,6 +118,7 @@
             android:layout_width="50dip"
             android:layout_height="50dip"
             android:layout_marginLeft="5dip"
+            android:onClick="onClickHomepage"
             android:src="@drawable/homepage"
             android:backgroundTint="#6495ed"/>
 
@@ -123,6 +126,7 @@
             android:layout_width="50dip"
             android:layout_height="50dip"
             android:layout_marginLeft="150dip"
+            android:onClick="onClickListaPreferiti"
             android:src="@drawable/lista_desideri"
             android:backgroundTint="#6495ed"/>
 

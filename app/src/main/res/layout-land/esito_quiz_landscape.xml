@@ -30,6 +30,7 @@
             android:layout_marginRight="150dip"
             android:layout_alignParentRight="true"
             android:src="@drawable/homepage"
+            android:onClick="onClickHomepage"
             android:backgroundTint="@color/white"/>
 
         <ImageView
@@ -39,6 +40,7 @@
             android:src="@drawable/lista_desideri"
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
+            android:onClick="onClickListaPreferiti"
             android:backgroundTint="@color/white"/>
 
         <ImageView
@@ -48,7 +50,7 @@
             android:layout_marginRight="8dip"
             android:layout_alignParentRight="true"
             android:onClick="onClickProfilo"
-            android:src="@drawable/menu"
+            android:src="@drawable/utente"
             android:backgroundTint="@color/white"/>
     </RelativeLayout>
 

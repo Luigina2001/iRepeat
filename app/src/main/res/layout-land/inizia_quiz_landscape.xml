@@ -97,6 +97,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#6495ed"
                 android:text="Precedente"
+                android:onClick="onClickPrecedente"
                 android:textAllCaps="false"
                 android:textSize="15dp" />
 
@@ -107,6 +108,7 @@
                 android:layout_marginLeft="20dp"
                 android:backgroundTint="#6495ed"
                 android:text="Successiva"
+                android:onClick="onClickSuccessiva"
                 android:textAllCaps="false"
                 android:textSize="15dp" />
 
@@ -131,6 +133,7 @@
             android:backgroundTint="#6495ed"
             android:layout_centerHorizontal="true"
             android:textAllCaps="false"
+            android:onClick="onClickTerminaQuiz"
             android:textSize="20dp"/>
 
     </RelativeLayout>

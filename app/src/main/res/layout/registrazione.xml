@@ -12,6 +12,7 @@
         android:layout_alignParentLeft="true"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:onClick="onClickBack"
         android:src="@drawable/back"/>
 
 
@@ -170,6 +171,7 @@
         android:layout_marginTop="15dp"
         android:text="Registrati"
         android:backgroundTint="#0000ff"
+        android:onClick="onClickRegistrazione"
         android:textAllCaps="false"
         android:textSize="15dp"/>
 

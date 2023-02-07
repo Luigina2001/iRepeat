@@ -28,6 +28,7 @@
             android:layout_height="50dip"
             android:layout_marginRight="150dip"
             android:layout_alignParentRight="true"
+            android:onClick="onClickHomepage"
             android:src="@drawable/homepage"
             android:backgroundTint="@color/white"/>
 
@@ -37,16 +38,17 @@
             android:layout_marginRight="85dip"
             android:src="@drawable/lista_desideri"
             android:layout_alignParentRight="true"
+            android:onClick="onClickListaPreferiti"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/white"/>
 
         <ImageView
+            android:id="@+id/filtro"
             android:layout_marginTop="0dp"
             android:layout_width="80dip"
             android:layout_height="80dip"
             android:layout_marginRight="8dip"
             android:layout_alignParentRight="true"
-            android:onClick="onClickProfilo"
             android:src="@drawable/menu"
             android:backgroundTint="@color/white"/>
     </RelativeLayout>
