@@ -101,11 +101,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-            <ListView
-                android:id="@+id/listViewQuiz"
+            <GridView
+                android:id="@+id/gridViewQuiz"
                 android:layout_below="@id/immagineProfilo"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
+                android:numColumns="4"
                 android:layout_height="wrap_content"/>
 
         </RelativeLayout>
