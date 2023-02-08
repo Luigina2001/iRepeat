@@ -30,6 +30,9 @@ public class DomandaRispostaCorrettaAdapter extends ArrayAdapter<DomandaBean> {
     public View getView(int position, View view, ViewGroup parent) {
 
         int orientation = 0;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            orientation = this.getContext().getApplicationContext().getDisplay().getOrientation();
+        }
 
         if (view == null) {
 
