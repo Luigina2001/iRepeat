@@ -171,14 +171,14 @@
 
     <Button
         android:id="@+id/RegistrazioneButton"
-        android:layout_width="150dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/RegistrazioneForm"
         android:layout_centerHorizontal="true"
         android:text="Registrati"
         android:onClick="onClickRegistrazione"
-        android:backgroundTint="#0000ff"
-        android:textAllCaps="false"
-        android:textSize="15dp"/>
-
+        android:textSize="22dp"
+        android:textColor="#0000FF"
+        android:backgroundTint="@color/white"
+        android:textAllCaps="false" />
 </RelativeLayout>

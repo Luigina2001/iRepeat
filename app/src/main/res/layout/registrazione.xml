@@ -19,8 +19,8 @@
     <ImageView
         android:id="@+id/logo"
         android:layout_marginTop="50dp"
-        android:layout_width="150dip"
-        android:layout_height="150dip"
+        android:layout_width="160dip"
+        android:layout_height="160dip"
         android:layout_centerHorizontal="true"
         app:srcCompat="@drawable/logo_rotondo"/>
 
@@ -162,17 +162,19 @@
     </GridLayout>
 
 
+
     <Button
         android:id="@+id/RegistrazioneButton"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_below="@id/RegistrazioneForm"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
         android:text="Registrati"
-        android:backgroundTint="#0000ff"
         android:onClick="onClickRegistrazione"
-        android:textAllCaps="false"
-        android:textSize="15dp"/>
+        android:textSize="20dp"
+        android:textColor="#0000FF"
+        android:backgroundTint="@color/white"
+        android:textAllCaps="false" />
 
 </RelativeLayout>

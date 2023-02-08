@@ -96,7 +96,6 @@
                 android:textSize="35dp"
                 android:textColor="#0000FF"
                 android:backgroundTint="@color/white"
-
                 android:textAllCaps="false" />
 
         </RelativeLayout>
