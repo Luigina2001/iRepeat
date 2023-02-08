@@ -108,14 +108,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#6495ed"
-        android:gravity="center" >
+        android:background="#6495ed" >
 
         <ImageButton
             android:id="@+id/chatBotButton"
             android:layout_width="50dip"
             android:layout_height="50dip"
-            android:layout_marginLeft="5dip"
+            android:layout_marginLeft="100dp"
             android:onClick="onClickHomepage"
             android:src="@drawable/homepage"
             android:backgroundTint="#6495ed"/>
@@ -123,7 +122,7 @@
         <ImageButton
             android:layout_width="50dip"
             android:layout_height="50dip"
-            android:layout_marginLeft="150dip"
+            android:layout_centerHorizontal="true"
             android:onClick="onClickListaPreferiti"
             android:src="@drawable/lista_desideri"
             android:backgroundTint="#6495ed"/>
@@ -132,7 +131,8 @@
             android:id="@+id/profiloButton"
             android:layout_width="50dip"
             android:layout_height="50dip"
-            android:layout_marginLeft="300dip"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="100dp"
             android:onClick="onClickProfilo"
             android:src="@drawable/utente"
             android:backgroundTint="#6495ed"/>

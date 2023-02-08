@@ -11,31 +11,22 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_alignParentTop="true"
-        android:background="#6495ed">
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_marginLeft="5dp"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/logo_rotondo"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="iRepeat"
-            android:textSize="25dp"
-            android:textColor="@color/white"
-            android:layout_toRightOf="@id/logo"
-            android:layout_centerVertical="true"/>
+            android:src="@drawable/logo_scritta"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="tempo rimasto"
             android:layout_centerVertical="true"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="15dp"
             android:textSize="20dp"
             android:textStyle="bold"
             android:layout_alignParentRight="true"/>

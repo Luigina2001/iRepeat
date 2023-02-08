@@ -6,8 +6,49 @@
     android:background="@drawable/sfondo_esagono_orizzontale"
     tools:ignore="MissingDefaultResource">
 
+    <!-- HEADER -->
+    <RelativeLayout
+        android:id="@+id/header"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_scritta"/>
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginRight="85dp"
+            android:layout_alignParentRight="true"
+            android:onClick="onClickHomepage"
+            android:src="@drawable/homepage"
+            android:backgroundTint="@color/white"/>
+
+        <ImageView
+            android:id="@+id/filtro"
+            android:layout_marginTop="10dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="8dip"
+            android:layout_alignParentRight="true"
+            android:onClick="onClickProfilo"
+            android:src="@drawable/utente"
+            android:backgroundTint="@color/white"/>
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/titolo"
+        android:layout_below="@id/header"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Lista Preferiti"
@@ -18,40 +59,11 @@
 
     <ListView
         android:id="@+id/listaQuiz"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/titolo"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="50dp"/>
-
-
-    <!--FOOTER -->
-    <RelativeLayout
-        android:id="@+id/footer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#6495ed"
-        android:gravity="center">
-
-        <ImageButton
-            android:id="@+id/homepageButton"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:src="@drawable/homepage"
-            android:backgroundTint="#6495ed"/>
-
-
-        <ImageButton
-            android:id="@+id/profiloButton"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_marginLeft="150dip"
-            android:src="@drawable/utente"
-            android:backgroundTint="#6495ed"/>
-
-    </RelativeLayout>
-
 
 
 </RelativeLayout>
