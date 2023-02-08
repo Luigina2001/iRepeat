@@ -48,12 +48,27 @@
 
 
                 <EditText
-                    android:id="@+id/username"
+                    android:id="@+id/email"
                     android:layout_width="600dip"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:backgroundTint="@color/white"
-                    android:hint="Email o nickname"
+                    android:hint="Email"
+                    android:selectAllOnFocus="true"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="35dp" />
+
+                <EditText
+                    android:id="@+id/nickname"
+                    android:layout_width="600dip"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="@color/white"
+                    android:hint="Nickname"
+                    android:layout_marginTop="35dp"
+                    android:layout_below="@id/email"
                     android:selectAllOnFocus="true"
                     android:textAlignment="center"
                     android:textColor="@color/white"
@@ -64,7 +79,7 @@
                     android:id="@+id/password"
                     android:layout_width="600dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/username"
+                    android:layout_below="@id/nickname"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="35dp"
                     android:backgroundTint="@color/white"
@@ -76,10 +91,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
-                    android:textSize="35dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/username" />
+                    android:textSize="35dp"/>
 
                 <Button
                     android:id="@+id/LoginButton"
