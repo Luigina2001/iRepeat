@@ -108,8 +108,11 @@ public class QuizBean {
         if(this.id>0){
             DomandaDAO domandaDAO = new DomandaDAO(db);
             domandaDAO.open();
-            if ((this.domande=domandaDAO.selectByQuiz(this))!=null)
+            if ((this.domande=domandaDAO.selectByQuiz(this))!=null) {
+                domandaDAO.close();
                 return true;
+            }
+            domandaDAO.close();
         }
         return false;
     }

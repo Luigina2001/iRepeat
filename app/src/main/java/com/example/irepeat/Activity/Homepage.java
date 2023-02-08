@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +13,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.irepeat.R;
+import com.example.irepeat.Utils.MyPreferences;
 
 public class Homepage extends AppCompatActivity {
+
+    private MyPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +28,22 @@ public class Homepage extends AppCompatActivity {
         } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             setContentView(R.layout.homepage);
         }
+
+        preferences= new MyPreferences(this);
+
     }
 
     public void onClickCreaNuovoQuiz(View v){
-        Intent i= new Intent(this, CreazioneQuiz.class);
-        startActivity(i);
+
+        if(preferences.isLoggedIn()){
+            Intent i = new Intent(this, CreazioneQuiz.class);
+            startActivity(i);
+        }
+        else {
+            Toast t= Toast.makeText(this, "Effettua il login per creare un nuovo quiz", Toast.LENGTH_LONG);
+            t.show();
+        }
+
     }
 
     public void onClickRicerca(View v){
@@ -37,18 +52,29 @@ public class Homepage extends AppCompatActivity {
     }
 
     public void onClickListaPreferiti(View v){
-        Intent i= new Intent(this, ListaPreferiti.class);
-        startActivity(i);
+
+        if(preferences.isLoggedIn()){
+            Intent i= new Intent(this, ListaPreferiti.class);
+            startActivity(i);
+        }
+        else {
+            Toast t= Toast.makeText(this, "Effettua il login per visualizzare i preferiti", Toast.LENGTH_LONG);
+            t.show();
+        }
     }
 
     public void onClickProfilo(View v){
         // se l'utente è loggato
-        Intent i= new Intent(this, ProfiloPersonale.class);
-        startActivity(i);
-
+        MyPreferences preferences= new MyPreferences(this);
+        if(preferences.isLoggedIn()) {
+            Intent i= new Intent(this, ProfiloPersonale.class);
+            startActivity(i);
+        }
         //altrimenti
-        //Intent i= new Intent(this, Login.class);
-        //startActivity(i);
+        else {
+            Intent i = new Intent(this, Login.class);
+            startActivity(i);
+        }
     }
 
     @Override
