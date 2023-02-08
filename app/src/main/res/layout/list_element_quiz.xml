@@ -11,6 +11,7 @@
 
         <!--Mettere cuore pieno se il quiz e nella lista preferiti        -->
         <ImageButton
+            android:id="@+id/cuoreButton"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:src="@drawable/cuore_vuoto"

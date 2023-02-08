@@ -45,10 +45,74 @@
 
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/opzioniRisposta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/risposta1"
+            android:layout_width="300dp"
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:hint="Risposta 1"
+            android:backgroundTint="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20dp"
+            android:selectAllOnFocus="true"
+            android:textColor="@color/white"/>
+
+        <EditText
+            android:id="@+id/risposta2"
+            android:layout_width="300dp"
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:hint="Risposta 2"
+            android:backgroundTint="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20dp"
+            android:selectAllOnFocus="true"
+            android:textColor="@color/white"
+            android:visibility="invisible"/>
+
+        <EditText
+            android:id="@+id/risposta3"
+            android:layout_width="300dp"
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:hint="Risposta 3"
+            android:backgroundTint="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20dp"
+            android:selectAllOnFocus="true"
+            android:textColor="@color/white"
+            android:visibility="invisible"/>
+
+        <EditText
+            android:id="@+id/risposta4"
+            android:layout_width="300dp"
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:hint="Risposta 4"
+            android:backgroundTint="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20dp"
+            android:selectAllOnFocus="true"
+            android:textColor="@color/white"
+            android:visibility="invisible"/>
+
+        <EditText
+            android:id="@+id/risposta5"
+            android:layout_width="300dp"
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:hint="Risposta 5"
+            android:backgroundTint="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20dp"
+            android:selectAllOnFocus="true"
+            android:textColor="@color/white"
+            android:visibility="invisible"/>
 
         <TextView
             android:text="Risposta corretta"

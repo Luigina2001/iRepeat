@@ -10,28 +10,38 @@
         android:orientation="vertical">
         <TextView
             android:id="@+id/titoloQuiz"
-            android:layout_width="350dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Titolo quiz"
             android:textSize="20dp"
             android:paddingLeft="10dp"/>
 
         <TextView
-            android:id="@+id/creatorQuiz"
-            android:layout_width="350dp"
+            android:id="@+id/disciplinaQuiz"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Disciplina quiz"
             android:layout_marginTop="10dp"
+            android:textSize="15dp"
+            android:paddingLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/creatorQuiz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:text="Creator Quiz"
             android:paddingLeft="20dp"/>
 
     </LinearLayout>
 
     <ImageButton
+        android:id="@+id/cuoreButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/cuore_vuoto"
-        android:layout_marginLeft="350dp"
-        android:backgroundTint="@color/white"/>
+        android:backgroundTint="@color/white"
+        android:layout_alignParentRight="true"/>
 
     <View
         android:layout_width="match_parent"
