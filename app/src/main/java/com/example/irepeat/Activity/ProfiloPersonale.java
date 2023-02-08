@@ -64,7 +64,8 @@ public class ProfiloPersonale extends AppCompatActivity {
                         String filtroStringa = item.getTitle().toString();
 
                         if (filtroStringa.equalsIgnoreCase("Modifica credenziali")){
-                            //aggiungere activity
+                            Intent i= new Intent(ProfiloPersonale.this, ModificaCredenziali.class);
+                            startActivity(i);
                         }
                         else if (filtroStringa.equalsIgnoreCase("Crea quiz")){
                             Intent i= new Intent(ProfiloPersonale.this, CreazioneQuiz.class);
