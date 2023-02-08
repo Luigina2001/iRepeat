@@ -8,6 +8,10 @@ import android.util.Log;
 
 import com.example.irepeat.Bean.UtenteBean;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -42,13 +46,18 @@ public class UtenteDAO implements BaseColumns {
         // Definiamo la parte 'where' della query.
         // es. selection="EMAIL = ? AND PASSWORD = ?(crittografata)"
         String selection;
-        selection = COLUMN_EMAIL + " = ? "
+        selection = "("+COLUMN_EMAIL + " = ? or "+ COLUMN_NICKNAME+"= ?) "
                 + " and "
                 +COLUMN_PASSWORD+ " = ?";
 
 
         // Specifchiamo gli argomenti per i segnaposto (ovvero i ? nella stringa selection)
-        String[] selectionArgs = {email, password};
+        String[] selectionArgs = new String[0];
+        try {
+            selectionArgs = new String[]{email, email, this.saveEncryptedPassword(password)};
+        } catch (NoSuchAlgorithmException e) {
+            return null;
+        }
 
 
         // Specifichiamo come le vogliamo ordinare le righe
@@ -209,36 +218,16 @@ public class UtenteDAO implements BaseColumns {
 
     }
 
-
-    /*private String saveEncryptedPassword(String password) {
-
-        try {
-            SecretKey secretKey = KeyGenerator.getInstance("AES").generateKey();
-            Cipher cipher = Cipher.getInstance("AES");
-            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-            byte[] encryptedPassword = cipher.doFinal(password.getBytes());
-            String hexEncryptedPassword = bytesToHex(encryptedPassword);
-
-            return hexEncryptedPassword;
-        } catch (Exception e) {
-            e.printStackTrace();
+    public String saveEncryptedPassword(String passwordUtente) throws NoSuchAlgorithmException {
+        MessageDigest digest = MessageDigest.getInstance("SHA-512");
+        byte[] hashedPwd = digest.digest(passwordUtente.getBytes(StandardCharsets.UTF_8));
+        StringBuilder builder = new StringBuilder();
+        for(byte bit: hashedPwd){
+            builder.append(String.format("%02x", bit));
         }
-        return null;
-
+        return builder.toString();
     }
 
-    private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
-    private static String bytesToHex(byte[] bytes) {
-
-        char[] hexChars = new char[bytes.length * 2];
-        for (int j = 0; j < bytes.length; j++) {
-            int v = bytes[j] & 0xFF;
-            hexChars[j * 2] = HEX_ARRAY[v >>> 4];
-            hexChars[j * 2 + 1] = HEX_ARRAY[v & 0x0F];
-        }
-        return new String(hexChars);
-
-    }*/
 
 
     private static final String TABLE_NAME = "Utente";
