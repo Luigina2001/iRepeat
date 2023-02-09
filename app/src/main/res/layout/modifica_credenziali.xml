@@ -17,7 +17,7 @@
         android:src="@drawable/back"/>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content">
@@ -30,82 +30,107 @@
             android:layout_height="160dip"
             app:srcCompat="@drawable/logo_rotondo"/>
 
-        <RelativeLayout
-            android:id="@+id/LoginForm"
+        <LinearLayout
+            android:id="@+id/ModificaForm"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_height="300dp"
+            android:layout_marginTop="30dp"
             android:layout_below="@id/logo"
-            android:layout_marginTop="50dp"
-            android:layout_centerInParent="true">
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical">
 
 
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="250dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Email"
-                android:backgroundTint="@color/white"
-                android:textColorHint="@color/white"
-                android:layout_centerHorizontal="true"
-                android:textSize="20dp"
-                android:selectAllOnFocus="true"
+                android:layout_toLeftOf="@id/nickname"
+                android:labelFor="@id/nickname"
+                android:text="Nickname"
                 android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="25dp" />
 
             <EditText
                 android:id="@+id/nickname"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:hint="Nickname"
-                android:layout_below="@id/email"
-                android:layout_marginTop="15dp"
                 android:backgroundTint="@color/white"
-                android:textColorHint="@color/white"
-                android:layout_centerHorizontal="true"
-                android:textSize="20dp"
+                android:hint="Nickname"
                 android:selectAllOnFocus="true"
+                android:textAlignment="center"
                 android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_toLeftOf="@id/passwordAttuale"
+                android:labelFor="@id/passwordAttuale"
+                android:text="Password attuale"
+                android:textColor="@color/white"
+                android:textSize="25dp" />
+
+            <EditText
+                android:id="@+id/passwordAttuale"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="@color/white"
+                android:hint="Password attuale"
+                android:selectAllOnFocus="true"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_toLeftOf="@id/passwordNuova"
+                android:labelFor="@id/passwordNuova"
+                android:text="Nuova password"
+                android:textColor="@color/white"
+                android:textSize="25dp" />
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/passwordNuova"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:textSize="20dp"
-                android:backgroundTint="@color/white"
-                android:layout_below="@id/nickname"
                 android:layout_centerHorizontal="true"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
+                android:backgroundTint="@color/white"
+                android:hint="@string/prompt_password"
+                android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:selectAllOnFocus="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:hint="@string/prompt_password"
-                android:imeActionLabel="@string/action_sign_in_short"/>
-
-            <Button
-                android:id="@+id/LoginButton"
-                android:layout_width="300dp"
-                android:layout_height="60dp"
-                android:layout_below="@id/password"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
-                android:text="Modifica credenziali"
-                android:onClick="onClickModificaCredenziali"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
                 android:textSize="20dp"
-                android:textColor="#0000FF"
-                android:backgroundTint="@color/white"
-                android:textAllCaps="false"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        </RelativeLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/LoginButton"
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/ModificaForm"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/white"
+            android:onClick="onClickModificaCredenziali"
+            android:text="Salva modifica credenziali"
+            android:textAllCaps="false"
+            android:textColor="#0000FF"
+            android:textSize="20dp" />
     </RelativeLayout>
 
 
