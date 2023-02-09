@@ -1,7 +1,9 @@
 package com.example.irepeat.Activity;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +26,16 @@ public class ListaPreferiti extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+    }
+
+    public void onClickHomepage(View v){
+        Intent i= new Intent(this, Homepage.class);
+        startActivity(i);
+    }
+
+    public void onClickProfilo(View v){
+        Intent i= new Intent(this, ProfiloPersonale.class);
+        startActivity(i);
     }
 
 }

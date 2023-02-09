@@ -15,6 +15,10 @@ public class DBHelper extends SQLiteOpenHelper {
         super (context, DB_NAME,null, DB_VERSION);
         this.context=context;
 
+        SQLiteDatabase db = getReadableDatabase();
+        if (!db.isOpen()) {
+            db = getWritableDatabase();
+        }
     }
 
     @Override
@@ -71,10 +75,4 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-
-    public void deleteDatabase(Context context) {
-
-        context.deleteDatabase(DB_NAME);
-
-    }
 }

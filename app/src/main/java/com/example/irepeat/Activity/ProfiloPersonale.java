@@ -122,13 +122,14 @@ public class ProfiloPersonale extends AppCompatActivity {
         ArrayList<QuizBean> quiz= quizDAO.selectByUtente(utente);
         quizDAO.close();
 
-        for(QuizBean quizBean: quiz)
-            quizBean.setDomande(new DBHelper(this));
+        if(quiz!=null) {
+            for (QuizBean quizBean : quiz)
+                quizBean.setDomande(new DBHelper(this));
+            Log.d("MYDEBUG", quiz.toString());
 
-        Log.d("MYDEBUG", quiz.toString());
-
-        QuizAdapter adapter= new QuizAdapter(this, R.layout.list_element_quiz, quiz);
-        gridViewQuiz.setAdapter(adapter);
+            QuizAdapter adapter= new QuizAdapter(this, R.layout.list_element_quiz, quiz);
+            gridViewQuiz.setAdapter(adapter);
+        }
     }
 
     @Override

@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         DBHelper db= new DBHelper(this);
 
-        /*UtenteDAO utenteDAO= new UtenteDAO(db);
+        UtenteDAO utenteDAO= new UtenteDAO(db);
         utenteDAO.open();
         UtenteBean utente= new UtenteBean("luigina@iRepeat.it", "luigina01", "prova bio", "luigina", "costante", "luigina01");
         utenteDAO.insert(utente);
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("MYDEBUG", utente.toString());
         Log.d("MYDEBUG", String.valueOf(utenteDAO.select(utente.getEmail(), utente.getPassword())));
 
-        utenteDAO.close();*/
+        utenteDAO.close();
 
         /*QuizDAO quizDAO = new QuizDAO(db);
         quizDAO.open();
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         quizDAO.close();*/
 
-        UtenteBean utente= new UtenteBean("luigina@iRepeat.it", "luigina01", "prova bio", "luigina", "costante", "luigina01");
+        /*UtenteBean utente= new UtenteBean("luigina@iRepeat.it", "luigina01", "prova bio", "luigina", "costante", "luigina01");
         QuizDAO quizDAO = new QuizDAO(db);
         quizDAO.open();
         ArrayList<QuizBean> quiz= quizDAO.selectByUtente(utente);
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d("MYDEBUG", d.toString());
         }*/
 
-        DomandaBean domanda= (domandaDAO.selectByQuiz(quiz.get(0))).get(0);
+        /*DomandaBean domanda= (domandaDAO.selectByQuiz(quiz.get(0))).get(0);
         domanda.setRisposte(db);
         Log.d("MYDEBUG", domanda.toString());
 
@@ -96,6 +96,6 @@ public class MainActivity extends AppCompatActivity {
 
         //domandaDAO.close();
         //quizDAO.close();
-
+        */
     }
 }
