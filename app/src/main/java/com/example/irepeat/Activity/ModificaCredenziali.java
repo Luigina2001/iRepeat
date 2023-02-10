@@ -1,6 +1,7 @@
 package com.example.irepeat.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.example.irepeat.Bean.UtenteBean;
 import com.example.irepeat.DAO.DBHelper;
 import com.example.irepeat.DAO.UtenteDAO;
 import com.example.irepeat.R;
+import com.example.irepeat.Utils.MyPreferences;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -24,6 +26,7 @@ import java.util.regex.Pattern;
 public class ModificaCredenziali extends AppCompatActivity {
 
     UtenteBean utenteBean = new UtenteBean();
+    MyPreferences preference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +38,16 @@ public class ModificaCredenziali extends AppCompatActivity {
             setContentView(R.layout.modifica_credenziali);
         }
 
-        //METTERE QUESTI EXTRA QUANDO PASSIAMO ALL'ACTIVITY ModificaCredenziali
-        Intent i = getIntent();
-        String email = i.getStringExtra("email");
-        String password = i.getStringExtra("password");
+        //da cambiare con l'id
+        preference = new MyPreferences(this);
+        String email = preference.getEmail();
+
 
         //da controllare
         UtenteDAO utenteDAO = new UtenteDAO(new DBHelper(getApplicationContext()));
 
         utenteDAO.open();
-        utenteBean = utenteDAO.select(email,password);
+        utenteBean = utenteDAO.doRetrieveByEmail(email);
         utenteDAO.close();
 
     }
