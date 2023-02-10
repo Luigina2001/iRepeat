@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -80,8 +81,11 @@ public class ModificaCredenziali extends AppCompatActivity {
                 passwordCrittografata = getPasswordCrittografata(passwordAttuale);
                 if(passwordCrittografata.equals(utenteBean.getPassword()))
                     if(isPassword(passwordNuova)){
+                        utenteBean.setPassword(getPasswordCrittografata(passwordNuova));
+                        utenteBean.setNickname(nickname);
                         UtenteDAO utenteDAO = new UtenteDAO(new DBHelper(getApplicationContext()));
                         utenteDAO.open();
+                        //Log.d("MYDEBUG", utenteBean.toString());
                         ris = utenteDAO.update(utenteBean);
                         utenteDAO.close();
 
@@ -93,7 +97,7 @@ public class ModificaCredenziali extends AppCompatActivity {
                     }else
                         message = "Password deve contenere almeno 8 caratteri";
                 else
-                    message = "Password attuale inserita errata";
+                    message = "Password attuale inserita errata 1";
             }else
                 message = "Password attuale inserita errata";
 
