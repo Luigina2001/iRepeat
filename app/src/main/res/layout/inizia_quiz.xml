@@ -46,6 +46,15 @@
         android:layout_below="@id/header"
         android:background="@drawable/sfondo_ciano">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Domanda n. x"
+            android:textSize="31dp"
+            android:textColor="#6495ed"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:id="@+id/numeroDomanda"
@@ -54,7 +63,8 @@
             android:layout_centerHorizontal="true"
             android:text="Domanda n. x"
             android:textSize="30dp"
-            android:textColor="#6495ed"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:layout_marginTop="10dp"/>
 
         <TextView
@@ -66,7 +76,7 @@
             android:layout_marginTop="15dp"
             android:text="testo Domanda"
             android:textSize="20dp"
-            android:textColor="@color/white"/>
+            android:textColor="#6495ed"/>
 
         <ListView
             android:id="@+id/opzioniRisposte"
