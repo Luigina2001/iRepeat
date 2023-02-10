@@ -14,6 +14,7 @@ import com.example.irepeat.Bean.UtenteBean;
 import com.example.irepeat.DAO.DBHelper;
 import com.example.irepeat.DAO.UtenteDAO;
 import com.example.irepeat.R;
+import com.example.irepeat.Utils.MyPreferences;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -30,7 +31,7 @@ public class Registrazione extends AppCompatActivity {
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.registrazione_landscape);
         } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            setContentView(R.layout.registrazione_landscape);
+            setContentView(R.layout.registrazione);
         }
     }
 
@@ -59,7 +60,7 @@ public class Registrazione extends AppCompatActivity {
 
         String message;
         String passwordCrittografata = null;
-        UtenteBean utenteBean;
+        UtenteBean utenteBean=null;
         boolean ris = false;
 
         if(isEmail(email)){
@@ -68,13 +69,13 @@ public class Registrazione extends AppCompatActivity {
 
                     if ((password.equals(repeatPassword))) {
 
-                        try {
+                        /*try {
                             passwordCrittografata = getPasswordCrittografata(password);
                         } catch (NoSuchAlgorithmException e) {
                             e.printStackTrace();
-                        }
+                        }*/
 
-                        utenteBean = new UtenteBean(email,passwordCrittografata,bio,nome,cognome, nickname);
+                        utenteBean = new UtenteBean(email,password,bio,nome,cognome, nickname);
                         //da controllare
                         UtenteDAO utenteDAO = new UtenteDAO(new DBHelper(getApplicationContext()));
 
@@ -98,9 +99,14 @@ public class Registrazione extends AppCompatActivity {
 
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 
-        if(ris){
+        if(ris && utenteBean.getEmail()!=null){
+            MyPreferences preferences= new MyPreferences(this);
+            preferences.setLoggedIn(true, utenteBean.getEmail());
             Intent i= new Intent(this, Homepage.class);
             startActivity(i);
+        }
+        else{
+            Toast.makeText(this, "!Errore registrazione utente", Toast.LENGTH_LONG).show();
         }
 
     }
