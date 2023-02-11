@@ -89,6 +89,16 @@
                 android:src="@drawable/immagine_profilo"/>
 
             <TextView
+                android:id="@+id/bio"
+                android:text="Bio"
+                android:textSize="25dp"
+                android:layout_below="@id/immagineProfilo"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content"/>
+
+            <TextView
                 android:id="@+id/nicknameProfilo"
                 android:text="Nickname"
                 android:layout_marginTop="120dp"
@@ -103,8 +113,8 @@
 
             <GridView
                 android:id="@+id/gridViewQuiz"
-                android:layout_below="@id/immagineProfilo"
-                android:layout_marginTop="20dp"
+                android:layout_below="@id/bio"
+                android:layout_margin="20dp"
                 android:layout_width="match_parent"
                 android:numColumns="4"
                 android:layout_height="wrap_content"/>

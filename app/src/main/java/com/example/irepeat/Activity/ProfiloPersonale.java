@@ -32,6 +32,7 @@ public class ProfiloPersonale extends AppCompatActivity {
     private UtenteBean utente;
     private TextView nickname;
     private GridView gridViewQuiz;
+    private TextView bio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +130,14 @@ public class ProfiloPersonale extends AppCompatActivity {
 
             QuizAdapter adapter= new QuizAdapter(this, R.layout.list_element_quiz, quiz);
             gridViewQuiz.setAdapter(adapter);
+        }
+
+        bio = findViewById(R.id.bio);
+        if (utente.getBio()!=null) {
+            bio.setText(utente.getBio());
+        }
+        else{
+            bio.setText("");
         }
     }
 
