@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,7 +15,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.irepeat.Adapter.RicercaQuizAdapter;
+import com.example.irepeat.Bean.QuizBean;
+import com.example.irepeat.DAO.DBHelper;
+import com.example.irepeat.DAO.QuizDAO;
 import com.example.irepeat.R;
+
+import java.util.ArrayList;
 
 public class Ricerca extends AppCompatActivity {
 
@@ -55,13 +63,49 @@ public class Ricerca extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 Toast.makeText(getApplicationContext(), query, Toast.LENGTH_LONG).show();
-                return false;
+
+                ArrayList<QuizBean> quizRicerca;
+                QuizDAO dao = new QuizDAO(new DBHelper(getApplicationContext()));
+
+
+                if(filtro.equalsIgnoreCase("") || filtro.equalsIgnoreCase("nome")){
+                    dao.open();
+                    quizRicerca = dao.selectByNome(query);
+                    dao.close();
+                }else{
+                    dao.open();
+                    quizRicerca = dao.selectByDisciplina(query);
+                    dao.close();
+                }
+
+                ListView listView = (ListView)findViewById(R.id.quizList);
+                RicercaQuizAdapter adapter = new RicercaQuizAdapter(getApplicationContext(), R.layout.list_element_ricerca_quiz, quizRicerca);
+                listView.setAdapter(adapter);
+
+                return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
                 // Aggiornare i risultati in base alla stringa di ricerca
-                return false;
+                ArrayList<QuizBean> quizRicerca;
+                QuizDAO dao = new QuizDAO(new DBHelper(getApplicationContext()));
+
+                if(filtro.equalsIgnoreCase("") || filtro.equalsIgnoreCase("nome")){
+                    dao.open();
+                    quizRicerca = dao.selectByNome(newText);
+                    dao.close();
+                }else{
+                    dao.open();
+                    quizRicerca = dao.selectByDisciplina(newText);
+                    dao.close();
+                }
+
+                ListView listView = (ListView)findViewById(R.id.quizList);
+                RicercaQuizAdapter adapter = new RicercaQuizAdapter(getApplicationContext(), R.layout.list_element_ricerca_quiz, quizRicerca);
+                listView.setAdapter(adapter);
+
+                return true;
             }
         });
     }
@@ -78,8 +122,14 @@ public class Ricerca extends AppCompatActivity {
     }
 
     public void onClickListaPreferiti(View v){
+        //se l'utente è loggato
         Intent i= new Intent(this, ListaPreferiti.class);
         startActivity(i);
+
+        //altrimenti
+        //Intent i= new Intent(this, Login.class);
+        //startActivity(i);
+
     }
 
     public void onClickProfilo(View v){
@@ -106,6 +156,23 @@ public class Ricerca extends AppCompatActivity {
 
     public void onClickAnnulla(View v){
         searchView.setQuery("", false);
+    }
+
+//    public void onClickVisualizzaQuiz(View v){
+//       //da vedere
+//    }
+
+    public void onClickPreferiti(View v){
+        ImageView image = v.findViewById(R.id.cuoreButton);
+
+        if(image.getDrawable().equals(R.drawable.cuore_vuoto)){
+            image.setImageDrawable(v.getResources().getDrawable(R.drawable.cuore_pieno));
+            //gestire aggiunta lista preferiti
+        }else{
+            image.setImageDrawable(v.getResources().getDrawable(R.drawable.cuore_vuoto));
+            //gestire rimozione lista preferiti
+        }
+
     }
 
 }
