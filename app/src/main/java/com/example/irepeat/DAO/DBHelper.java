@@ -43,7 +43,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "durata TEXT, "+
                 "visibilita INTEGER, "+ //0= FALSE, 1= TRUE
                 "utente INTEGER, "+
-                "FOREIGN KEY (utente) REFERENCES Utente(id));";
+                "FOREIGN KEY (utente) REFERENCES Utente(id) ON DELETE CASCADE);";
 
         db.execSQL(sql);
 
@@ -51,7 +51,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sql= "CREATE TABLE IF NOT EXISTS Domanda (id INTEGER PRIMARY KEY, " +
                 "testo TEXT, "+
                 "quiz INTEGER, "+
-                "FOREIGN KEY (quiz) REFERENCES Quiz(id));";
+                "FOREIGN KEY (quiz) REFERENCES Quiz(id) ON DELETE CASCADE);";
 
         db.execSQL(sql);
 
@@ -60,7 +60,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "testo TEXT, "+
                 "domanda INTEGER, "+
                 "corretta INTEGER, "+
-                "FOREIGN KEY (domanda) REFERENCES Domanda(id));";
+                "FOREIGN KEY (domanda) REFERENCES Domanda(id) ON DELETE CASCADE);";
 
         db.execSQL(sql);
     }

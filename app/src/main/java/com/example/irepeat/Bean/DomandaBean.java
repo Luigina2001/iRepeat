@@ -56,6 +56,10 @@ public class DomandaBean {
         return false;
     }
 
+    public void setRisposte(ArrayList<RispostaBean> risposte) {
+        this.risposte=risposte;
+    }
+
     @Override
     public String toString() {
         String s= "DomandaBean{" +

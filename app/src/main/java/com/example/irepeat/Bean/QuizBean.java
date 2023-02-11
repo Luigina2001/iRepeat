@@ -117,6 +117,10 @@ public class QuizBean {
         return false;
     }
 
+    public void setDomande(ArrayList<DomandaBean> domande) {
+        this.domande=domande;
+    }
+
     @Override
     public String toString() {
         String s= "QuizBean{" +
@@ -130,13 +134,19 @@ public class QuizBean {
                 ", utente=" + utente.getId()+
                 ", id domande= [";
 
-        for (DomandaBean d: domande){
-            s+=d.getId();
-            s+=", ";
+        if(domande!=null) {
+            for (DomandaBean d : domande) {
+                s += d.getId();
+                s += ", ";
+            }
         }
 
         s+="] };";
         return s;
+    }
+
+    public void removeDomanda (DomandaBean d){
+        this.domande.remove(d);
     }
 
     private int id;

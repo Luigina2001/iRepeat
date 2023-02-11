@@ -185,8 +185,8 @@ public class DomandaDAO {
 
     }
 
-    public void doDeleteByQuiz(){
-        String query = "DELETE FROM Domanda WHERE quiz = 0";
+    public void doDeleteByQuiz(int idDomanda){
+        String query = "DELETE FROM Domanda WHERE id="+idDomanda;
         database.execSQL(query);
 
     }

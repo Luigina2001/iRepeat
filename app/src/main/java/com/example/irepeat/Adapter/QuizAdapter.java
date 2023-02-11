@@ -55,7 +55,10 @@ public class QuizAdapter extends ArrayAdapter<QuizBean> {
         nomeQuiz.setText(q.getNome());
         disciplina.setText(q.getDisciplina());
 
-        numDomande.setText("Numero domande: "+ q.getDomande().size());
+        if (q.getDomande()!=null)
+            numDomande.setText("Numero domande: "+ q.getDomande().size());
+        else
+            numDomande.setText("Numero domande: 0");
 
         ImageView cuore = view.findViewById(R.id.cuoreButton);
         cuore.setTag(q.getId());

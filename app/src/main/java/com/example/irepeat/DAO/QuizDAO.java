@@ -330,6 +330,13 @@ public class QuizDAO {
         return quizUtente;
     }
 
+    public boolean delete (QuizBean quiz){
+        String [] s= {String.valueOf(quiz.getId())};
+        int res= database.delete(TABLE_NAME, COLUMN_ID+"= ?", s);
+        if (res==0)
+            return false;
+        return true;
+    }
 
 
     private static final String TABLE_NAME = "Quiz";
