@@ -1,44 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_margin="20dp"
+    android:layout_height="wrap_content">
 
     <View
-        android:layout_width="210dp"
+        android:layout_width="180dp"
         android:layout_height="1dp"
         android:layout_alignParentTop="@id/quiz"
         android:background="@android:color/black"/>
 
-    <View
-        android:layout_width="1dp"
-        android:layout_height="120dp"
-        android:layout_toLeftOf="@id/quiz"
-        android:background="@android:color/black"/>
-
+    <!--Mettere cuore pieno se il quiz e nella lista preferiti        -->
     <RelativeLayout
         android:id="@+id/quiz"
-        android:layout_width="210dp"
-        android:layout_height="120dp">
-
-        <!--Mettere cuore pieno se il quiz e nella lista preferiti        -->
-        <ImageButton
-            android:id="@+id/cuoreButton"
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/cuore_vuoto"
-            android:background="@drawable/sfondo_azzurro"
-            android:layout_marginLeft="180dp"/>
+        android:layout_width="150dp"
+        android:layout_height="100dp">
 
         <TextView
             android:id="@+id/titoloQuiz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
             android:text="Titolo quiz"
             android:textColor="#0000FF"
             android:textSize="20dp"
-            android:textStyle="italic|bold"/>
+            android:textStyle="italic|bold" />
 
         <TextView
             android:id="@+id/disciplinaQuiz"
@@ -48,7 +35,7 @@
             android:layout_centerHorizontal="true"
             android:text="Disciplina quiz"
             android:textColor="@color/black"
-            android:textSize="12dp"/>
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/numDomandeQuiz"
@@ -59,19 +46,34 @@
             android:layout_marginTop="15dp"
             android:text="Numero domande quiz"
             android:textColor="@color/black"
-            android:textSize="12dp"/>
+            android:textSize="12dp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="-8dp"
+            android:background="@android:color/black" />
 
     </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/cuoreButton"
+        android:layout_width="30dp"
+        android:layout_height="100dp"
+        android:src="@drawable/cuore_vuoto"
+        android:background="@drawable/sfondo_azzurro"
+        android:layout_toRightOf="@id/quiz"/>
     <View
-        android:layout_width="210dp"
+        android:layout_width="180dp"
         android:layout_height="1dp"
         android:layout_below="@id/quiz"
         android:background="@android:color/black"/>
 
     <View
         android:layout_width="1dp"
-        android:layout_height="120dp"
-        android:layout_toRightOf="@id/quiz"
-        android:background="@android:color/black"/>
+        android:layout_height="100dp"
+        android:layout_toRightOf="@id/cuoreButton"
+        android:background="@android:color/black" />
 
 </RelativeLayout>
+
