@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@drawable/sfondo_esagono"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -11,132 +10,145 @@
         android:backgroundTint="@color/white"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/idDomanda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:text="Domanda"/>
+
         <EditText
             android:id="@+id/testoDomanda"
             android:layout_width="300dp"
-            android:layout_centerHorizontal="true"
             android:layout_height="wrap_content"
-            android:hint="Testo domanda"
-            android:backgroundTint="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="20dp"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
-            android:textColor="@color/white"/>
+            android:backgroundTint="@color/white"
+            android:hint="Testo domanda"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
+
             <TextView
-                android:text="Opzioni di risposta"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Opzioni di risposta"
                 android:textAlignment="center"
-                android:textSize="30dp"
-                android:textStyle="bold"
                 android:textColor="@color/white"
-                android:layout_height="wrap_content"/>
+                android:textSize="30dp"
+                android:textStyle="bold" />
 
             <ImageView
-                android:layout_marginLeft="5dp"
+                android:id="@+id/aggiungiRispostaButton"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/icona_piu"/>
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/icona_piu" />
 
         </LinearLayout>
 
         <EditText
             android:id="@+id/risposta1"
             android:layout_width="300dp"
-            android:layout_marginTop="5dp"
-            android:layout_centerHorizontal="true"
             android:layout_height="wrap_content"
-            android:hint="Risposta 1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
             android:backgroundTint="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="20dp"
+            android:hint="Risposta 1"
             android:selectAllOnFocus="true"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/risposta2"
             android:layout_width="300dp"
-            android:layout_marginTop="5dp"
-            android:layout_centerHorizontal="true"
             android:layout_height="wrap_content"
-            android:hint="Risposta 2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
             android:backgroundTint="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="20dp"
+            android:hint="Risposta 2"
             android:selectAllOnFocus="true"
             android:textColor="@color/white"
-            android:visibility="invisible"/>
+            android:textColorHint="@color/white"
+            android:textSize="20dp"
+            android:visibility="invisible" />
 
         <EditText
             android:id="@+id/risposta3"
             android:layout_width="300dp"
-            android:layout_marginTop="5dp"
-            android:layout_centerHorizontal="true"
             android:layout_height="wrap_content"
-            android:hint="Risposta 3"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
             android:backgroundTint="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="20dp"
+            android:hint="Risposta 3"
             android:selectAllOnFocus="true"
             android:textColor="@color/white"
-            android:visibility="invisible"/>
+            android:textColorHint="@color/white"
+            android:textSize="20dp"
+            android:visibility="invisible" />
 
         <EditText
             android:id="@+id/risposta4"
             android:layout_width="300dp"
-            android:layout_marginTop="5dp"
-            android:layout_centerHorizontal="true"
             android:layout_height="wrap_content"
-            android:hint="Risposta 4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
             android:backgroundTint="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="20dp"
+            android:hint="Risposta 4"
             android:selectAllOnFocus="true"
             android:textColor="@color/white"
-            android:visibility="invisible"/>
+            android:textColorHint="@color/white"
+            android:textSize="20dp"
+            android:visibility="invisible" />
 
         <EditText
             android:id="@+id/risposta5"
             android:layout_width="300dp"
-            android:layout_marginTop="5dp"
-            android:layout_centerHorizontal="true"
             android:layout_height="wrap_content"
-            android:hint="Risposta 5"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
             android:backgroundTint="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="20dp"
+            android:hint="Risposta 5"
             android:selectAllOnFocus="true"
             android:textColor="@color/white"
-            android:visibility="invisible"/>
+            android:textColorHint="@color/white"
+            android:textSize="20dp"
+            android:visibility="invisible" />
 
         <TextView
-            android:text="Risposta corretta"
             android:layout_width="match_parent"
-            android:textAlignment="center"
-            android:textSize="30dp"
-            android:textStyle="bold"
+            android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:text="Risposta corretta"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:layout_height="wrap_content"/>
+            android:textSize="30dp"
+            android:textStyle="bold" />
 
         <!--ATT. deve essere contenuta nelle opzioni di risposta-->
         <EditText
             android:id="@+id/rispostaCorretta"
             android:layout_width="300dp"
-            android:layout_marginTop="30dp"
-            android:layout_centerHorizontal="true"
             android:layout_height="wrap_content"
-            android:hint="Risposta corretta"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
             android:backgroundTint="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="20dp"
+            android:hint="Risposta corretta"
             android:selectAllOnFocus="true"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:layout_marginBottom="30dp"
+            android:textColorHint="@color/white"
+            android:textSize="20dp" />
 
     </LinearLayout>
 

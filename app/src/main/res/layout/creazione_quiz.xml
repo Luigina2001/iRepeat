@@ -142,6 +142,7 @@
                     android:layout_centerHorizontal="true">
 
                     <NumberPicker
+                        android:id="@+id/ore"
                         android:layout_width="wrap_content"
                         android:layout_height="80dp"/>
 
@@ -153,6 +154,7 @@
                         android:text=":"/>
 
                     <NumberPicker
+                        android:id="@+id/minuti"
                         android:layout_width="wrap_content"
                         android:layout_height="80dp"/>
                 </LinearLayout>
@@ -183,11 +185,16 @@
                     android:src="@drawable/icona_piu"/>
             </LinearLayout>
 
-            <ListView
+            <LinearLayout
                 android:id="@+id/listViewCreazioneDomande"
                 android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/layoutDomande"/>
+                android:layout_below="@id/layoutDomande">
+
+            </LinearLayout>
 
             <Button
                 android:layout_width="200dp"
@@ -195,8 +202,9 @@
                 android:layout_below="@id/listViewCreazioneDomande"
                 android:layout_centerHorizontal="true"
                 android:textAllCaps="false"
-                android:textSize="25dp"
-                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:layout_marginTop="30dp"
                 android:textColor="#00BFFF"
                 android:onClick="onClickCreaQuiz"
                 android:backgroundTint="@color/white"

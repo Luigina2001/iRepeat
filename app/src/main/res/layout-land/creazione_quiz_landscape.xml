@@ -48,7 +48,7 @@
 
                 <EditText
                     android:id="@+id/nomeQuiz"
-                    android:layout_width="300dp"
+                    android:layout_width="600dp"
                     android:layout_centerHorizontal="true"
                     android:layout_height="wrap_content"
                     android:hint="Nome"
@@ -60,7 +60,7 @@
 
                 <EditText
                     android:id="@+id/descrizioneQuiz"
-                    android:layout_width="300dp"
+                    android:layout_width="600dp"
                     android:layout_centerHorizontal="true"
                     android:layout_height="wrap_content"
                     android:hint="Descrizione"
@@ -74,7 +74,7 @@
 
                 <EditText
                     android:id="@+id/disciplinaQuiz"
-                    android:layout_width="300dp"
+                    android:layout_width="600dp"
                     android:layout_centerHorizontal="true"
                     android:layout_height="wrap_content"
                     android:hint="Disciplina"
@@ -146,6 +146,7 @@
                     android:layout_centerHorizontal="true">
 
                     <NumberPicker
+                        android:id="@+id/ore"
                         android:layout_width="wrap_content"
                         android:layout_height="100dp"
                         android:theme="@style/NumberPickerText"/>
@@ -158,6 +159,7 @@
                         android:text=":"/>
 
                     <NumberPicker
+                        android:id="@+id/minuti"
                         android:layout_width="wrap_content"
                         android:layout_height="100dp"
                         android:theme="@style/NumberPickerText"/>
@@ -189,10 +191,12 @@
                     android:src="@drawable/icona_piu"/>
             </LinearLayout>
 
-            <ListView
+            <LinearLayout
                 android:id="@+id/listViewCreazioneDomande"
-                android:layout_width="match_parent"
+                android:layout_width="600dp"
+                android:layout_centerHorizontal="true"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:layout_below="@id/layoutDomande"/>
 
             <Button
@@ -201,7 +205,8 @@
                 android:layout_below="@id/listViewCreazioneDomande"
                 android:layout_centerHorizontal="true"
                 android:textAllCaps="false"
-                android:textSize="35dp"
+                android:textSize="40dp"
+                android:textStyle="bold"
                 android:textColor="#00BFFF"
                 android:onClick="onClickCreaQuiz"
                 android:backgroundTint="@color/white"
