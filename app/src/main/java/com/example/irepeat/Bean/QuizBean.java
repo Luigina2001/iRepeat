@@ -127,7 +127,7 @@ public class QuizBean {
                 ", preferito=" + preferito +
                 ", durata='" + durata + '\'' +
                 ", visibilita=" + visibilita +
-                ", utente=" + utente.getEmail()+
+                ", utente=" + utente.getId()+
                 ", id domande= [";
 
         for (DomandaBean d: domande){

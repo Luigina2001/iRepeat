@@ -30,11 +30,11 @@ public class UtenteDAO implements BaseColumns {
         dbHelper.close();
     }
 
-    public UtenteBean select(String email, String password){
+    public UtenteBean select(String nickname, String password){
 
         // Specifichiamo le colonne che ci interessano
         String[] projection = {
-                COLUMN_EMAIL,
+                COLUMN_ID,
                 COLUMN_BIO,
                 COLUMN_NOME,
                 COLUMN_COGNOME,
@@ -46,7 +46,7 @@ public class UtenteDAO implements BaseColumns {
         // Definiamo la parte 'where' della query.
         // es. selection="EMAIL = ? AND PASSWORD = ?(crittografata)"
         String selection;
-        selection = "("+COLUMN_EMAIL + " = ? or "+ COLUMN_NICKNAME+"= ?) "
+        selection = "("+COLUMN_NICKNAME+"= ?) "
                 + " and "
                 +COLUMN_PASSWORD+ " = ?";
 
@@ -54,7 +54,7 @@ public class UtenteDAO implements BaseColumns {
         // Specifchiamo gli argomenti per i segnaposto (ovvero i ? nella stringa selection)
         String[] selectionArgs = new String[0];
         try {
-            selectionArgs = new String[]{email, email, this.saveEncryptedPassword(password)};
+            selectionArgs = new String[]{nickname, this.saveEncryptedPassword(password)};
         } catch (NoSuchAlgorithmException e) {
             return null;
         }
@@ -77,7 +77,7 @@ public class UtenteDAO implements BaseColumns {
         if (cursor.getCount()>0){
             cursor.moveToFirst();
             UtenteBean utente= new UtenteBean();
-            utente.setEmail(cursor.getString(0));
+            utente.setId(cursor.getInt(0));
             utente.setBio(cursor.getString(1));
             utente.setNome(cursor.getString(2));
             utente.setCognome(cursor.getString(3));
@@ -89,11 +89,11 @@ public class UtenteDAO implements BaseColumns {
         return null;
     }
 
-    public UtenteBean doRetrieveByEmail(String email){
+    public UtenteBean doRetrieveById(int id){
 
         // Specifichiamo le colonne che ci interessano
         String[] projection = {
-                COLUMN_EMAIL,
+                COLUMN_ID,
                 COLUMN_BIO,
                 COLUMN_NOME,
                 COLUMN_COGNOME,
@@ -105,11 +105,11 @@ public class UtenteDAO implements BaseColumns {
         // Definiamo la parte 'where' della query.
         // es. selection="EMAIL = ? AND PASSWORD = ?(crittografata)"
         String selection;
-        selection = COLUMN_EMAIL + " = ? ";
+        selection = COLUMN_ID + " = ? ";
 
 
         // Specifchiamo gli argomenti per i segnaposto (ovvero i ? nella stringa selection)
-        String[] selectionArgs = {email};
+        String[] selectionArgs = {String.valueOf(id)};
 
         // Specifichiamo come le vogliamo ordinare le righe
         String sortOrder = null;
@@ -128,7 +128,7 @@ public class UtenteDAO implements BaseColumns {
         if (cursor!=null){
             cursor.moveToFirst();
             UtenteBean utente= new UtenteBean();
-            utente.setEmail(cursor.getString(0));
+            utente.setId(cursor.getInt(0));
             utente.setBio(cursor.getString(1));
             utente.setNome(cursor.getString(2));
             utente.setCognome(cursor.getString(3));
@@ -144,9 +144,16 @@ public class UtenteDAO implements BaseColumns {
     public boolean insert(UtenteBean utente){
 
         ContentValues values= new ContentValues();
+        int id;
 
         if (utente.checkUtente()) {
-            values.put(COLUMN_EMAIL, utente.getEmail());
+            if ((id=doRetrieveMaxId())>=0) {
+                id++;
+                utente.setId(id);
+            }
+            else
+                return false;
+            values.put(COLUMN_ID, utente.getId());
             values.put(COLUMN_NOME, utente.getNome());
             values.put(COLUMN_COGNOME, utente.getCognome());
             values.put(COLUMN_NICKNAME, utente.getNickname());
@@ -154,6 +161,9 @@ public class UtenteDAO implements BaseColumns {
 
             if (utente.getBio()!=null){
                 values.put(COLUMN_BIO, utente.getBio());
+            }
+            else{
+                values.put(COLUMN_BIO, "");
             }
 
             long check= database.insert(TABLE_NAME, null, values);
@@ -173,7 +183,7 @@ public class UtenteDAO implements BaseColumns {
         ContentValues values= new ContentValues();
 
         if (utente.checkUtente()) {
-            values.put(COLUMN_EMAIL, utente.getEmail());
+            values.put(COLUMN_ID, utente.getId());
             values.put(COLUMN_NOME, utente.getNome());
             values.put(COLUMN_COGNOME, utente.getCognome());
             values.put(COLUMN_NICKNAME, utente.getNickname());
@@ -185,11 +195,11 @@ public class UtenteDAO implements BaseColumns {
 
             // es. selection="EMAIL = ?"
             String selection;
-            selection = COLUMN_EMAIL + " = ?";
+            selection = COLUMN_ID + " = ?";
 
 
             // Specifchiamo gli argomenti per i segnaposto (ovvero i ? nella stringa selection)
-            String[] selectionArgs = {utente.getEmail()};
+            String[] selectionArgs = {String.valueOf(utente.getId())};
 
             int check= database.update(TABLE_NAME,
                     values,
@@ -209,8 +219,8 @@ public class UtenteDAO implements BaseColumns {
     public boolean delete(UtenteBean utente){
 
         int check= database.delete(TABLE_NAME,
-                COLUMN_EMAIL+" = ?",
-                new String[]{String.valueOf(utente.getEmail())});
+                COLUMN_ID+" = ?",
+                new String[]{String.valueOf(utente.getId())});
 
         if (check==0)
             return false;
@@ -228,10 +238,26 @@ public class UtenteDAO implements BaseColumns {
         return builder.toString();
     }
 
+    public int doRetrieveMaxId (){
+
+        Cursor cursor= database.rawQuery("SELECT MAX("+COLUMN_ID+") FROM "+TABLE_NAME+";", null);
+
+        if (cursor!=null){
+            cursor.moveToFirst();
+            if (cursor.getCount()>0)
+                return cursor.getInt(0);
+            else
+                return 0;
+        }
+
+        return -1;
+
+    }
+
 
 
     private static final String TABLE_NAME = "Utente";
-    private static final String COLUMN_EMAIL = "email";
+    private static final String COLUMN_ID = "id";
     private static final String COLUMN_BIO = "bio";
     private static final String COLUMN_NOME = "nome";
     private static final String COLUMN_COGNOME = "cognome";

@@ -41,14 +41,14 @@ public class ModificaCredenziali extends AppCompatActivity {
 
         //da cambiare con l'id
         preference = new MyPreferences(this);
-        String email = preference.getEmail();
+        int id = Integer.parseInt(preference.getId());
 
 
         //da controllare
         UtenteDAO utenteDAO = new UtenteDAO(new DBHelper(getApplicationContext()));
 
         utenteDAO.open();
-        utenteBean = utenteDAO.doRetrieveByEmail(email);
+        utenteBean = utenteDAO.doRetrieveById(id);
         utenteDAO.close();
 
         EditText nickname = findViewById(R.id.nickname);

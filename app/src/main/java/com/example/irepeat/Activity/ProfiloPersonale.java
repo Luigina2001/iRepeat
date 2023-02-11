@@ -63,7 +63,7 @@ public class ProfiloPersonale extends AppCompatActivity {
                             startActivity(i);
                         }
                         else if (filtroStringa.equalsIgnoreCase("Logout")){
-                            preferences.setLoggedIn(false, "");
+                            preferences.setLoggedIn(false, -1);
                             Toast.makeText(getApplicationContext(), "Logout effettuato", Toast.LENGTH_LONG).show();
                             Intent i= new Intent(ProfiloPersonale.this, Homepage.class);
                             startActivity(i);
@@ -96,7 +96,7 @@ public class ProfiloPersonale extends AppCompatActivity {
                             startActivity(i);
                         }
                         else if (filtroStringa.equalsIgnoreCase("Logout")){
-                            preferences.setLoggedIn(false, "");
+                            preferences.setLoggedIn(false, -1);
                             Toast.makeText(getApplicationContext(), "Logout effettuato", Toast.LENGTH_LONG).show();
                             Intent i= new Intent(ProfiloPersonale.this, Homepage.class);
                             startActivity(i);
@@ -111,8 +111,8 @@ public class ProfiloPersonale extends AppCompatActivity {
 
         UtenteDAO utenteDAO= new UtenteDAO(new DBHelper(this));
         utenteDAO.open();
-        String email= preferences.getEmail();
-        utente= utenteDAO.doRetrieveByEmail(email);
+        int id= Integer.parseInt(preferences.getId());
+        utente= utenteDAO.doRetrieveById(id);
         utenteDAO.close();
         nickname= findViewById(R.id.nicknameProfilo);
         nickname.setText(utente.getNickname());

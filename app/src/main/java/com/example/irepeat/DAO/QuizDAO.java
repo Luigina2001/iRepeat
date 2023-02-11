@@ -76,7 +76,7 @@ public class QuizDAO {
             UtenteBean utente= new UtenteBean();
             UtenteDAO dao= new UtenteDAO(dbHelper);
             dao.open();
-            utente= dao.doRetrieveByEmail(cursor.getString(7));
+            utente= dao.doRetrieveById(cursor.getInt(7));
             if (utente!=null){
                 quiz.setUtente(utente);
                 return quiz;
@@ -110,7 +110,7 @@ public class QuizDAO {
 
 
         // Specifchiamo gli argomenti per i segnaposto (ovvero i ? nella stringa selection)
-        String[] selectionArgs = {utente.getEmail()};
+        String[] selectionArgs = {String.valueOf(utente.getId())};
 
         // Specifichiamo come le vogliamo ordinare le righe
         String sortOrder = null;
@@ -168,7 +168,7 @@ public class QuizDAO {
             values.put(COLUMN_PREFERITO, quiz.getPreferito());
             values.put(COLUMN_DURATA, quiz.getDurata());
             values.put(COLUMN_VISIBILITA, quiz.getVisibilita());
-            values.put(COLUMN_UTENTE, quiz.getUtente().getEmail());
+            values.put(COLUMN_UTENTE, quiz.getUtente().getId());
 
             long check= database.insert(TABLE_NAME, null, values);
 
@@ -248,9 +248,17 @@ public class QuizDAO {
                 quiz.setPreferito(cursor.getInt(4));
                 quiz.setDurata(cursor.getString(5));
                 quiz.setVisibilita(cursor.getInt(6));
-                //da modificare
-                //quiz.setUtente(cursor.getInt(7));
-                quizUtente.add(quiz);
+
+                UtenteBean utente= new UtenteBean();
+                UtenteDAO dao= new UtenteDAO(dbHelper);
+                dao.open();
+                utente= dao.doRetrieveById(cursor.getInt(7));
+                if (utente!=null){
+                    quiz.setUtente(utente);
+                    quizUtente.add(quiz);
+                }
+                else
+                    return null;
             }
             while (cursor.moveToNext());
         }

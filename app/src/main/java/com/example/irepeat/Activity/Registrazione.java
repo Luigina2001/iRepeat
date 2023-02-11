@@ -43,8 +43,6 @@ public class Registrazione extends AppCompatActivity {
 
     public void onClickRegistrazione (View view){
 
-        EditText em = findViewById(R.id.email);
-        String email = String.valueOf(em.getText());
         EditText n = findViewById(R.id.nickname);
         String nickname = String.valueOf(n.getText());
         EditText p = findViewById(R.id.password);
@@ -63,8 +61,7 @@ public class Registrazione extends AppCompatActivity {
         UtenteBean utenteBean=null;
         boolean ris = false;
 
-        if(isEmail(email)){
-            if(isPassword(password)) {
+        if(isPassword(password)) {
                 if (isNome(nome) && isCognome(cognome) && isNickname(nickname)) {
 
                     if ((password.equals(repeatPassword))) {
@@ -75,7 +72,7 @@ public class Registrazione extends AppCompatActivity {
                             e.printStackTrace();
                         }*/
 
-                        utenteBean = new UtenteBean(email,password,bio,nome,cognome, nickname);
+                        utenteBean = new UtenteBean(password,bio,nome,cognome, nickname);
                         //da controllare
                         UtenteDAO utenteDAO = new UtenteDAO(new DBHelper(getApplicationContext()));
 
@@ -94,14 +91,12 @@ public class Registrazione extends AppCompatActivity {
                     message = "Dati inseriti non validi";
             }else
                 message = "Password deve contenere almeno 8 caratteri";
-        }else
-            message = "Email non valida";
 
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 
-        if(ris && utenteBean.getEmail()!=null){
+        if(ris && utenteBean.getId()>0){
             MyPreferences preferences= new MyPreferences(this);
-            preferences.setLoggedIn(true, utenteBean.getEmail());
+            preferences.setLoggedIn(true, utenteBean.getId());
             Intent i= new Intent(this, Homepage.class);
             startActivity(i);
         }
@@ -119,13 +114,6 @@ public class Registrazione extends AppCompatActivity {
     private boolean isNickname(String nickname) {
         Pattern pattern = Pattern.compile("^[A-z0-9'._#& ]{3,30}$");
         Matcher matcher = pattern.matcher(nickname);
-        return matcher.matches();
-    }
-
-
-    private boolean isEmail(String email) {
-        Pattern pattern = Pattern.compile("^[A-z0-9\\.\\+_-]+@[A-z0-9\\._-]+\\.[A-z]{2,6}$");
-        Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
 

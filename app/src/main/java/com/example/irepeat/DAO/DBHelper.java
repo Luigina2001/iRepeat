@@ -25,7 +25,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         //TABELLA UTENTE
-        String sql= "CREATE TABLE IF NOT EXISTS Utente (email TEXT PRIMARY KEY, " +
+        String sql= "CREATE TABLE IF NOT EXISTS Utente (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "bio TEXT, " +
                 "nome TEXT, " +
                 "cognome TEXT, " +
@@ -42,8 +42,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 "preferito INTEGER, " + //0= FALSE, 1= TRUE
                 "durata TEXT, "+
                 "visibilita INTEGER, "+ //0= FALSE, 1= TRUE
-                "utente TEXT, "+
-                "FOREIGN KEY (utente) REFERENCES Utente(email));";
+                "utente INTEGER, "+
+                "FOREIGN KEY (utente) REFERENCES Utente(id));";
 
         db.execSQL(sql);
 

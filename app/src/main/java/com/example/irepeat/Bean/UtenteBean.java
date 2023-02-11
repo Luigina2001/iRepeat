@@ -10,8 +10,7 @@ import javax.crypto.SecretKey;
 
 public class UtenteBean {
 
-    public UtenteBean(String email, String password, String bio, String nome, String cognome, String nickname) {
-        this.email = email;
+    public UtenteBean(String password, String bio, String nome, String cognome, String nickname) {
         try {
             this.password = this.saveEncryptedPassword(password);
         } catch (NoSuchAlgorithmException e) {
@@ -24,14 +23,6 @@ public class UtenteBean {
     }
 
     public UtenteBean(){}
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getPassword() {
         return password;
@@ -76,7 +67,7 @@ public class UtenteBean {
     @Override
     public String toString() {
         return "UtenteBean{" +
-                "email='" + email + '\'' +
+                "id='" + id + '\'' +
                 ", password='" + password + '\'' +
                 ", bio='" + bio + '\'' +
                 ", nome='" + nome + '\'' +
@@ -86,7 +77,7 @@ public class UtenteBean {
     }
 
     public boolean checkUtente(){
-        if (email==null || password==null || nome==null || cognome==null || nickname==null)
+        if (password==null || nome==null || cognome==null || nickname==null)
             return false;
         return true;
     }
@@ -128,8 +119,15 @@ public class UtenteBean {
         return new String(hexChars);
     }*/
 
+    public int getId() {
+        return id;
+    }
 
-    private String email;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private int id;
     private String password;
     private String bio;
     private String nome;

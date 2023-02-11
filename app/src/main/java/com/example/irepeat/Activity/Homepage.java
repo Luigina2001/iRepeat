@@ -30,7 +30,6 @@ public class Homepage extends AppCompatActivity {
         }
 
         preferences= new MyPreferences(this);
-
     }
 
     public void onClickCreaNuovoQuiz(View v){

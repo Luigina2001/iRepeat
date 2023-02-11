@@ -36,11 +36,11 @@ public class MainActivity extends AppCompatActivity {
 
         UtenteDAO utenteDAO= new UtenteDAO(db);
         utenteDAO.open();
-        UtenteBean utente= new UtenteBean("luigina@iRepeat.it", "luigina01", "prova bio", "luigina", "costante", "luigina01");
+        UtenteBean utente= new UtenteBean("luigina01", "prova bio", "luigina", "costante", "luigina01");
         utenteDAO.insert(utente);
 
         Log.d("MYDEBUG", utente.toString());
-        Log.d("MYDEBUG", String.valueOf(utenteDAO.select(utente.getEmail(), utente.getPassword())));
+        Log.d("MYDEBUG", String.valueOf(utenteDAO.select(""+utente.getId(), utente.getPassword())));
 
         utenteDAO.close();
 

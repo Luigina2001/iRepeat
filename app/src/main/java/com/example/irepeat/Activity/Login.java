@@ -50,7 +50,7 @@ public class Login extends AppCompatActivity {
         if (utente!=null) {
             Toast.makeText(this, "Login effettuato con successo", Toast.LENGTH_LONG).show();
             MyPreferences preferences= new MyPreferences(this);
-            preferences.setLoggedIn(true, utente.getEmail());
+            preferences.setLoggedIn(true, utente.getId());
             Intent i= new Intent(this, Homepage.class);
             startActivity(i);
         }

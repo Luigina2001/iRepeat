@@ -18,7 +18,7 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         android:layout_width="160dip"
         android:layout_height="160dip"
         android:layout_centerHorizontal="true"
@@ -30,14 +30,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="250dp"
-        android:columnCount="2"
-        android:rowCount="8">
+        android:columnCount="2">
 
-        <TextView
-            android:labelFor="@+id/email"
-            android:text="Email"
-            android:textColor="#FFFFFF"
-            android:textSize="22dp"></TextView>
 
         <TextView
             android:labelFor="@+id/nickname"
@@ -45,17 +39,12 @@
             android:textColor="#FFFFFF"
             android:textSize="22dp"></TextView>
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:hint="Email"
-            android:backgroundTint="@color/white"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:inputType="textEmailAddress"
-            android:selectAllOnFocus="true" />
+        <TextView
+            android:labelFor="@+id/password"
+            android:text="Password"
+            android:textColor="#FFFFFF"
+            android:layout_marginLeft="20dp"
+            android:textSize="22dp"></TextView>
 
         <EditText
             android:id="@+id/nickname"
@@ -68,11 +57,18 @@
             android:textColor="@color/white"
             android:selectAllOnFocus="true" />
 
-        <TextView
-            android:labelFor="@+id/password"
-            android:text="Password"
-            android:textColor="#FFFFFF"
-            android:textSize="22dp"></TextView>
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:hint="Password"
+            android:layout_marginLeft="20dp"
+            android:backgroundTint="@color/white"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:inputType="textPassword"
+            android:selectAllOnFocus="true" />
 
         <TextView
             android:labelFor="@+id/repeatPassword"
@@ -80,17 +76,12 @@
             android:textColor="#FFFFFF"
             android:textSize="22dp"></TextView>
 
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:hint="Password"
-            android:backgroundTint="@color/white"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:inputType="textPassword"
-            android:selectAllOnFocus="true" />
+        <TextView
+            android:labelFor="@+id/nome"
+            android:text="Nome"
+            android:layout_marginLeft="20dp"
+            android:textColor="#FFFFFF"
+            android:textSize="22dp"></TextView>
 
         <EditText
             android:id="@+id/repeatPassword"
@@ -104,11 +95,18 @@
             android:inputType="textPassword"
             android:selectAllOnFocus="true" />
 
-        <TextView
-            android:labelFor="@+id/nome"
-            android:text="Nome"
-            android:textColor="#FFFFFF"
-            android:textSize="22dp"></TextView>
+        <EditText
+            android:id="@+id/nome"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="15dp"
+            android:hint="Nome"
+            android:backgroundTint="@color/white"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:selectAllOnFocus="true" />
 
         <TextView
             android:labelFor="@+id/cognome"
@@ -116,17 +114,12 @@
             android:textColor="#FFFFFF"
             android:textSize="22dp"></TextView>
 
-        <EditText
-            android:id="@+id/nome"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="15dp"
-            android:hint="Nome"
-            android:backgroundTint="@color/white"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:selectAllOnFocus="true" />
+        <TextView
+            android:labelFor="@+id/bio"
+            android:text="Bio"
+            android:layout_marginLeft="20dp"
+            android:textColor="#FFFFFF"
+            android:textSize="22dp"></TextView>
 
         <EditText
             android:id="@+id/cognome"
@@ -139,21 +132,14 @@
             android:textColorHint="@color/white"
             android:textColor="@color/white" />
 
-        <TextView
-            android:labelFor="@+id/bio"
-            android:text="Bio"
-            android:textColor="#FFFFFF"
-            android:textSize="22dp"></TextView>
-
 
         <EditText
             android:id="@+id/bio"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_row="7"
-            android:layout_column="0"
             android:layout_marginBottom="15dp"
             android:hint="Dati personali"
+            android:layout_marginLeft="20dp"
             android:backgroundTint="@color/white"
             android:textColorHint="@color/white"
             android:textColor="@color/white"
@@ -169,7 +155,7 @@
         android:layout_height="60dp"
         android:layout_below="@id/RegistrazioneForm"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:text="Registrati"
         android:onClick="onClickRegistrazione"
         android:textSize="20dp"
