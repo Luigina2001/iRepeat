@@ -51,6 +51,12 @@ public class ModificaCredenziali extends AppCompatActivity {
         utenteBean = utenteDAO.doRetrieveByEmail(email);
         utenteDAO.close();
 
+        EditText nickname = findViewById(R.id.nickname);
+        EditText bio = findViewById(R.id.bio);
+
+        nickname.setText(utenteBean.getNickname());
+        bio.setText(utenteBean.getBio());
+
     }
 
     @Override
@@ -66,6 +72,8 @@ public class ModificaCredenziali extends AppCompatActivity {
 
         EditText n = findViewById(R.id.nickname);
         String nickname = String.valueOf(n.getText());
+        EditText b = findViewById(R.id.bio);
+        String bio = String.valueOf(b.getText());
         EditText pa = findViewById(R.id.passwordAttuale);
         String passwordAttuale = String.valueOf(pa.getText());
         EditText pn = findViewById(R.id.passwordNuova);
@@ -77,30 +85,33 @@ public class ModificaCredenziali extends AppCompatActivity {
 
 
         if(isNickname(nickname)){
-            if(isPassword(passwordAttuale)){
-                passwordCrittografata = getPasswordCrittografata(passwordAttuale);
-                if(passwordCrittografata.equals(utenteBean.getPassword()))
-                    if(isPassword(passwordNuova)){
-                        utenteBean.setPassword(getPasswordCrittografata(passwordNuova));
-                        utenteBean.setNickname(nickname);
-                        UtenteDAO utenteDAO = new UtenteDAO(new DBHelper(getApplicationContext()));
-                        utenteDAO.open();
-                        //Log.d("MYDEBUG", utenteBean.toString());
-                        ris = utenteDAO.update(utenteBean);
-                        utenteDAO.close();
+            if(bio != null){
+                if(isPassword(passwordAttuale)){
+                    passwordCrittografata = getPasswordCrittografata(passwordAttuale);
+                    if(passwordCrittografata.equals(utenteBean.getPassword()))
+                        if(isPassword(passwordNuova)){
+                            utenteBean.setPassword(getPasswordCrittografata(passwordNuova));
+                            utenteBean.setNickname(nickname);
+                            utenteBean.setBio(bio);
+                            UtenteDAO utenteDAO = new UtenteDAO(new DBHelper(getApplicationContext()));
+                            utenteDAO.open();
+                            //Log.d("MYDEBUG", utenteBean.toString());
+                            ris = utenteDAO.update(utenteBean);
+                            utenteDAO.close();
 
-                        if(ris)
-                            message = "Modifica effettuata con successo";
-                        else
-                            message = "Modifica non avvenuta. Riprovare";
+                            if(ris)
+                                message = "Modifica effettuata con successo";
+                            else
+                                message = "Modifica non avvenuta. Riprovare";
 
-                    }else
-                        message = "Password deve contenere almeno 8 caratteri";
-                else
-                    message = "Password attuale inserita errata 1";
+                        }else
+                            message = "Password deve contenere almeno 8 caratteri";
+                    else
+                        message = "Password attuale inserita errata 1";
+                }else
+                    message = "Password attuale inserita errata";
             }else
-                message = "Password attuale inserita errata";
-
+                message = "Inserire bio";
         }else
             message = "Inserire un nickname valido";
 

@@ -26,31 +26,43 @@
 
         <ImageView
             android:id="@+id/logo"
-            android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"
-            android:layout_width="160dip"
-            android:layout_height="160dip"
+            android:layout_marginTop="10dp"
+            android:layout_width="130dip"
+            android:layout_height="130dip"
             app:srcCompat="@drawable/logo_rotondo"/>
 
-        <LinearLayout
+        <GridLayout
             android:id="@+id/ModificaForm"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="-15dp"
+            android:layout_width="500dp"
+            android:layout_height="200dp"
             android:layout_below="@id/logo"
             android:layout_centerInParent="true"
+            android:columnCount="2"
             android:gravity="center"
-            android:orientation="vertical">
-
+            android:rowCount="4">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:layout_toLeftOf="@id/nickname"
                 android:labelFor="@id/nickname"
                 android:text="Nickname"
                 android:textColor="@color/white"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:labelFor="@id/bio"
+                android:text="Bio"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:textAlignment="center"/>
 
             <EditText
                 android:id="@+id/nickname"
@@ -64,23 +76,48 @@
                 android:textColorHint="@color/white"
                 android:textSize="20dp" />
 
+            <EditText
+                android:id="@+id/bio"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:hint="Bio"
+                android:selectAllOnFocus="true"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="20dp" />
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_toLeftOf="@id/vecchiaPassword"
-                android:labelFor="@id/vecchiaPassword"
+                android:layout_toLeftOf="@id/passwordAttuale"
+                android:labelFor="@id/passwordAttuale"
                 android:text="Password attuale"
                 android:textColor="@color/white"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:textAlignment="center" />
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_toLeftOf="@id/passwordNuova"
+                android:labelFor="@id/passwordNuova"
+                android:text="Nuova password"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:textAlignment="center"/>
 
             <EditText
-                android:id="@+id/vecchiaPassword"
+                android:id="@+id/passwordAttuale"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:backgroundTint="@color/white"
                 android:hint="Password attuale"
+                android:inputType="textPassword"
                 android:selectAllOnFocus="true"
                 android:textAlignment="center"
                 android:textColor="@color/white"
@@ -90,18 +127,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_toLeftOf="@id/password"
-                android:labelFor="@id/password"
-                android:text="Nuova password"
-                android:textColor="@color/white"
-                android:textSize="25dp" />
-
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/passwordNuova"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -118,16 +145,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-        </LinearLayout>
+        </GridLayout>
+
+
 
         <Button
             android:id="@+id/LoginButton"
             android:layout_width="320dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_below="@id/ModificaForm"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
             android:backgroundTint="@color/white"
+            android:layout_marginTop="5dp"
             android:onClick="onClickModificaCredenziali"
             android:text="Salva modifica credenziali"
             android:textAllCaps="false"
