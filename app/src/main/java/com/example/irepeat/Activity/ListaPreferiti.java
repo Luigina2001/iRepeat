@@ -4,11 +4,19 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.irepeat.Adapter.QuizAdapter;
+import com.example.irepeat.Bean.QuizBean;
+import com.example.irepeat.DAO.DBHelper;
+import com.example.irepeat.DAO.QuizDAO;
 import com.example.irepeat.R;
+
+import java.util.ArrayList;
 
 public class ListaPreferiti extends AppCompatActivity {
 
@@ -21,6 +29,25 @@ public class ListaPreferiti extends AppCompatActivity {
         } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             setContentView(R.layout.lista_preferiti);
         }
+
+        ArrayList<QuizBean> listaQuiz;
+        QuizDAO dao = new QuizDAO(new DBHelper(getApplicationContext()));
+
+        dao.open();
+        listaQuiz = dao.selectAll();
+        dao.close();
+
+        ArrayList<QuizBean> listaQuizPref = null;
+
+        for (QuizBean q:listaQuiz) {
+            if(q.getPreferito() == 1)
+                listaQuizPref.add(q);
+        }
+
+        ListView listView = findViewById(R.id.listaQuiz);
+        QuizAdapter adapter = new QuizAdapter(getApplicationContext(), R.layout.list_element_quiz, listaQuizPref);
+        listView.setAdapter(adapter);
+
     }
 
     @Override

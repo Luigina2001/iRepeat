@@ -23,7 +23,6 @@ public class QuizDAO {
         dbHelper.close();
     }
 
-
     public QuizBean select(int id){
 
         // Specifichiamo le colonne che ci interessano
@@ -252,7 +251,7 @@ public class QuizDAO {
                 UtenteBean utente= new UtenteBean();
                 UtenteDAO dao= new UtenteDAO(dbHelper);
                 dao.open();
-                utente= dao.doRetrieveById(cursor.getInt(7));
+                utente= dao.doRetrieveById(cursor.getInt(0));
                 if (utente!=null){
                     quiz.setUtente(utente);
                     quizUtente.add(quiz);
@@ -288,7 +287,7 @@ public class QuizDAO {
         // Definiamo la parte 'where' della query.
         // es. selection="ID = ? "
         String selection;
-        selection = COLUMN_NOME + " %LIKE% ? ";
+        selection = COLUMN_DISCIPLINA + " %LIKE% ? ";
 
 
         // Specifchiamo gli argomenti per i segnaposto (ovvero i ? nella stringa selection)
@@ -319,9 +318,15 @@ public class QuizDAO {
                 quiz.setPreferito(cursor.getInt(4));
                 quiz.setDurata(cursor.getString(5));
                 quiz.setVisibilita(cursor.getInt(6));
-                //da modificare
-                //quiz.setUtente(cursor.getInt(7));
-                quizUtente.add(quiz);
+
+                UtenteBean utente= new UtenteBean();
+                UtenteDAO dao= new UtenteDAO(dbHelper);
+                dao.open();
+                utente= dao.doRetrieveById(cursor.getInt(0));
+                if (utente!=null){
+                    quiz.setUtente(utente);
+                    quizUtente.add(quiz);
+                }
             }
             while (cursor.moveToNext());
         }
@@ -338,6 +343,69 @@ public class QuizDAO {
         return true;
     }
 
+    public ArrayList<QuizBean> selectAll(){
+
+        ArrayList<QuizBean> quizUtente= new ArrayList<>();
+
+        // Specifichiamo le colonne che ci interessano
+        String[] projection = {
+                COLUMN_ID,
+                COLUMN_DESCRIZIONE,
+                COLUMN_NOME,
+                COLUMN_DISCIPLINA,
+                COLUMN_PREFERITO,
+                COLUMN_DURATA,
+                COLUMN_VISIBILITA,
+                COLUMN_UTENTE
+        };
+
+
+        // Definiamo la parte 'where' della query.
+        // es. selection="ID = ? "
+        String selection = null;
+
+
+        // Specifichiamo come le vogliamo ordinare le righe
+        String sortOrder = null;
+
+        // Eseguiamo la query: es. SELECT <nomi colonne> FROM <nome tavola> WHERE ...
+        Cursor cursor = database.query(
+                TABLE_NAME,                 // The table to query
+                projection,                 // The columns to return
+                selection,                  // The columns for the WHERE clause
+                null,                       // The values for the WHERE clause
+                null,                       // don't group the rows
+                null,                       // don't filter by row groups
+                sortOrder                   // The sort order
+        );
+
+        if (cursor.getCount()>0){
+            cursor.moveToFirst();
+            do {
+                QuizBean quiz = new QuizBean();
+                quiz.setId(cursor.getInt(0));
+                quiz.setDescrizione(cursor.getString(1));
+                quiz.setNome(cursor.getString(2));
+                quiz.setDisciplina(cursor.getString(3));
+                quiz.setPreferito(cursor.getInt(4));
+                quiz.setDurata(cursor.getString(5));
+                quiz.setVisibilita(cursor.getInt(6));
+
+                UtenteBean utente= new UtenteBean();
+                UtenteDAO dao= new UtenteDAO(dbHelper);
+                dao.open();
+                utente= dao.doRetrieveById(cursor.getInt(0));
+                if (utente!=null){
+                    quiz.setUtente(utente);
+                    quizUtente.add(quiz);
+                }
+            }
+            while (cursor.moveToNext());
+        }
+        else
+            return null;
+        return quizUtente;
+    }
 
     private static final String TABLE_NAME = "Quiz";
     private static final String COLUMN_ID = "id";
