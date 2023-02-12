@@ -56,6 +56,8 @@ public class CreazioneQuiz extends AppCompatActivity {
             setContentView(R.layout.creazione_quiz);
         }
 
+        listViewCreazioneDomande= findViewById(R.id.listViewCreazioneDomande);
+
         if (savedInstanceState!=null){
             nome=savedInstanceState.getString("nome");
             descrizione=savedInstanceState.getString("descrizione");
@@ -75,6 +77,7 @@ public class CreazioneQuiz extends AppCompatActivity {
 
             pubblica= findViewById(R.id.visibilitaQuizPublic);
             privata= findViewById(R.id.visibilitaQuizPrivate);
+
             if (visibilita==1){
                 pubblica.setChecked(true);
                 privata.setChecked(false);
@@ -95,6 +98,18 @@ public class CreazioneQuiz extends AppCompatActivity {
             minutiPicker.setMinValue(0);
             minutiPicker.setMaxValue(59);
             minutiPicker.setValue(Integer.parseInt(minuti));
+
+            domande= (ArrayList<View>) savedInstanceState.get("domande");
+            if (domande.size()>0){
+                for (View v: domande) {
+                    ViewGroup parent = (ViewGroup) v.getParent();
+                    if (parent != null) {
+                        parent.removeView(v);
+                    }
+                    listViewCreazioneDomande.addView(v);
+                }
+            }
+
         }
         else {
 
@@ -106,8 +121,6 @@ public class CreazioneQuiz extends AppCompatActivity {
             minutiPicker.setMinValue(0);
             minutiPicker.setMaxValue(59);
         }
-
-        listViewCreazioneDomande= findViewById(R.id.listViewCreazioneDomande);
 
         preferences= new MyPreferences(this);
     }
@@ -323,6 +336,7 @@ public class CreazioneQuiz extends AppCompatActivity {
         }
     }
 
+
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
 
@@ -357,6 +371,7 @@ public class CreazioneQuiz extends AppCompatActivity {
         outState.putString("ore", ore);
         outState.putString("minuti", minuti);
         outState.putInt("visibilita", visibilita);
+        outState.putSerializable("domande", domande);
 
         super.onSaveInstanceState(outState);
     }
