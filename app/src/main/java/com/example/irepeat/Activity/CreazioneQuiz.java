@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ import com.example.irepeat.DAO.RispostaDAO;
 import com.example.irepeat.DAO.UtenteDAO;
 import com.example.irepeat.R;
 import com.example.irepeat.Utils.MyPreferences;
+import com.example.irepeat.Utils.ParcelableRelativeLayout;
 
 import java.util.ArrayList;
 
@@ -98,8 +100,14 @@ public class CreazioneQuiz extends AppCompatActivity {
             minutiPicker.setMinValue(0);
             minutiPicker.setMaxValue(59);
             minutiPicker.setValue(Integer.parseInt(minuti));
+            count= savedInstanceState.getInt("count");
 
-            domande= (ArrayList<View>) savedInstanceState.get("domande");
+            domande= new ArrayList<>();
+            ParcelableRelativeLayout[] parcelableRelativeLayouts = (ParcelableRelativeLayout[]) savedInstanceState.getSerializable("domande");
+            for (ParcelableRelativeLayout parcelableRelativeLayout : parcelableRelativeLayouts) {
+                domande.add(parcelableRelativeLayout.getView());
+            }
+
             if (domande.size()>0){
                 for (View v: domande) {
                     ViewGroup parent = (ViewGroup) v.getParent();
@@ -383,7 +391,16 @@ public class CreazioneQuiz extends AppCompatActivity {
         outState.putString("ore", ore);
         outState.putString("minuti", minuti);
         outState.putInt("visibilita", visibilita);
-        outState.putSerializable("domande", domande);
+
+        outState.putInt("count", count);
+
+        ParcelableRelativeLayout[] parcelableRelativeLayouts = new ParcelableRelativeLayout[domande.size()];
+        for (int i = 0; i < domande.size(); i++) {
+            parcelableRelativeLayouts[i] = new ParcelableRelativeLayout( domande.get(i));
+        }
+
+        // Salvataggio dell'array di oggetti ParcelableRelativeLayout nel Bundle
+        outState.putSerializable("domande", parcelableRelativeLayouts);
 
         super.onSaveInstanceState(outState);
     }
