@@ -59,7 +59,7 @@
         <EditText
             android:id="@+id/risposta1"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_height="160px"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:backgroundTint="@color/white"
@@ -72,7 +72,7 @@
         <EditText
             android:id="@+id/risposta2"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:backgroundTint="@color/white"
@@ -86,7 +86,7 @@
         <EditText
             android:id="@+id/risposta3"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:backgroundTint="@color/white"
@@ -100,7 +100,7 @@
         <EditText
             android:id="@+id/risposta4"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:backgroundTint="@color/white"
@@ -114,7 +114,7 @@
         <EditText
             android:id="@+id/risposta5"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:backgroundTint="@color/white"

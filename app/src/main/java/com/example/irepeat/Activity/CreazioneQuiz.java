@@ -306,15 +306,27 @@ public class CreazioneQuiz extends AppCompatActivity {
 
                 if (risposta2.getVisibility()==View.INVISIBLE){
                     risposta2.setVisibility(View.VISIBLE);
+                    ViewGroup.LayoutParams params = risposta2.getLayoutParams();
+                    params.height = 200; // l'altezza viene impostata a 160 pixel
+                    risposta2.setLayoutParams(params);
                 }
                 else if (risposta3.getVisibility()==View.INVISIBLE){
                     risposta3.setVisibility(View.VISIBLE);
+                    ViewGroup.LayoutParams params = risposta3.getLayoutParams();
+                    params.height = 200;
+                    risposta3.setLayoutParams(params);
                 }
                 else if (risposta4.getVisibility()==View.INVISIBLE){
                     risposta4.setVisibility(View.VISIBLE);
+                    ViewGroup.LayoutParams params = risposta4.getLayoutParams();
+                    params.height = 200;
+                    risposta4.setLayoutParams(params);
                 }
                 else if (risposta5.getVisibility()==View.INVISIBLE){
                     risposta5.setVisibility(View.VISIBLE);
+                    ViewGroup.LayoutParams params = risposta5.getLayoutParams();
+                    params.height = 200;
+                    risposta5.setLayoutParams(params);
                 }
                 else{
                     Toast.makeText(getApplicationContext(),
