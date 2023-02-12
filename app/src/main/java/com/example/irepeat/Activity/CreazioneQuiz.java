@@ -10,17 +10,14 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.RadioButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.irepeat.Adapter.DomandaCreazioneQuizAdapter;
 import com.example.irepeat.Bean.DomandaBean;
 import com.example.irepeat.Bean.QuizBean;
 import com.example.irepeat.Bean.RispostaBean;
@@ -45,6 +42,8 @@ public class CreazioneQuiz extends AppCompatActivity {
     private int count=0;
     private MyPreferences preferences;
     private boolean flag;
+    private String nome, descrizione, disciplina, ore, minuti;
+    private int visibilita;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,18 +56,60 @@ public class CreazioneQuiz extends AppCompatActivity {
             setContentView(R.layout.creazione_quiz);
         }
 
-        orePicker= findViewById(R.id.ore);
-        orePicker.setMinValue(0);
-        orePicker.setMaxValue(5);
+        if (savedInstanceState!=null){
+            nome=savedInstanceState.getString("nome");
+            descrizione=savedInstanceState.getString("descrizione");
+            disciplina= savedInstanceState.getString("disciplina");
+            ore= savedInstanceState.getString("ore");
+            minuti= savedInstanceState.getString("minuti");
+            visibilita= savedInstanceState.getInt("visibilita");
 
-        minutiPicker= findViewById(R.id.minuti);
-        minutiPicker.setMaxValue(59);
-        minutiPicker.setMinValue(0);
+            nomeQuiz= findViewById(R.id.nomeQuiz);
+            nomeQuiz.setText(nome);
+
+            descrizioneQuiz= findViewById(R.id.descrizioneQuiz);
+            descrizioneQuiz.setText(descrizione);
+
+            disciplinaQuiz= findViewById(R.id.disciplinaQuiz);
+            disciplinaQuiz.setText(disciplina);
+
+            pubblica= findViewById(R.id.visibilitaQuizPublic);
+            privata= findViewById(R.id.visibilitaQuizPrivate);
+            if (visibilita==1){
+                pubblica.setChecked(true);
+                privata.setChecked(false);
+            }
+            else if (visibilita==0){
+                pubblica.setChecked(false);
+                privata.setChecked(true);
+            }
+
+            orePicker= findViewById(R.id.ore);
+            ore=savedInstanceState.getString("ore");
+            orePicker.setMinValue(0);
+            orePicker.setMaxValue(5);
+            orePicker.setValue(Integer.parseInt(ore));
+
+            minutiPicker= findViewById(R.id.minuti);
+            minuti=savedInstanceState.getString("minuti");
+            minutiPicker.setMinValue(0);
+            minutiPicker.setMaxValue(59);
+            minutiPicker.setValue(Integer.parseInt(minuti));
+        }
+        else {
+
+            orePicker = findViewById(R.id.ore);
+            orePicker.setMinValue(0);
+            orePicker.setMaxValue(5);
+
+            minutiPicker = findViewById(R.id.minuti);
+            minutiPicker.setMinValue(0);
+            minutiPicker.setMaxValue(59);
+        }
 
         listViewCreazioneDomande= findViewById(R.id.listViewCreazioneDomande);
 
         preferences= new MyPreferences(this);
-
     }
 
     public void onClickBack(View view){
@@ -80,15 +121,14 @@ public class CreazioneQuiz extends AppCompatActivity {
         flag=true;
 
         nomeQuiz= findViewById(R.id.nomeQuiz);
-        String nome= nomeQuiz.getText().toString();
+        nome= nomeQuiz.getText().toString();
 
         descrizioneQuiz= findViewById(R.id.descrizioneQuiz);
-        String descrizione= descrizioneQuiz.getText().toString();
+        descrizione= descrizioneQuiz.getText().toString();
 
         disciplinaQuiz= findViewById(R.id.disciplinaQuiz);
-        String disciplina= disciplinaQuiz.getText().toString();
+        disciplina= disciplinaQuiz.getText().toString();
 
-        int visibilita;
         pubblica= findViewById(R.id.visibilitaQuizPublic);
         privata= findViewById(R.id.visibilitaQuizPrivate);
         if (pubblica.isChecked()){
@@ -102,7 +142,6 @@ public class CreazioneQuiz extends AppCompatActivity {
         }
 
         String tempo="";
-        String ore, minuti;
         orePicker= findViewById(R.id.ore);
         ore= String.valueOf(orePicker.getValue());
         minutiPicker= findViewById(R.id.minuti);
@@ -286,6 +325,39 @@ public class CreazioneQuiz extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
+
+        nomeQuiz= findViewById(R.id.nomeQuiz);
+        nome= nomeQuiz.getText().toString();
+
+        descrizioneQuiz= findViewById(R.id.descrizioneQuiz);
+        descrizione= descrizioneQuiz.getText().toString();
+
+        disciplinaQuiz= findViewById(R.id.disciplinaQuiz);
+        disciplina= disciplinaQuiz.getText().toString();
+
+        pubblica= findViewById(R.id.visibilitaQuizPublic);
+        privata= findViewById(R.id.visibilitaQuizPrivate);
+        if (pubblica.isChecked()){
+            visibilita=1;
+        }
+        else if (privata.isChecked()){
+            visibilita=0;
+        }
+        else{
+            visibilita=-1;
+        }
+
+        orePicker= findViewById(R.id.ore);
+        ore= String.valueOf(orePicker.getValue());
+        minutiPicker= findViewById(R.id.minuti);
+        minuti= String.valueOf(minutiPicker.getValue());
+        outState.putString("nome", nome);
+        outState.putString("descrizione", descrizione);
+        outState.putString("disciplina", disciplina);
+        outState.putString("ore", ore);
+        outState.putString("minuti", minuti);
+        outState.putInt("visibilita", visibilita);
+
         super.onSaveInstanceState(outState);
     }
 }
