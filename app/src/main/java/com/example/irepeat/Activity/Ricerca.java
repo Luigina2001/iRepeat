@@ -64,7 +64,7 @@ public class Ricerca extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(getApplicationContext(), query, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), query, Toast.LENGTH_LONG).show();
 
                 ArrayList<QuizBean> quizRicerca;
                 QuizDAO dao = new QuizDAO(new DBHelper(getApplicationContext()));
@@ -81,31 +81,40 @@ public class Ricerca extends AppCompatActivity {
                 }
 
                 ListView listView = (ListView)findViewById(R.id.quizList);
-                RicercaQuizAdapter adapter = new RicercaQuizAdapter(getApplicationContext(), R.layout.list_element_ricerca_quiz, quizRicerca);
-                listView.setAdapter(adapter);
+                if(quizRicerca!=null) {
+                    RicercaQuizAdapter adapter = new RicercaQuizAdapter(getApplicationContext(), R.layout.list_element_ricerca_quiz, quizRicerca);
+                    listView.setAdapter(adapter);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "NESSUN QUIZ TROVATO", Toast.LENGTH_LONG).show();
+                }
 
                 return true;
             }
 
             @Override
-            public boolean onQueryTextChange(String newText) {
-                // Aggiornare i risultati in base alla stringa di ricerca
+            public boolean onQueryTextChange(String query) {
+                //Toast.makeText(getApplicationContext(), query, Toast.LENGTH_LONG).show();
+
                 ArrayList<QuizBean> quizRicerca;
                 QuizDAO dao = new QuizDAO(new DBHelper(getApplicationContext()));
 
+
                 if(filtro.equalsIgnoreCase("") || filtro.equalsIgnoreCase("nome")){
                     dao.open();
-                    quizRicerca = dao.selectByNome(newText);
+                    quizRicerca = dao.selectByNome(query);
                     dao.close();
                 }else{
                     dao.open();
-                    quizRicerca = dao.selectByDisciplina(newText);
+                    quizRicerca = dao.selectByDisciplina(query);
                     dao.close();
                 }
 
-                listView = (ListView)findViewById(R.id.quizList);
-                adapter = new RicercaQuizAdapter(getApplicationContext(), R.layout.list_element_ricerca_quiz, quizRicerca);
-                listView.setAdapter(adapter);
+                ListView listView = (ListView)findViewById(R.id.quizList);
+                if(quizRicerca!=null) {
+                    RicercaQuizAdapter adapter = new RicercaQuizAdapter(getApplicationContext(), R.layout.list_element_ricerca_quiz, quizRicerca);
+                    listView.setAdapter(adapter);
+                }
 
                 return true;
             }

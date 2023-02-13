@@ -22,10 +22,12 @@ import java.util.List;
 public class RicercaQuizAdapter extends ArrayAdapter<QuizBean> {
 
     private LayoutInflater inflater;
+    private Context context;
 
     public RicercaQuizAdapter(@NonNull Context context, int resource, @NonNull List<QuizBean> objects) {
         super(context, resource, objects);
         inflater = LayoutInflater.from(context);
+        this.context=context;
     }
 
     @Override
@@ -33,7 +35,7 @@ public class RicercaQuizAdapter extends ArrayAdapter<QuizBean> {
 
         int orientation = 0;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
-            orientation = this.getContext().getApplicationContext().getDisplay().getOrientation();
+            orientation = context.getResources().getConfiguration().orientation;
         }
 
         if (view == null) {

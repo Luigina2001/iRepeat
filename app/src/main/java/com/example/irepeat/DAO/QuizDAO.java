@@ -216,7 +216,7 @@ public class QuizDAO {
         // Definiamo la parte 'where' della query.
         // es. selection="ID = ? "
         String selection;
-        selection = COLUMN_NOME + " %LIKE% ? ";
+        selection = COLUMN_NOME + " = ? ";
 
 
         // Specifchiamo gli argomenti per i segnaposto (ovvero i ? nella stringa selection)
@@ -251,7 +251,7 @@ public class QuizDAO {
                 UtenteBean utente= new UtenteBean();
                 UtenteDAO dao= new UtenteDAO(dbHelper);
                 dao.open();
-                utente= dao.doRetrieveById(cursor.getInt(0));
+                utente= dao.doRetrieveById(cursor.getInt(7));
                 if (utente!=null){
                     quiz.setUtente(utente);
                     quizUtente.add(quiz);
@@ -287,7 +287,7 @@ public class QuizDAO {
         // Definiamo la parte 'where' della query.
         // es. selection="ID = ? "
         String selection;
-        selection = COLUMN_DISCIPLINA + " %LIKE% ? ";
+        selection = COLUMN_DISCIPLINA + " = ? ";
 
 
         // Specifchiamo gli argomenti per i segnaposto (ovvero i ? nella stringa selection)
@@ -322,7 +322,7 @@ public class QuizDAO {
                 UtenteBean utente= new UtenteBean();
                 UtenteDAO dao= new UtenteDAO(dbHelper);
                 dao.open();
-                utente= dao.doRetrieveById(cursor.getInt(0));
+                utente= dao.doRetrieveById(cursor.getInt(7));
                 if (utente!=null){
                     quiz.setUtente(utente);
                     quizUtente.add(quiz);
