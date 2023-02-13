@@ -12,12 +12,15 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.example.irepeat.Activity.IniziaQuiz;
 import com.example.irepeat.Bean.QuizBean;
 import com.example.irepeat.Bean.RispostaBean;
+import com.example.irepeat.DAO.DBHelper;
+import com.example.irepeat.DAO.QuizDAO;
 import com.example.irepeat.R;
 
 import java.util.List;
@@ -84,6 +87,16 @@ public class RicercaQuizAdapter extends ArrayAdapter<QuizBean> {
                     cuore.setImageDrawable(context.getResources().getDrawable(R.drawable.cuore_pieno));
                     Log.d("MYDEBUG", "quiz preferito");
                 }
+
+                QuizDAO dao = new QuizDAO(new DBHelper(context));
+                dao.open();
+                boolean ris = dao.update(q);
+                dao.close();
+
+                if(ris)
+                    Toast.makeText(context, "Modifica preferiti effettuata", Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(context, "Modifica preferiti NON effettuata", Toast.LENGTH_LONG).show();
             }
         });
 
