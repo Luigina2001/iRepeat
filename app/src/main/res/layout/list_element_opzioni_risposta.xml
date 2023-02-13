@@ -10,10 +10,9 @@
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         android:hint="Opzione di risposta"
-        android:backgroundTint="@color/white"
-        android:textColorHint="@color/white"
+        android:backgroundTint="@color/black"
+        android:textColorHint="@color/black"
         android:textSize="20dp"
-        android:selectAllOnFocus="true"
-        android:textColor="@color/white"/>
+        android:textColor="@color/black"/>
 
 </RelativeLayout>

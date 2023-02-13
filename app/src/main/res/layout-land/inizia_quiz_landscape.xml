@@ -106,7 +106,7 @@
                 android:text="Precedente"
                 android:onClick="onClickPrecedente"
                 android:textAllCaps="false"
-                android:textSize="25dp" />
+                android:textSize="20dp" />
 
             <Button
                 android:id="@+id/SuccessivaButton"
@@ -117,7 +117,7 @@
                 android:text="Successiva"
                 android:onClick="onClickSuccessiva"
                 android:textAllCaps="false"
-                android:textSize="25dp" />
+                android:textSize="20dp" />
 
         </LinearLayout>
 
