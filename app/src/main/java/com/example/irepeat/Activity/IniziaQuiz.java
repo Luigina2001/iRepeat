@@ -115,6 +115,7 @@ public class IniziaQuiz extends AppCompatActivity {
                 .setPositiveButton("Sì", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent i= new Intent(getApplicationContext(), EsitoQuiz.class);
+                        i.putExtra("risposteDate", risposteDate);
                         startActivity(i);
                     }
                 })

@@ -1,5 +1,6 @@
 package com.example.irepeat.Bean;
 
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -8,7 +9,7 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
-public class UtenteBean {
+public class UtenteBean implements Serializable {
 
     public UtenteBean(String password, String bio, String nome, String cognome, String nickname) {
         try {

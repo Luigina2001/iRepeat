@@ -3,9 +3,10 @@ package com.example.irepeat.Bean;
 import com.example.irepeat.DAO.DBHelper;
 import com.example.irepeat.DAO.DomandaDAO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class QuizBean {
+public class QuizBean implements Serializable {
 
     public QuizBean(String descrizione, String nome, String disciplina, int preferito, String durata, int visibilita, UtenteBean utente) {
         this.descrizione = descrizione;
