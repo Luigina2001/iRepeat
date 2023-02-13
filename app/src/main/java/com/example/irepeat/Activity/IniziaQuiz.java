@@ -3,6 +3,7 @@ package com.example.irepeat.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -21,11 +22,11 @@ public class IniziaQuiz extends AppCompatActivity {
         } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             setContentView(R.layout.inizia_quiz);
         }
-    }
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
+        Intent i=getIntent();
+        Log.d("MYDEBUG", "id quiz= "+i.getIntExtra("id", -1));
+
+
     }
 
     public void onClickTerminaQuiz (View v){
@@ -40,6 +41,10 @@ public class IniziaQuiz extends AppCompatActivity {
     }
 
     public void onClickSuccessiva (View v){
+    }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.irepeat.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.example.irepeat.Activity.IniziaQuiz;
 import com.example.irepeat.Bean.QuizBean;
 import com.example.irepeat.Bean.RispostaBean;
 import com.example.irepeat.R;
@@ -93,6 +95,16 @@ public class RicercaQuizAdapter extends ArrayAdapter<QuizBean> {
             cuore.setImageDrawable(context.getResources().getDrawable(R.drawable.cuore_pieno));
             Log.d("MYDEBUG", "quiz preferito");
         }
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(context, IniziaQuiz.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.putExtra("id", q.getId());
+                context.startActivity(i);
+            }
+        });
 
         return view;
     }

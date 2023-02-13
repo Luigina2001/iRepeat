@@ -1,7 +1,9 @@
 package com.example.irepeat.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.example.irepeat.Activity.IniziaQuiz;
 import com.example.irepeat.Bean.DomandaBean;
 import com.example.irepeat.Bean.QuizBean;
 import com.example.irepeat.R;
@@ -50,9 +53,9 @@ public class QuizAdapter extends ArrayAdapter<QuizBean> {
         TextView nomeQuiz = view.findViewById(R.id.titoloQuiz);
         TextView disciplina = view.findViewById(R.id.disciplinaQuiz);
         TextView numDomande = view.findViewById(R.id.numDomandeQuiz);
-        nomeQuiz.setTag(q.getId());
 
         nomeQuiz.setText(q.getNome());
+        nomeQuiz.setTag(q.getId());
         disciplina.setText(q.getDisciplina());
 
         if (q.getDomande()!=null)
@@ -63,10 +66,47 @@ public class QuizAdapter extends ArrayAdapter<QuizBean> {
         ImageView cuore = view.findViewById(R.id.cuoreButton);
         cuore.setTag(q.getId());
 
+        cuore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(q.getPreferito()==0){
+                    //aggiunta lista preferiti
+                    Log.d("MYDEBUG", "quiz preferito");
+                    q.setPreferito(1);
+
+                }else {
+                    //rimozione lista preferiti
+                    Log.d("MYDEBUG", "quiz NON preferito");
+                    q.setPreferito(0);
+                }
+
+                if(q.getPreferito() == 0) {
+                    cuore.setImageDrawable(context.getResources().getDrawable(R.drawable.cuore_vuoto));
+                    Log.d("MYDEBUG", "quiz NON preferito");
+                }
+                else {
+                    cuore.setImageDrawable(context.getResources().getDrawable(R.drawable.cuore_pieno));
+                    Log.d("MYDEBUG", "quiz preferito");
+                }
+            }
+        });
+
         if(q.getPreferito() == 0)
             cuore.setImageDrawable(view.getResources().getDrawable(R.drawable.cuore_vuoto));
         else
             cuore.setImageDrawable(view.getResources().getDrawable(R.drawable.cuore_pieno));
+
+
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(context, IniziaQuiz.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.putExtra("id", q.getId());
+                context.startActivity(i);
+            }
+        });
 
         return view;
     }
