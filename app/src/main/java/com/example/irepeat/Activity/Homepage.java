@@ -76,6 +76,11 @@ public class Homepage extends AppCompatActivity {
         }
     }
 
+    public void onClickChatbot(View v){
+        Intent i= new Intent(this, ActivityChatbot.class);
+        startActivity(i);
+    }
+
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);

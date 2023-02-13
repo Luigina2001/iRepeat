@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- HEADER -->
+    <RelativeLayout
+        android:id="@+id/header"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:onClick="onClickHomepage"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_scritta"/>
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:layout_marginRight="15dip"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/homepage"
+            android:onClick="onClickHomepage"
+            android:backgroundTint="@color/white"/>
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/textViewData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="4dp"
+        android:text="18 Gennaio"
+        android:textColor="#C0C0C0"
+        android:layout_below="@id/header"
+        android:layout_centerHorizontal="true"/>
+
+
+    <ListView
+        android:id="@+id/messaggiList"
+        android:layout_width="match_parent"
+        android:layout_height="530dp"
+        android:layout_below="@id/textViewData"
+        android:layout_marginBottom="16dp"
+        android:divider="@null"
+        android:listSelector="@android:color/transparent"
+        android:transcriptMode="alwaysScroll"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@id/textViewData" />
+
+    <TextView
+        android:id="@+id/text_gchat_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/view"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+    <!--FOOTER-->
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/header"
+        android:layout_marginTop="631dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@id/footer" />
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#FFF"
+        android:gravity="center" >
+
+        <EditText
+            android:layout_marginStart="16dp"
+            android:id="@+id/editTest_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/sendButton"
+            android:background="@android:color/transparent"
+            android:hint="Inserisci un messaggio"
+            android:inputType="text"
+            android:maxLines="6"
+            tools:ignore="Autofill" />
+
+        <Button
+            android:id="@+id/sendButton"
+            android:layout_width="80dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="@color/white"
+            android:text="Invia"
+            android:textColor="#0000ff" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
