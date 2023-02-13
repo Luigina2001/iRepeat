@@ -407,6 +407,43 @@ public class QuizDAO {
         return quizUtente;
     }
 
+    public boolean update(QuizBean quiz){
+
+        ContentValues values= new ContentValues();
+
+        if (quiz.checkQuiz()) {
+            values.put(COLUMN_ID, quiz.getId());
+            values.put(COLUMN_DESCRIZIONE, quiz.getDescrizione());
+            values.put(COLUMN_NOME, quiz.getNome());
+            values.put(COLUMN_DISCIPLINA, quiz.getDisciplina());
+            values.put(COLUMN_PREFERITO, quiz.getPreferito());
+            values.put(COLUMN_DURATA, quiz.getDurata());
+            values.put(COLUMN_VISIBILITA, quiz.getVisibilita());
+            values.put(COLUMN_UTENTE, quiz.getUtente().getId());
+
+            // es. selection="EMAIL = ?"
+            String selection;
+            selection = COLUMN_ID + " = ?";
+
+
+            // Specifchiamo gli argomenti per i segnaposto (ovvero i ? nella stringa selection)
+            String[] selectionArgs = {String.valueOf(quiz.getId())};
+
+            int check= database.update(TABLE_NAME,
+                    values,
+                    selection,
+                    selectionArgs);
+
+            if (check==1)
+                return true;
+            return false;
+
+        }
+
+        return false;
+
+    }
+
     private static final String TABLE_NAME = "Quiz";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_DESCRIZIONE = "descrizione";
