@@ -173,7 +173,7 @@ public class Ricerca extends AppCompatActivity {
 //       //da vedere
 //    }
 
-    public void onClickPreferiti(View v){
+    /*public void onClickPreferiti(View v){
         ImageView image = v.findViewById(R.id.cuoreButton);
 
         if(image.getDrawable().equals(R.drawable.cuore_vuoto)){
@@ -192,6 +192,6 @@ public class Ricerca extends AppCompatActivity {
 
         }
 
-    }
+    }*/
 
 }

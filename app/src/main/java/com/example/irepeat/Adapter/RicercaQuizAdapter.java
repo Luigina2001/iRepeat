@@ -2,6 +2,7 @@ package com.example.irepeat.Adapter;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,11 +60,39 @@ public class RicercaQuizAdapter extends ArrayAdapter<QuizBean> {
 
         ImageView cuore = view.findViewById(R.id.cuoreButton);
         cuore.setTag(q.getId());
+        cuore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(q.getPreferito()==0){
+                    //aggiunta lista preferiti
+                    Log.d("MYDEBUG", "quiz preferito");
+                    q.setPreferito(1);
 
-        if(q.getPreferito() == 0)
-            cuore.setImageDrawable(view.getResources().getDrawable(R.drawable.cuore_vuoto));
-        else
-            cuore.setImageDrawable(view.getResources().getDrawable(R.drawable.cuore_pieno));
+                }else {
+                    //rimozione lista preferiti
+                    Log.d("MYDEBUG", "quiz NON preferito");
+                    q.setPreferito(0);
+                }
+
+                if(q.getPreferito() == 0) {
+                    cuore.setImageDrawable(context.getResources().getDrawable(R.drawable.cuore_vuoto));
+                    Log.d("MYDEBUG", "quiz NON preferito");
+                }
+                else {
+                    cuore.setImageDrawable(context.getResources().getDrawable(R.drawable.cuore_pieno));
+                    Log.d("MYDEBUG", "quiz preferito");
+                }
+            }
+        });
+
+        if(q.getPreferito() == 0) {
+            cuore.setImageDrawable(context.getResources().getDrawable(R.drawable.cuore_vuoto));
+            Log.d("MYDEBUG", "quiz NON preferito");
+        }
+        else {
+            cuore.setImageDrawable(context.getResources().getDrawable(R.drawable.cuore_pieno));
+            Log.d("MYDEBUG", "quiz preferito");
+        }
 
         return view;
     }
