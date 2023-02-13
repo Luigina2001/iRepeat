@@ -27,20 +27,10 @@
             android:layout_marginTop="10dp"
             android:layout_width="50dip"
             android:layout_height="50dip"
-            android:layout_marginRight="150dip"
+            android:layout_marginRight="85dp"
             android:layout_alignParentRight="true"
             android:onClick="onClickProfilo"
             android:src="@drawable/icona_utente"
-            android:backgroundTint="@color/white"/>
-
-        <ImageView
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_marginRight="85dip"
-            android:src="@drawable/lista_desideri"
-            android:layout_alignParentRight="true"
-            android:onClick="onClickListaPreferiti"
-            android:layout_marginTop="10dp"
             android:backgroundTint="@color/white"/>
 
         <ImageView
@@ -56,37 +46,78 @@
     </RelativeLayout>
 
 
-    <Button
-        android:id="@+id/creaQuiz"
+    <!-- <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/header"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="@android:color/transparent"
-        android:text="Crea nuovo quiz"
-        android:textAllCaps="false"
-        android:textSize="40dp"
-        android:onClick="onClickCreaNuovoQuiz"/>
-
-    <TextView
-        android:id="@+id/titolo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/creaQuiz"
-        android:layout_marginTop="20dp"
-        android:layout_centerInParent="true"
-        android:text="Quiz con cui puoi esercitarti!"
-        android:textColor="@android:color/white"
-        android:textSize="30dp"
-        android:textStyle="bold|italic" />
-
-    <!-- Per mettere in due colonne i quiz -->
-    <GridView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/titolo"
+        android:layout_height="match_parent"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="60dp"
-        android:numColumns="3"/>
+        android:layout_below="@id/header"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/sfondo_quiz_orizzontale"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/preferiti_orizzontale"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/chatbot"/>
+
+    </LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/creaQuizButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            android:text="Crea nuovo quiz"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:onClick="onClickCreaNuovoQuiz"
+            android:textSize="40dp"/>
+
+        <Button
+            android:id="@+id/listaPreferitiButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_below="@id/header"
+            android:backgroundTint="@android:color/transparent"
+            android:text="Visualizza lista preferiti"
+            android:textAllCaps="false"
+            android:onClick="onClickListaPreferiti"
+            android:textStyle="bold"
+            android:textSize="40dp"/>
+
+        <Button
+            android:id="@+id/chatBotButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_below="@id/header"
+            android:backgroundTint="@android:color/transparent"
+            android:text="Chatta con noi"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:onClick="onClickChatbot"
+            android:textSize="40dp"/>
+
+
+    </LinearLayout>
 
 </RelativeLayout>
