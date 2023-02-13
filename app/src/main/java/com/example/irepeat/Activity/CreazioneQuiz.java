@@ -209,31 +209,31 @@ public class CreazioneQuiz extends AppCompatActivity {
                         }
                         else {
                             ArrayList<RispostaBean> listRisposte= new ArrayList<>();
-                            if (temp1.equals("")) {
+                            if (!(temp1.equals(""))) {
                                 RispostaBean r = new RispostaBean();
                                 r.setTesto(temp1);
                                 r.setCorretta(0);
                                 listRisposte.add(r);
                             }
-                            if (temp2.equals("")) {
+                            if (!(temp2.equals(""))) {
                                 RispostaBean r = new RispostaBean();
                                 r.setTesto(temp2);
                                 r.setCorretta(0);
                                 listRisposte.add(r);
                             }
-                            if (temp3.equals("")) {
+                            if (!(temp3.equals(""))) {
                                 RispostaBean r = new RispostaBean();
                                 r.setTesto(temp3);
                                 r.setCorretta(0);
                                 listRisposte.add(r);
                             }
-                            if (temp4.equals("")) {
+                            if (!(temp4.equals(""))) {
                                 RispostaBean r = new RispostaBean();
                                 r.setTesto(temp4);
                                 r.setCorretta(0);
                                 listRisposte.add(r);
                             }
-                            if (temp5.equals("")) {
+                            if (!(temp5.equals(""))) {
                                 RispostaBean r = new RispostaBean();
                                 r.setTesto(temp5);
                                 r.setCorretta(0);
