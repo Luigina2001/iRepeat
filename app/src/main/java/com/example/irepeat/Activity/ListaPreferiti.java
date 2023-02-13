@@ -46,7 +46,7 @@ public class ListaPreferiti extends AppCompatActivity {
         listaQuiz = dao.selectByUtente(utenteBean);
         dao.close();
 
-        ArrayList<QuizBean> listaQuizPref = null;
+        ArrayList<QuizBean> listaQuizPref = new ArrayList<>();
 
         for (QuizBean q:listaQuiz) {
             if(q.getPreferito() == 1)
