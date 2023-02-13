@@ -47,6 +47,7 @@
         android:background="@drawable/sfondo_ciano">
 
         <TextView
+            android:id="@+id/numeroDomandaOmbra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -78,18 +79,25 @@
             android:textSize="20dp"
             android:textColor="#6495ed"/>
 
-        <ListView
-            android:id="@+id/opzioniRisposte"
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
+        <RadioGroup
+            android:id="@+id/radioGroupOpzioniRisposte"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/testoDomanda"
             android:layout_marginTop="20dp"
-            android:layout_below="@id/testoDomanda"/>
+            android:layout_height="400dp">
+
+            <ListView
+                android:id="@+id/opzioniRisposte"
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
+        </RadioGroup>
 
         <LinearLayout
             android:id="@+id/altraDomandaButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/opzioniRisposte"
+            android:layout_below="@id/radioGroupOpzioniRisposte"
             android:gravity="center">
 
             <Button

@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,10 +22,13 @@ import java.util.List;
 public class OpzioniRispostaAdapter extends ArrayAdapter<RispostaBean> {
 
     private LayoutInflater inflater;
+    private Context context;
+    private int selectedPosition=-1;
 
     public OpzioniRispostaAdapter(@NonNull Context context, int resource, @NonNull List<RispostaBean> objects) {
         super(context, resource, objects);
         inflater = LayoutInflater.from(context);
+        this.context=context;
     }
 
     @Override
@@ -31,7 +36,7 @@ public class OpzioniRispostaAdapter extends ArrayAdapter<RispostaBean> {
 
         int orientation = 0;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
-            orientation = this.getContext().getApplicationContext().getDisplay().getOrientation();
+            orientation = context.getResources().getConfiguration().orientation;
         }
 
         if (view == null) {
@@ -44,9 +49,24 @@ public class OpzioniRispostaAdapter extends ArrayAdapter<RispostaBean> {
 
         RispostaBean r = getItem(position);
 
-        TextView risposta = view.findViewById(R.id.opzioneRisposta);
+        RadioButton risposta = view.findViewById(R.id.opzioneRisposta);
         risposta.setText(r.getTesto());
+        risposta.setChecked(position == selectedPosition);
+        risposta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedPosition = position;
+                notifyDataSetChanged();
+            }
+        });
 
         return view;
     }
+
+    public void setSelectedPosition(int selectedPosition) {
+        this.selectedPosition = selectedPosition;
+        notifyDataSetChanged();
+    }
+
+
 }
