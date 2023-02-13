@@ -24,7 +24,9 @@ import com.example.irepeat.DAO.QuizDAO;
 import com.example.irepeat.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Random;
 
 public class IniziaQuiz extends AppCompatActivity {
 
@@ -85,7 +87,9 @@ public class IniziaQuiz extends AppCompatActivity {
         testoDomanda.setText(domande.get(count).getTesto());
 
         listView= findViewById(R.id.opzioniRisposte);
-        adapter = new OpzioniRispostaAdapter(this, R.layout.list_element_opzioni_risposta, risposte.get(domande.get(count)), this);
+        ArrayList<RispostaBean> opzioniDiRisposta= risposte.get(domande.get(count));
+        Collections.shuffle(opzioniDiRisposta, new Random());
+        adapter = new OpzioniRispostaAdapter(this, R.layout.list_element_opzioni_risposta, opzioniDiRisposta, this);
         for (RispostaBean r: risposte.get(domande.get(count))){
             Log.d("MYDEBUG_INIZIA_QUIZ", r.getTesto());
         }
@@ -127,7 +131,9 @@ public class IniziaQuiz extends AppCompatActivity {
             testoDomanda.setText(domande.get(count).getTesto());
 
             listView = findViewById(R.id.opzioniRisposte);
-            adapter = new OpzioniRispostaAdapter(this, R.layout.list_element_opzioni_risposta, risposte.get(domande.get(count)), this);
+            ArrayList<RispostaBean> opzioniDiRisposta= risposte.get(domande.get(count));
+            Collections.shuffle(opzioniDiRisposta, new Random());
+            adapter = new OpzioniRispostaAdapter(this, R.layout.list_element_opzioni_risposta, opzioniDiRisposta, this);
             for (RispostaBean r : risposte.get(domande.get(count))) {
                 Log.d("MYDEBUG_INIZIA_QUIZ", r.getTesto());
             }
@@ -158,7 +164,9 @@ public class IniziaQuiz extends AppCompatActivity {
             testoDomanda.setText(domande.get(count).getTesto());
 
             listView = findViewById(R.id.opzioniRisposte);
-            adapter = new OpzioniRispostaAdapter(this, R.layout.list_element_opzioni_risposta, risposte.get(domande.get(count)), this);
+            ArrayList<RispostaBean> opzioniDiRisposta= risposte.get(domande.get(count));
+            Collections.shuffle(opzioniDiRisposta, new Random());
+            adapter = new OpzioniRispostaAdapter(this, R.layout.list_element_opzioni_risposta, opzioniDiRisposta, this);
             for (RispostaBean r : risposte.get(domande.get(count))) {
                 Log.d("MYDEBUG_INIZIA_QUIZ", r.getTesto());
             }
