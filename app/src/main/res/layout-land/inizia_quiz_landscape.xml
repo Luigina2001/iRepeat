@@ -42,6 +42,7 @@
         android:layout_below="@id/header"
         android:background="@android:color/black"/>
 
+
     <RelativeLayout
         android:id="@+id/quiz"
         android:layout_width="match_parent"
@@ -51,14 +52,27 @@
 
 
         <TextView
+            android:id="@+id/numeroDomandaOmbra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Domanda n. x"
+            android:textSize="31dp"
+            android:textColor="#6495ed"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
             android:id="@+id/numeroDomanda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="Domanda n. x"
-            android:textSize="20dp"
-            android:textColor="#6495ed"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:layout_marginTop="10dp"/>
+
 
         <TextView
             android:id="@+id/testoDomanda"
@@ -68,12 +82,13 @@
             android:layout_below="@id/numeroDomanda"
             android:text="testo Domanda"
             android:textSize="20dp"
-            android:textColor="@color/white"/>
+            android:textColor="#6495ed"/>
 
         <ListView
             android:id="@+id/opzioniRisposte"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="80dp"
+            android:transcriptMode="alwaysScroll"
             android:layout_below="@id/testoDomanda"/>
 
         <LinearLayout
@@ -91,7 +106,7 @@
                 android:text="Precedente"
                 android:onClick="onClickPrecedente"
                 android:textAllCaps="false"
-                android:textSize="15dp" />
+                android:textSize="25dp" />
 
             <Button
                 android:id="@+id/SuccessivaButton"
@@ -102,11 +117,12 @@
                 android:text="Successiva"
                 android:onClick="onClickSuccessiva"
                 android:textAllCaps="false"
-                android:textSize="15dp" />
+                android:textSize="25dp" />
 
         </LinearLayout>
 
     </RelativeLayout>
+
 
 
     <!--FOOTER -->
@@ -114,9 +130,9 @@
         android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:backgroundTint="@color/white"
         android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:layout_below="@id/quiz">
+        android:gravity="center">
 
         <Button
             android:layout_width="300dp"

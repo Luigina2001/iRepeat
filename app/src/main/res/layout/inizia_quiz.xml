@@ -138,7 +138,7 @@
 
         <Button
             android:layout_width="300dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="Termina quiz"
             android:backgroundTint="#6495ed"
             android:layout_centerHorizontal="true"

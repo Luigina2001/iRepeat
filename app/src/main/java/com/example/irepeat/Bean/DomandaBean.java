@@ -3,9 +3,10 @@ package com.example.irepeat.Bean;
 import com.example.irepeat.DAO.DBHelper;
 import com.example.irepeat.DAO.RispostaDAO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DomandaBean {
+public class DomandaBean implements Serializable {
 
     public DomandaBean() {
     }

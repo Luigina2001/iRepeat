@@ -1,6 +1,8 @@
 package com.example.irepeat.Bean;
 
-public class RispostaBean {
+import java.io.Serializable;
+
+public class RispostaBean implements Serializable {
 
     public RispostaBean() {
     }

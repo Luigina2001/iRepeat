@@ -35,6 +35,7 @@ public class IniziaQuiz extends AppCompatActivity {
     private int count=0;
     private OpzioniRispostaAdapter adapter;
     private ListView listView;
+    private int id=-1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +47,16 @@ public class IniziaQuiz extends AppCompatActivity {
             setContentView(R.layout.inizia_quiz);
         }
 
-        Intent i=getIntent();
-        int id=i.getIntExtra("id", -1);
+        if (savedInstanceState!=null){
+            count=savedInstanceState.getInt("count");
+            id=savedInstanceState.getInt("id");
+            risposteDate= (HashMap<DomandaBean, RispostaBean>) savedInstanceState.getSerializable("risposteDate");
+        }
+        else{
+            Intent i=getIntent();
+            id=i.getIntExtra("id", -1);
+        }
+
 
         Log.d("MYDEBUG INIZIA QUIZ", "id quiz= "+id);
 
@@ -81,6 +90,16 @@ public class IniziaQuiz extends AppCompatActivity {
             Log.d("MYDEBUG_INIZIA_QUIZ", r.getTesto());
         }
         listView.setAdapter(adapter);
+
+        if (risposteDate.get(domande.get(count))!=null){
+            int i=0;
+            for (RispostaBean r: risposte.get(domande.get(count))){
+                if (r.equals(risposteDate.get(domande.get(count))))
+                    break;
+                i++;
+            }
+            adapter.setSelectedPosition(i);
+        }
 
     }
 
@@ -163,6 +182,9 @@ public class IniziaQuiz extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putInt("count", count);
+        outState.putInt("id", id);
+        outState.putSerializable("risposteDate", risposteDate);
         super.onSaveInstanceState(outState);
     }
 
