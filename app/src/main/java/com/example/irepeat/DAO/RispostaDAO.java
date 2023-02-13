@@ -158,6 +158,8 @@ public class RispostaDAO {
             values.put(COLUMN_ID, id);
             values.put(COLUMN_TESTO, risposta.getTesto());
             values.put(COLUMN_ID_DOMANDA, risposta.getDomanda().getId());
+            values.put(COLUMN_CORRETTA, risposta.getCorretta());
+
 
             long check= database.insert(TABLE_NAME, null, values);
 

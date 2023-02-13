@@ -53,6 +53,11 @@ public class IniziaQuiz extends AppCompatActivity {
             count=savedInstanceState.getInt("count");
             id=savedInstanceState.getInt("id");
             risposteDate= (HashMap<DomandaBean, RispostaBean>) savedInstanceState.getSerializable("risposteDate");
+            for (RispostaBean r: risposteDate.values()){
+                if (r!=null) {
+                    Log.d("MYDEBUG_RISPOSTE", r.toString());
+                }
+            }
         }
         else{
             Intent i=getIntent();
@@ -204,6 +209,9 @@ public class IniziaQuiz extends AppCompatActivity {
         else {
             ArrayList<RispostaBean> risposteDomanda= risposte.get(domande.get(count));
             RispostaBean rispostaData= risposteDomanda.get(selected);
+            if (risposteDate.get(domande.get(count))!=null){
+                risposteDate.remove(domande.get(count));
+            }
             risposteDate.put(domande.get(count), rispostaData);
         }
     }
