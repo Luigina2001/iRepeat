@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -37,6 +38,8 @@ public class IniziaQuiz extends AppCompatActivity {
     private OpzioniRispostaAdapter adapter;
     private ListView listView;
     private int id=-1;
+    private CountDownTimer countDownTimer;
+    private long millisLeft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +73,18 @@ public class IniziaQuiz extends AppCompatActivity {
         quizDAO.open();
         QuizBean quizBean= quizDAO.select(id);
         quizDAO.close();
+
+        if (savedInstanceState != null) {
+            millisLeft = savedInstanceState.getLong("KEY_MILLIS_LEFT");
+            startTimer(millisLeft);
+        } else {
+            String tempo= quizBean.getDurata();
+            String[] temp= tempo.split(":");
+            int ore= Integer.parseInt(temp[0]);
+            int minuti= Integer.parseInt(temp[1]);
+            millisLeft = (ore * 60 + minuti) * 60 * 1000;
+            startTimer(millisLeft);
+        }
 
         tempoRimasto= findViewById(R.id.tempoRimasto);
         tempoRimasto.setText(quizBean.getDurata());
@@ -211,6 +226,7 @@ public class IniziaQuiz extends AppCompatActivity {
         outState.putSerializable("risposteDate", risposteDate);
         outState.putSerializable("domande", domande);
         outState.putSerializable("risposte", risposte);
+        outState.putLong("KEY_MILLIS_LEFT", millisLeft);
 
         super.onSaveInstanceState(outState);
     }
@@ -227,5 +243,38 @@ public class IniziaQuiz extends AppCompatActivity {
             }
             risposteDate.put(domande.get(count), rispostaData);
         }
+    }
+
+    private void startTimer(long millis) {
+        countDownTimer = new CountDownTimer(millis, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                millisLeft = millisUntilFinished;
+                long hours = millisUntilFinished / (60 * 60 * 1000);
+                long minutes = (millisUntilFinished / (60 * 1000)) % 60;
+                long seconds = (millisUntilFinished / 1000) % 60;
+                tempoRimasto.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
+            }
+
+            public void onFinish() {
+                tempoRimasto.setText("Finished!");
+                Intent i= new Intent(getApplicationContext(), EsitoQuiz.class);
+                i.putExtra("risposteDate", risposteDate);
+                startActivity(i);
+            }
+        };
+        countDownTimer.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        countDownTimer.cancel();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startTimer(millisLeft);
     }
 }
