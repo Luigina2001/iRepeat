@@ -1,5 +1,6 @@
 package com.example.irepeat.Activity;
 
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,7 +33,7 @@ public class ActivityChatbot extends AppCompatActivity {
     private View btnSend;
     private EditText messaggioDigitato;
     boolean isMine =true;
-    private ArrayList<Messaggio> messaggi;
+    private ArrayList<Messaggio> messaggi= new ArrayList<>();
     private ArrayAdapter<Messaggio> adapter;
     private String utterances;
 
@@ -39,30 +41,26 @@ public class ActivityChatbot extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chatbot);
 
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.activity_chatbot_landscape);
+        } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            setContentView(R.layout.activity_chatbot);
+        }
+
+        if (savedInstanceState!=null){
+            messaggi= (ArrayList<Messaggio>) savedInstanceState.getSerializable("messaggi");
+        }
         Log.d("--debug--", "Lancio ActivityChatbot");
 
-        messaggi =new ArrayList<>();
         listView =(ListView)findViewById(R.id.messaggiList);
         btnSend =findViewById(R.id.sendButton);
         messaggioDigitato =(EditText)findViewById(R.id.editTest_message);
 
 
 
-        //List<ContenutoBean> contenutiList = new ArrayList<>(Arrays.asList(contenuti));
-
-        /*for (ContenutoBean c: contenuti){
-            Log.d("chatbot", c.toString());
-        }*/
-
-
         adapter = new MessageListAdapter(this, R.layout.activity_messaggio_bot, messaggi);
-
         listView.setAdapter(adapter);
-
-
-        Log.d("--debug--", "Liste dell'iscritto --> ");
 
 
         //inizializzazione giorno chat
@@ -97,17 +95,18 @@ public class ActivityChatbot extends AppCompatActivity {
 
         String dateTime = DateTimeFormatter.ofPattern("hh:mm a").format(LocalDateTime.now());
         //messaggio di benvenuto chatBot
-        Log.d("--debug--", "Messaggio di benvenuto --> Ciao, sono il chatbot di iRepeat. Come posso aiutarti?");
-        Messaggio messaggio = new Messaggio("Ciao, sono il chatbot di iRepeat. Come posso aiutarti?","iRepeat chatbot", dateTime,isMine);
-        messaggi.add(messaggio);
-        adapter.notifyDataSetChanged();
-        messaggioDigitato.setText("");
-        if (isMine) {
-            isMine = false;
-        } else {
-            isMine = true;
+        if (savedInstanceState==null) {
+            Log.d("--debug--", "Messaggio di benvenuto --> Ciao, sono il chatbot di iRepeat. Come posso aiutarti?");
+            Messaggio messaggio = new Messaggio("Ciao, sono il chatbot di iRepeat. Come posso aiutarti?", "iRepeat chatbot", dateTime, isMine);
+            messaggi.add(messaggio);
+            adapter.notifyDataSetChanged();
+            messaggioDigitato.setText("");
+            if (isMine) {
+                isMine = false;
+            } else {
+                isMine = true;
+            }
         }
-
 
 
         btnSend.setOnClickListener(new View.OnClickListener() {
@@ -171,6 +170,12 @@ public class ActivityChatbot extends AppCompatActivity {
 
     public void onClickHomepage (View v){
         super.onBackPressed();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putSerializable("messaggi", messaggi);
+        super.onSaveInstanceState(outState);
     }
 
 }

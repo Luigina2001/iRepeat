@@ -20,7 +20,7 @@
         android:id="@+id/card_messaggioIscritto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="#774df2"
+        app:cardBackgroundColor="#0000FF"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp"
         app:cardPreventCornerOverlap="false"
@@ -32,7 +32,6 @@
             android:id="@+id/layout_messaggioIscritto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#0000FF"
             android:orientation="vertical">
 
             <TextView

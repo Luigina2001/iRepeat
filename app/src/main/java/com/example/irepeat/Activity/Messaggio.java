@@ -1,6 +1,8 @@
 package com.example.irepeat.Activity;
 
-public class Messaggio {
+import java.io.Serializable;
+
+public class Messaggio implements Serializable {
 
     public Messaggio(){
 
