@@ -29,6 +29,8 @@ public class Ricerca extends AppCompatActivity {
     SearchView searchView;
     Button nome;
     Button disciplina;
+    ListView listView;
+    RicercaQuizAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,8 +103,8 @@ public class Ricerca extends AppCompatActivity {
                     dao.close();
                 }
 
-                ListView listView = (ListView)findViewById(R.id.quizList);
-                RicercaQuizAdapter adapter = new RicercaQuizAdapter(getApplicationContext(), R.layout.list_element_ricerca_quiz, quizRicerca);
+                listView = (ListView)findViewById(R.id.quizList);
+                adapter = new RicercaQuizAdapter(getApplicationContext(), R.layout.list_element_ricerca_quiz, quizRicerca);
                 listView.setAdapter(adapter);
 
                 return true;
@@ -167,10 +169,18 @@ public class Ricerca extends AppCompatActivity {
 
         if(image.getDrawable().equals(R.drawable.cuore_vuoto)){
             image.setImageDrawable(v.getResources().getDrawable(R.drawable.cuore_pieno));
-            //gestire aggiunta lista preferiti
+            //aggiunta lista preferiti
+            int position = Integer.parseInt(v.getTag().toString());
+            QuizBean q = adapter.getItem(position);
+            q.setPreferito(1);
+
         }else{
             image.setImageDrawable(v.getResources().getDrawable(R.drawable.cuore_vuoto));
-            //gestire rimozione lista preferiti
+            //rimozione lista preferiti
+            int position = Integer.parseInt(v.getTag().toString());
+            QuizBean q = adapter.getItem(position);
+            q.setPreferito(0);
+
         }
 
     }
