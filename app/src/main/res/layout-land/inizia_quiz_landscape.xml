@@ -24,6 +24,7 @@
             android:src="@drawable/logo_scritta"/>
 
         <TextView
+            android:id="@+id/tempoRimasto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="tempo rimasto"

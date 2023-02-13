@@ -31,7 +31,7 @@ public class IniziaQuiz extends AppCompatActivity {
     private ArrayList<DomandaBean> domande;
     private HashMap<DomandaBean, ArrayList<RispostaBean>> risposte= new HashMap<>();
     private HashMap<DomandaBean, RispostaBean> risposteDate= new HashMap<>();
-    private TextView numeroDomanda, testoDomanda, numeroDomandaOmbra;
+    private TextView numeroDomanda, testoDomanda, numeroDomandaOmbra, tempoRimasto;
     private int count=0;
     private OpzioniRispostaAdapter adapter;
     private ListView listView;
@@ -55,6 +55,9 @@ public class IniziaQuiz extends AppCompatActivity {
         quizDAO.open();
         QuizBean quizBean= quizDAO.select(id);
         quizDAO.close();
+
+        tempoRimasto= findViewById(R.id.tempoRimasto);
+        tempoRimasto.setText(quizBean.getDurata());
 
         quizBean.setDomande(new DBHelper(this));
         domande=quizBean.getDomande();
