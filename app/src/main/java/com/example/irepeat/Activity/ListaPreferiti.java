@@ -12,9 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.irepeat.Adapter.QuizAdapter;
 import com.example.irepeat.Bean.QuizBean;
+import com.example.irepeat.Bean.UtenteBean;
 import com.example.irepeat.DAO.DBHelper;
 import com.example.irepeat.DAO.QuizDAO;
+import com.example.irepeat.DAO.UtenteDAO;
 import com.example.irepeat.R;
+import com.example.irepeat.Utils.MyPreferences;
 
 import java.util.ArrayList;
 
@@ -33,8 +36,14 @@ public class ListaPreferiti extends AppCompatActivity {
         ArrayList<QuizBean> listaQuiz;
         QuizDAO dao = new QuizDAO(new DBHelper(getApplicationContext()));
 
+        MyPreferences preferences= new MyPreferences(this);
+        int id= Integer.parseInt(preferences.getId());
+        UtenteDAO utenteDAO= new UtenteDAO(new DBHelper(this));
+        utenteDAO.open();
+        UtenteBean utenteBean= utenteDAO.doRetrieveById(id);
+        utenteDAO.close();
         dao.open();
-        listaQuiz = dao.selectAll();
+        listaQuiz = dao.selectByUtente(utenteBean);
         dao.close();
 
         ArrayList<QuizBean> listaQuizPref = null;
@@ -44,9 +53,11 @@ public class ListaPreferiti extends AppCompatActivity {
                 listaQuizPref.add(q);
         }
 
-        ListView listView = findViewById(R.id.listaQuiz);
-        QuizAdapter adapter = new QuizAdapter(getApplicationContext(), R.layout.list_element_quiz, listaQuizPref);
-        listView.setAdapter(adapter);
+        if (listaQuizPref!=null) {
+            ListView listView = findViewById(R.id.listaQuiz);
+            QuizAdapter adapter = new QuizAdapter(getApplicationContext(), R.layout.list_element_quiz, listaQuizPref);
+            listView.setAdapter(adapter);
+        }
 
     }
 
