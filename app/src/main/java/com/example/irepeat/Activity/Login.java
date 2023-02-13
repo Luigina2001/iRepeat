@@ -20,6 +20,7 @@ public class Login extends AppCompatActivity {
 
     private EditText username;
     private EditText password;
+    private String usernameString="", passwordString="";
 
 
     @Override
@@ -32,13 +33,15 @@ public class Login extends AppCompatActivity {
             setContentView(R.layout.login);
         }
 
-        username= findViewById(R.id.username);
-        password= findViewById(R.id.password);
-    }
+        if (savedInstanceState!=null){
+            usernameString=savedInstanceState.getString("username");
+            passwordString=savedInstanceState.getString("password");
+        }
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
+        username= findViewById(R.id.username);
+        username.setText(usernameString);
+        password= findViewById(R.id.password);
+        password.setText(passwordString);
     }
 
     public void onClickLogin (View view){
@@ -67,5 +70,12 @@ public class Login extends AppCompatActivity {
 
     public void onClickBack(View view){
         super.onBackPressed();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putString("username", username.getText().toString());
+        outState.putString("password", password.getText().toString());
+        super.onSaveInstanceState(outState);
     }
 }
