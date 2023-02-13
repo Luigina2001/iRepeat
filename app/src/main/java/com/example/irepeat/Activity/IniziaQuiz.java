@@ -6,7 +6,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -75,12 +74,17 @@ public class IniziaQuiz extends AppCompatActivity {
         tempoRimasto= findViewById(R.id.tempoRimasto);
         tempoRimasto.setText(quizBean.getDurata());
 
-        quizBean.setDomande(new DBHelper(this));
-        domande=quizBean.getDomande();
-
-        for (DomandaBean d: domande){
-            d.setRisposte(new DBHelper(this));
-            risposte.put(d, d.getRisposte());
+        if (savedInstanceState!=null){
+            domande= (ArrayList<DomandaBean>) savedInstanceState.getSerializable("domande");
+            risposte= (HashMap<DomandaBean, ArrayList<RispostaBean>>) savedInstanceState.getSerializable("risposte");
+        }
+        else{
+            quizBean.setDomande(new DBHelper(this));
+            domande=quizBean.getDomande();
+            for (DomandaBean d: domande){
+                d.setRisposte(new DBHelper(this));
+                risposte.put(d, d.getRisposte());
+            }
         }
 
         numeroDomanda= findViewById(R.id.numeroDomanda);
@@ -95,18 +99,24 @@ public class IniziaQuiz extends AppCompatActivity {
         ArrayList<RispostaBean> opzioniDiRisposta= risposte.get(domande.get(count));
         Collections.shuffle(opzioniDiRisposta, new Random());
         adapter = new OpzioniRispostaAdapter(this, R.layout.list_element_opzioni_risposta, opzioniDiRisposta, this);
+
         for (RispostaBean r: risposte.get(domande.get(count))){
             Log.d("MYDEBUG_INIZIA_QUIZ", r.getTesto());
         }
         listView.setAdapter(adapter);
 
+        //DomandaBean d= domande.get(count);
+        //RispostaBean risposta= risposteDate.get(d);
         if (risposteDate.get(domande.get(count))!=null){
+            Log.d("MYDEBUG_RISPOSTE", "qui1");
             int i=0;
             for (RispostaBean r: risposte.get(domande.get(count))){
-                if (r.equals(risposteDate.get(domande.get(count))))
+                Log.d("MYDEBUG_RISPOSTE", "qui2");
+                if (r.getId()==(risposteDate.get(domande.get(count))).getId())
                     break;
                 i++;
             }
+            Log.d("MYDEBUG_RISPOSTE", "i: "+ i);
             adapter.setSelectedPosition(i);
         }
 
@@ -147,7 +157,7 @@ public class IniziaQuiz extends AppCompatActivity {
             if (risposteDate.get(domande.get(count))!=null){
                 int i=0;
                 for (RispostaBean r: risposte.get(domande.get(count))){
-                    if (r.equals(risposteDate.get(domande.get(count))))
+                    if (r.getId()==(risposteDate.get(domande.get(count))).getId())
                         break;
                     i++;
                 }
@@ -180,7 +190,7 @@ public class IniziaQuiz extends AppCompatActivity {
             if (risposteDate.get(domande.get(count))!=null){
                 int i=0;
                 for (RispostaBean r: risposte.get(domande.get(count))){
-                    if (r.equals(risposteDate.get(domande.get(count))))
+                    if (r.getId()==(risposteDate.get(domande.get(count))).getId())
                         break;
                     i++;
                 }
@@ -199,6 +209,9 @@ public class IniziaQuiz extends AppCompatActivity {
         outState.putInt("count", count);
         outState.putInt("id", id);
         outState.putSerializable("risposteDate", risposteDate);
+        outState.putSerializable("domande", domande);
+        outState.putSerializable("risposte", risposte);
+
         super.onSaveInstanceState(outState);
     }
 
