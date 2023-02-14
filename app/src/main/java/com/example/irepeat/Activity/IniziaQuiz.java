@@ -153,6 +153,7 @@ public class IniziaQuiz extends AppCompatActivity {
                         long seconds = ((tempoIniziale-millisLeft) / 1000) % 60;
                         String temp= (String.format("%02d:%02d:%02d", hours, minutes, seconds));
                         Log.d("MYDEBUG", ""+temp);
+                        i.putExtra("tempoImpiegato", temp);
                         startActivity(i);
                     }
                 })
