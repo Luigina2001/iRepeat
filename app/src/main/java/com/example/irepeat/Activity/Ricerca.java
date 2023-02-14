@@ -31,12 +31,14 @@ public class Ricerca extends AppCompatActivity {
     Button disciplina;
     ListView listView;
     RicercaQuizAdapter adapter;
+    String testoRicerca="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState!=null){
             filtro=savedInstanceState.getString("filtro");
+            testoRicerca = savedInstanceState.getString("testoRicerca");
         }
 
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -61,6 +63,7 @@ public class Ricerca extends AppCompatActivity {
         Toast.makeText(this, filtro, Toast.LENGTH_LONG).show();
 
         searchView = findViewById(R.id.testoRicerca);
+        searchView.setQuery(testoRicerca, false);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -124,6 +127,7 @@ public class Ricerca extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putString("filtro", filtro);
+        outState.putString("testoRicerca", searchView.toString());
         super.onSaveInstanceState(outState);
     }
 

@@ -28,6 +28,7 @@ public class ModificaCredenziali extends AppCompatActivity {
 
     UtenteBean utenteBean = new UtenteBean();
     MyPreferences preference;
+    EditText n, b, pa, pn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,28 +40,46 @@ public class ModificaCredenziali extends AppCompatActivity {
             setContentView(R.layout.modifica_credenziali);
         }
 
-        //da cambiare con l'id
         preference = new MyPreferences(this);
         int id = Integer.parseInt(preference.getId());
 
-
-        //da controllare
         UtenteDAO utenteDAO = new UtenteDAO(new DBHelper(getApplicationContext()));
 
         utenteDAO.open();
         utenteBean = utenteDAO.doRetrieveById(id);
         utenteDAO.close();
 
-        EditText nickname = findViewById(R.id.nickname);
-        EditText bio = findViewById(R.id.bio);
+        String pswAttuale ="", pswNuova ="";
+        String nickname = utenteBean.getNickname(), bio = utenteBean.getBio();
 
-        nickname.setText(utenteBean.getNickname());
-        bio.setText(utenteBean.getBio());
+        if(savedInstanceState != null){
+            pswAttuale=savedInstanceState.getString("passwordAttuale");
+            pswNuova=savedInstanceState.getString("passwordNuova");
+            nickname = savedInstanceState.getString("nickname");
+            bio = savedInstanceState.getString("bio");
+        }
+
+        n = findViewById(R.id.nickname);
+        b = findViewById(R.id.bio);
+        pa = findViewById(R.id.passwordAttuale);
+        pn = findViewById(R.id.passwordNuova);
+
+        n.setText(nickname);
+        b.setText(bio);
+        pa.setText(pswAttuale);
+        pn.setText(pswNuova);
 
     }
 
+
+
+
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putString("nickname", n.getText().toString());
+        outState.putString("bio", b.getText().toString());
+        outState.putString("passwordAttuale", pa.getText().toString());
+        outState.putString("passwordNuova", pn.getText().toString());
         super.onSaveInstanceState(outState);
     }
 
@@ -70,13 +89,10 @@ public class ModificaCredenziali extends AppCompatActivity {
 
     public void onClickModificaCredenziali(View view) throws NoSuchAlgorithmException {
 
-        EditText n = findViewById(R.id.nickname);
+
         String nickname = String.valueOf(n.getText());
-        EditText b = findViewById(R.id.bio);
         String bio = String.valueOf(b.getText());
-        EditText pa = findViewById(R.id.passwordAttuale);
         String passwordAttuale = String.valueOf(pa.getText());
-        EditText pn = findViewById(R.id.passwordNuova);
         String passwordNuova = String.valueOf(pn.getText());
 
         String message;
