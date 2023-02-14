@@ -169,29 +169,5 @@ public class Ricerca extends AppCompatActivity {
         searchView.setQuery("", false);
     }
 
-//    public void onClickVisualizzaQuiz(View v){
-//       //da vedere
-//    }
-
-    /*public void onClickPreferiti(View v){
-        ImageView image = v.findViewById(R.id.cuoreButton);
-
-        if(image.getDrawable().equals(R.drawable.cuore_vuoto)){
-            image.setImageDrawable(v.getResources().getDrawable(R.drawable.cuore_pieno));
-            //aggiunta lista preferiti
-            int position = Integer.parseInt(v.getTag().toString());
-            QuizBean q = adapter.getItem(position);
-            q.setPreferito(1);
-
-        }else{
-            image.setImageDrawable(v.getResources().getDrawable(R.drawable.cuore_vuoto));
-            //rimozione lista preferiti
-            int position = Integer.parseInt(v.getTag().toString());
-            QuizBean q = adapter.getItem(position);
-            q.setPreferito(0);
-
-        }
-
-    }*/
 
 }
