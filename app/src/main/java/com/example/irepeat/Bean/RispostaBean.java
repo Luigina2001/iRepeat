@@ -58,5 +58,5 @@ public class RispostaBean implements Serializable {
     private int id;
     private String testo;
     private DomandaBean domanda;
-    private int corretta; //0 se la risposta è corretta, 1 se è errata
+    private int corretta; //0 se la risposta è errata, 1 se è corretta
 }

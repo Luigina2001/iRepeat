@@ -2,11 +2,13 @@ package com.example.irepeat.Activity;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +24,9 @@ import com.example.irepeat.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class EsitoQuiz extends AppCompatActivity {
 
@@ -49,14 +54,14 @@ public class EsitoQuiz extends AppCompatActivity {
         List<DomandaBean> risposteSbagliate = null;
         int index, sbagliate = 0;
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            risposteSbagliate = (risposteDate.entrySet().stream().filter(entry-> Objects.equals(entry.getValue().getCorretta(), 0)).map(Map.Entry::getKey).collect(Collectors.toList()));
+        }
 
-        for (RispostaBean r: risposteDate.values()){
-            index = 0;
-            if (r.getCorretta() == 0) {
-                risposteSbagliate.add(risposteDate.get(i).getDomanda());
-                sbagliate++;
-            }
-            index++;
+        sbagliate = risposteSbagliate.size();
+
+        if(risposteSbagliate == null){
+            Toast.makeText(this, "Nessuna risposta sbagliata", Toast.LENGTH_SHORT).show();
         }
 
         int corrette = risposteDate.size() - sbagliate;
@@ -66,6 +71,9 @@ public class EsitoQuiz extends AppCompatActivity {
         TextView numDomandeSbagliate = findViewById(R.id.numeroDomandeErrate);
         TextView numDomandeSbagliateOmbra = findViewById(R.id.numeroDomandeErrateOmbra);
         TextView numDomandeCorrette = findViewById(R.id.numeroDomandeCorrette);
+
+        String millisec = i.getStringExtra("tempoImpiegato");
+        tempoImpiegato.setText(millisec);
 
         numDomandeSbagliate.append(Integer.toString(sbagliate));
         numDomandeSbagliateOmbra.append(Integer.toString(sbagliate));

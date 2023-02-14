@@ -20,10 +20,12 @@ import java.util.List;
 public class DomandaRispostaCorrettaAdapter extends ArrayAdapter<DomandaBean> {
 
     private LayoutInflater inflater;
+    private Context context;
 
     public DomandaRispostaCorrettaAdapter(@NonNull Context context, int resource, @NonNull List<DomandaBean> objects) {
         super(context, resource, objects);
         inflater = LayoutInflater.from(context);
+        this.context = context;
     }
 
     @Override
@@ -31,7 +33,7 @@ public class DomandaRispostaCorrettaAdapter extends ArrayAdapter<DomandaBean> {
 
         int orientation = 0;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
-            orientation = this.getContext().getApplicationContext().getDisplay().getOrientation();
+            orientation = context.getResources().getConfiguration().orientation;
         }
 
         if (view == null) {

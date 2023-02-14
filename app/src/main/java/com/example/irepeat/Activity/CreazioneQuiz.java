@@ -212,31 +212,31 @@ public class CreazioneQuiz extends AppCompatActivity {
                             if (!(temp1.equals(""))) {
                                 RispostaBean r = new RispostaBean();
                                 r.setTesto(temp1);
-                                r.setCorretta(1);
+                                r.setCorretta(0);
                                 listRisposte.add(r);
                             }
                             if (!(temp2.equals(""))) {
                                 RispostaBean r = new RispostaBean();
                                 r.setTesto(temp2);
-                                r.setCorretta(1);
+                                r.setCorretta(0);
                                 listRisposte.add(r);
                             }
                             if (!(temp3.equals(""))) {
                                 RispostaBean r = new RispostaBean();
                                 r.setTesto(temp3);
-                                r.setCorretta(1);
+                                r.setCorretta(0);
                                 listRisposte.add(r);
                             }
                             if (!(temp4.equals(""))) {
                                 RispostaBean r = new RispostaBean();
                                 r.setTesto(temp4);
-                                r.setCorretta(1);
+                                r.setCorretta(0);
                                 listRisposte.add(r);
                             }
                             if (!(temp5.equals(""))) {
                                 RispostaBean r = new RispostaBean();
                                 r.setTesto(temp5);
-                                r.setCorretta(1);
+                                r.setCorretta(0);
                                 listRisposte.add(r);
                             }
 
@@ -247,7 +247,7 @@ public class CreazioneQuiz extends AppCompatActivity {
                             } else {
                                 RispostaBean r = new RispostaBean();
                                 r.setTesto(rispostaCorretta);
-                                r.setCorretta(0);
+                                r.setCorretta(1);
                                 listRisposte.add(r);
                                 DomandaDAO domandaDAO = new DomandaDAO(new DBHelper(this));
                                 domandaDAO.open();
