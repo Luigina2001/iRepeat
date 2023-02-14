@@ -148,8 +148,11 @@ public class IniziaQuiz extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent i= new Intent(getApplicationContext(), EsitoQuiz.class);
                         i.putExtra("risposteDate", risposteDate);
-                        Log.d("MYDEBUG", ""+(tempoIniziale-millisLeft));
-                        i.putExtra("tempoImpiegato", tempoIniziale-millisLeft);
+                        long hours = (tempoIniziale-millisLeft) / (60 * 60 * 1000);
+                        long minutes = ((tempoIniziale-millisLeft) / (60 * 1000)) % 60;
+                        long seconds = ((tempoIniziale-millisLeft) / 1000) % 60;
+                        String temp= (String.format("%02d:%02d:%02d", hours, minutes, seconds));
+                        Log.d("MYDEBUG", ""+temp);
                         startActivity(i);
                     }
                 })
@@ -265,8 +268,12 @@ public class IniziaQuiz extends AppCompatActivity {
                 tempoRimasto.setText("Finished!");
                 Intent i= new Intent(getApplicationContext(), EsitoQuiz.class);
                 i.putExtra("risposteDate", risposteDate);
-                Log.d("MYDEBUG", ""+(tempoIniziale-millisLeft));
-                i.putExtra("tempoImpiegato", tempoIniziale-millisLeft);
+                long hours = (tempoIniziale-millisLeft) / (60 * 60 * 1000);
+                long minutes = ((tempoIniziale-millisLeft) / (60 * 1000)) % 60;
+                long seconds = ((tempoIniziale-millisLeft) / 1000) % 60;
+                String temp= (String.format("%02d:%02d:%02d", hours, minutes, seconds));
+                Log.d("MYDEBUG", ""+temp);
+                i.putExtra("tempoImpiegato", temp);
                 startActivity(i);
             }
         };
