@@ -39,7 +39,7 @@ public class IniziaQuiz extends AppCompatActivity {
     private ListView listView;
     private int id=-1;
     private CountDownTimer countDownTimer;
-    private long millisLeft;
+    private long millisLeft, tempoIniziale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +76,7 @@ public class IniziaQuiz extends AppCompatActivity {
 
         if (savedInstanceState != null) {
             millisLeft = savedInstanceState.getLong("KEY_MILLIS_LEFT");
+            tempoIniziale= savedInstanceState.getLong("tempoIniziale");
             startTimer(millisLeft);
         } else {
             String tempo= quizBean.getDurata();
@@ -83,6 +84,7 @@ public class IniziaQuiz extends AppCompatActivity {
             int ore= Integer.parseInt(temp[0]);
             int minuti= Integer.parseInt(temp[1]);
             millisLeft = (ore * 60 + minuti) * 60 * 1000;
+            tempoIniziale=millisLeft;
             startTimer(millisLeft);
         }
 
@@ -146,6 +148,8 @@ public class IniziaQuiz extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent i= new Intent(getApplicationContext(), EsitoQuiz.class);
                         i.putExtra("risposteDate", risposteDate);
+                        Log.d("MYDEBUG", ""+(tempoIniziale-millisLeft));
+                        i.putExtra("tempoImpiegato", tempoIniziale-millisLeft);
                         startActivity(i);
                     }
                 })
@@ -227,6 +231,7 @@ public class IniziaQuiz extends AppCompatActivity {
         outState.putSerializable("domande", domande);
         outState.putSerializable("risposte", risposte);
         outState.putLong("KEY_MILLIS_LEFT", millisLeft);
+        outState.putLong("tempoIniziale", tempoIniziale);
 
         super.onSaveInstanceState(outState);
     }
@@ -260,6 +265,8 @@ public class IniziaQuiz extends AppCompatActivity {
                 tempoRimasto.setText("Finished!");
                 Intent i= new Intent(getApplicationContext(), EsitoQuiz.class);
                 i.putExtra("risposteDate", risposteDate);
+                Log.d("MYDEBUG", ""+(tempoIniziale-millisLeft));
+                i.putExtra("tempoImpiegato", tempoIniziale-millisLeft);
                 startActivity(i);
             }
         };
