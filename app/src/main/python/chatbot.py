@@ -57,7 +57,7 @@ def main(utterances):
             ["Adesso niente, ma potrei spiegarti come funziona questa app!"],
         ],
         [
-            r"(.*)come creare un nuovo quiz?",
+            r"come creare un nuovo quiz?|come posso creare un nuovo quiz|come si crea un nuovo quiz?|(.*)crea(.*) quiz(.*)",
             ["Torna alla homepage e clicca il pulsante crea nuovo quiz oppure vai sul tuo profilo e dal menu scegli l'opzione crea nuovo quiz.\nAttenzione! devi essere loggato per poter effettuare questa operazione"],
         ],
         [
