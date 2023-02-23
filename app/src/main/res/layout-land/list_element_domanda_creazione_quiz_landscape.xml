@@ -7,160 +7,162 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_centerInParent="true"
-        android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:paddingBottom="300dp"
-        android:backgroundTint="@color/white"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/idDomanda"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:layout_marginTop="20dp"
-            android:textAlignment="center"
-            android:textSize="35dp"
-            android:textStyle="bold"
-            android:text="Domanda"/>
-
-        <EditText
-            android:id="@+id/testoDomanda"
-            android:layout_width="match_parent"
-            android:layout_centerHorizontal="true"
-            android:textAlignment="center"
-            android:layout_height="wrap_content"
-            android:hint="Testo domanda"
-            android:backgroundTint="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="30dp"
-            android:layout_marginTop="30dp"
-            android:textColor="@color/white"/>
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
-            <TextView
-                android:text="Opzioni di risposta"
-                android:layout_marginLeft="180dp"
-                android:layout_width="wrap_content"
-                android:textAlignment="center"
-                android:textSize="35dp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_height="wrap_content"/>
+            android:layout_centerInParent="true"
+            android:backgroundTint="@color/white"
+            android:orientation="vertical"
+            android:paddingBottom="300dp">
 
-            <ImageView
-                android:id="@+id/aggiungiRispostaButton"
-                android:layout_marginLeft="15dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/icona_piu"/>
+            <TextView
+                android:id="@+id/idDomanda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Domanda"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/testoDomanda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@color/white"
+                android:hint="Testo domanda"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="30dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Risposta corretta"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+
+            <!--ATT. deve essere contenuta nelle opzioni di risposta-->
+            <EditText
+                android:id="@+id/rispostaCorretta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:backgroundTint="@color/white"
+                android:hint="Risposta corretta"
+                android:selectAllOnFocus="true"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="30dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="180dp"
+                    android:text="Opzioni di risposta"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="35dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/aggiungiRispostaButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/icona_piu" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/risposta1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/white"
+                android:hint="Risposta 1"
+                android:selectAllOnFocus="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="30dp" />
+
+            <EditText
+                android:id="@+id/risposta2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/white"
+                android:hint="Risposta 2"
+                android:selectAllOnFocus="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="30dp"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/risposta3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/white"
+                android:hint="Risposta 3"
+                android:selectAllOnFocus="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="30dp"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/risposta4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/white"
+                android:hint="Risposta 4"
+                android:selectAllOnFocus="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="30dp"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/risposta5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/white"
+                android:hint="Risposta 5"
+                android:selectAllOnFocus="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="30dp"
+                android:visibility="invisible" />
 
         </LinearLayout>
-
-        <EditText
-            android:id="@+id/risposta1"
-            android:layout_width="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content"
-            android:hint="Risposta 1"
-            android:backgroundTint="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="30dp"
-            android:selectAllOnFocus="true"
-            android:textColor="@color/white"/>
-
-        <EditText
-            android:id="@+id/risposta2"
-            android:layout_width="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content"
-            android:hint="Risposta 2"
-            android:backgroundTint="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="30dp"
-            android:selectAllOnFocus="true"
-            android:textColor="@color/white"
-            android:visibility="invisible"/>
-
-        <EditText
-            android:id="@+id/risposta3"
-            android:layout_width="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content"
-            android:hint="Risposta 3"
-            android:backgroundTint="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="30dp"
-            android:selectAllOnFocus="true"
-            android:textColor="@color/white"
-            android:visibility="invisible"/>
-
-        <EditText
-            android:id="@+id/risposta4"
-            android:layout_width="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content"
-            android:hint="Risposta 4"
-            android:backgroundTint="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="30dp"
-            android:selectAllOnFocus="true"
-            android:textColor="@color/white"
-            android:visibility="invisible"/>
-
-        <EditText
-            android:id="@+id/risposta5"
-            android:layout_width="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content"
-            android:hint="Risposta 5"
-            android:backgroundTint="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="30dp"
-            android:selectAllOnFocus="true"
-            android:textColor="@color/white"
-            android:visibility="invisible"/>
-
-        <TextView
-            android:text="Risposta corretta"
-            android:layout_width="match_parent"
-            android:textAlignment="center"
-            android:textSize="35dp"
-            android:textStyle="bold"
-            android:layout_marginTop="30dp"
-            android:textColor="@color/white"
-            android:layout_height="wrap_content"/>
-
-        <!--ATT. deve essere contenuta nelle opzioni di risposta-->
-        <EditText
-            android:id="@+id/rispostaCorretta"
-            android:layout_width="match_parent"
-            android:textAlignment="center"
-            android:layout_marginTop="30dp"
-            android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content"
-            android:hint="Risposta corretta"
-            android:backgroundTint="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="30dp"
-            android:selectAllOnFocus="true"
-            android:layout_marginBottom="30dp"
-            android:textColor="@color/white"/>
-
-    </LinearLayout>
     </ScrollView>
 
 </RelativeLayout>
