@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.irepeat.Bean.DomandaBean;
@@ -54,6 +55,11 @@ public class ModificaQuiz extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
 
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.creazione_quiz_landscape);
@@ -111,7 +117,6 @@ public class ModificaQuiz extends AppCompatActivity {
 
             idQuiz= savedInstanceState.getInt("idQuiz");
 
-            domande= new ArrayList<>();
             ParcelableRelativeLayout[] parcelableRelativeLayouts = (ParcelableRelativeLayout[]) savedInstanceState.getSerializable("domande");
             for (ParcelableRelativeLayout parcelableRelativeLayout : parcelableRelativeLayouts) {
                 domande.add(parcelableRelativeLayout.getView());
@@ -153,6 +158,14 @@ public class ModificaQuiz extends AppCompatActivity {
                 minutiPicker.setMinValue(0);
                 minutiPicker.setMaxValue(59);
 
+                String tempo= quiz.getDurata();
+                Log.d("DebugTempo", tempo);
+                String[] temp= tempo.split(":");
+                ore= temp[0];
+                minuti= temp[1];
+                orePicker.setValue(Integer.parseInt(ore));
+                minutiPicker.setValue(Integer.parseInt(minuti));
+
                 visibilita = quiz.getVisibilita();
                 pubblica= findViewById(R.id.visibilitaQuizPublic);
                 privata= findViewById(R.id.visibilitaQuizPrivate);
@@ -178,14 +191,6 @@ public class ModificaQuiz extends AppCompatActivity {
                             onClickAggiungiDomandaRisposta(aggiungi, d);
                     }
                 }
-
-                String tempo= quiz.getDurata();
-                Log.d("DebugTempo", tempo);
-                String[] temp= tempo.split(":");
-                ore= temp[0];
-                minuti= temp[1];
-                orePicker.setValue(Integer.parseInt(ore));
-                minutiPicker.setValue(Integer.parseInt(minuti));
 
 
             }
@@ -489,7 +494,7 @@ public class ModificaQuiz extends AppCompatActivity {
                 EditText risposta = domandaView.findViewById(getResources().getIdentifier(rispostaId,"id",getPackageName()));
                 risposta.setVisibility(View.VISIBLE);
                 ViewGroup.LayoutParams params = risposta.getLayoutParams();
-                params.height = 200; // l'altezza viene impostata a 160 pixel
+                params.height = 200;
                 risposta.setLayoutParams(params);
                 risposta.setText(r.getTesto());
                 risposta.setTag(r.getId());
@@ -540,6 +545,7 @@ public class ModificaQuiz extends AppCompatActivity {
         TextView idDomanda= domandaView.findViewById(R.id.idDomanda);
         count++;
         idDomanda.setText("Domanda n."+count);
+
         domande.add(domandaView);
 
         for (View v: domande) {

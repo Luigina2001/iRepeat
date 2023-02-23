@@ -15,16 +15,20 @@
 
         <activity
             android:name=".Activity.CreazioneQuiz"
-            android:exported="true">
-            <meta-data
+            android:exported="true"
+            android:screenOrientation="portrait">
+
+        <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
 
         <activity
             android:name=".Activity.ModificaQuiz"
-            android:exported="true">
-            <meta-data
+            android:exported="true"
+            android:screenOrientation="portrait">
+
+        <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
@@ -44,14 +48,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
-        <!-- <activity
-            android:name=".Activity.Homepage"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity> -->
 
         <activity
             android:name=".Activity.IniziaQuiz"

@@ -56,8 +56,10 @@ public class ListaPreferiti extends AppCompatActivity {
         ArrayList<QuizBean> listaQuizPref = new ArrayList<>();
 
         for (QuizBean q:listaQuiz) {
-            if(q.getPreferito() == 1)
+            if(q.getPreferito() == 1) {
                 listaQuizPref.add(q);
+                q.setDomande(new DBHelper(this));
+            }
         }
 
         if (listaQuizPref!=null) {
