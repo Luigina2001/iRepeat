@@ -57,7 +57,7 @@
         android:textSize="30dp"
         android:textStyle="bold"/>
 
-    <ListView
+    <GridView
         android:id="@+id/listaQuiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,6 +66,7 @@
         android:divider="@null"
         android:listSelector="@android:color/transparent"
         android:transcriptMode="alwaysScroll"
+        android:numColumns="3"
         android:layout_marginBottom="50dp"/>
 
 

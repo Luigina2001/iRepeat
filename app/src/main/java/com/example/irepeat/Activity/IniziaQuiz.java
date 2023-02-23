@@ -154,6 +154,7 @@ public class IniziaQuiz extends AppCompatActivity {
                         String temp= (String.format("%02d:%02d:%02d", hours, minutes, seconds));
                         Log.d("MYDEBUG", ""+temp);
                         i.putExtra("tempoImpiegato", temp);
+                        countDownTimer.cancel();
                         startActivity(i);
                     }
                 })
