@@ -3,6 +3,7 @@ package com.example.irepeat.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +24,7 @@ import com.example.irepeat.Bean.RispostaBean;
 import com.example.irepeat.DAO.DBHelper;
 import com.example.irepeat.DAO.QuizDAO;
 import com.example.irepeat.R;
+import com.example.irepeat.Utils.MyActivityLifecycleCallbacks;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,10 +43,14 @@ public class IniziaQuiz extends AppCompatActivity {
     private int id=-1;
     private CountDownTimer countDownTimer;
     private long millisLeft, tempoIniziale;
+    private MyActivityLifecycleCallbacks myActivityLifecycleCallbacks;
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        myActivityLifecycleCallbacks= new MyActivityLifecycleCallbacks();
+        registerActivityLifecycleCallbacks(myActivityLifecycleCallbacks);
 
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.inizia_quiz_landscape);
@@ -60,12 +67,15 @@ public class IniziaQuiz extends AppCompatActivity {
                     Log.d("MYDEBUG_RISPOSTE", r.toString());
                 }
             }
+            myActivityLifecycleCallbacks= (MyActivityLifecycleCallbacks) savedInstanceState.getSerializable("myActivityLifecycleCallbacks");
         }
         else{
             Intent i=getIntent();
             id=i.getIntExtra("id", -1);
+            myActivityLifecycleCallbacks= new MyActivityLifecycleCallbacks();
         }
 
+        registerActivityLifecycleCallbacks(myActivityLifecycleCallbacks);
 
         Log.d("MYDEBUG INIZIA QUIZ", "id quiz= "+id);
 
@@ -154,7 +164,6 @@ public class IniziaQuiz extends AppCompatActivity {
                         String temp= (String.format("%02d:%02d:%02d", hours, minutes, seconds));
                         Log.d("MYDEBUG", ""+temp);
                         i.putExtra("tempoImpiegato", temp);
-                        countDownTimer.cancel();
                         startActivity(i);
                     }
                 })
@@ -237,6 +246,7 @@ public class IniziaQuiz extends AppCompatActivity {
         outState.putSerializable("risposte", risposte);
         outState.putLong("KEY_MILLIS_LEFT", millisLeft);
         outState.putLong("tempoIniziale", tempoIniziale);
+        outState.putSerializable("myActivityLifecycleCallbacks", myActivityLifecycleCallbacks);
 
         super.onSaveInstanceState(outState);
     }
@@ -267,16 +277,18 @@ public class IniziaQuiz extends AppCompatActivity {
             }
 
             public void onFinish() {
-                tempoRimasto.setText("Finished!");
-                Intent i= new Intent(getApplicationContext(), EsitoQuiz.class);
-                i.putExtra("risposteDate", risposteDate);
-                long hours = (tempoIniziale-millisLeft) / (60 * 60 * 1000);
-                long minutes = ((tempoIniziale-millisLeft) / (60 * 1000)) % 60;
-                long seconds = ((tempoIniziale-millisLeft) / 1000) % 60;
-                String temp= (String.format("%02d:%02d:%02d", hours, minutes, seconds));
-                Log.d("MYDEBUG", ""+temp);
-                i.putExtra("tempoImpiegato", temp);
-                startActivity(i);
+                if (MyActivityLifecycleCallbacks.isForeground()) {
+                    tempoRimasto.setText("Finished!");
+                    Intent i = new Intent(getApplicationContext(), EsitoQuiz.class);
+                    i.putExtra("risposteDate", risposteDate);
+                    long hours = (tempoIniziale - millisLeft) / (60 * 60 * 1000);
+                    long minutes = ((tempoIniziale - millisLeft) / (60 * 1000)) % 60;
+                    long seconds = ((tempoIniziale - millisLeft) / 1000) % 60;
+                    String temp = (String.format("%02d:%02d:%02d", hours, minutes, seconds));
+                    Log.d("MYDEBUG", "" + temp);
+                    i.putExtra("tempoImpiegato", temp);
+                    startActivity(i);
+                }
             }
         };
         countDownTimer.start();
