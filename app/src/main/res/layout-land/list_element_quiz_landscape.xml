@@ -60,13 +60,32 @@
 
     </RelativeLayout>
 
-    <ImageButton
-        android:id="@+id/cuoreButton"
+    <RelativeLayout
+        android:id="@+id/buttons"
         android:layout_width="30dp"
         android:layout_height="150dp"
-        android:src="@drawable/cuore_vuoto"
+        android:layout_toRightOf="@id/quiz"
         android:background="@drawable/sfondo_azzurro"
-        android:layout_toRightOf="@id/quiz"/>
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/cuoreButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/cuore_vuoto"
+            android:background="@android:color/transparent"/>
+
+        <ImageButton
+            android:id="@+id/modificaButton"
+            android:layout_marginTop="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/cuoreButton"
+            android:src="@drawable/modifica"
+            android:background="@android:color/transparent"/>
+
+    </RelativeLayout>
+
     <View
         android:layout_width="230dp"
         android:layout_height="1dp"
@@ -77,7 +96,7 @@
     <View
         android:layout_width="1dp"
         android:layout_height="150dp"
-        android:layout_toRightOf="@id/cuoreButton"
+        android:layout_toRightOf="@id/buttons"
         android:background="@android:color/black" />
 
 </RelativeLayout>

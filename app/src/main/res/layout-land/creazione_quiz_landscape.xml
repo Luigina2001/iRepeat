@@ -211,7 +211,7 @@
                 android:onClick="onClickCreaQuiz"
                 android:backgroundTint="@color/white"
                 android:layout_marginTop="20dp"
-                android:text="Crea Quiz"/>
+                android:text="Salva Quiz"/>
 
         </RelativeLayout>
 

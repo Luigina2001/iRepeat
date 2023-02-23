@@ -208,7 +208,7 @@
                 android:textColor="#00BFFF"
                 android:onClick="onClickCreaQuiz"
                 android:backgroundTint="@color/white"
-                android:text="Crea Quiz"/>
+                android:text="Salva Quiz"/>
 
         </RelativeLayout>
     </ScrollView>
