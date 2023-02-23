@@ -60,7 +60,7 @@ public class Ricerca extends AppCompatActivity {
         }
 
 
-        Toast.makeText(this, filtro, Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, filtro, Toast.LENGTH_LONG).show();
 
         searchView = findViewById(R.id.testoRicerca);
         searchView.setQuery(testoRicerca, false);

@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -54,9 +55,9 @@ public class ListaPreferiti extends AppCompatActivity {
         }
 
         if (listaQuizPref!=null) {
-            ListView listView = findViewById(R.id.listaQuiz);
+            GridView gridView = findViewById(R.id.listaQuiz);
             QuizAdapter adapter = new QuizAdapter(getApplicationContext(), R.layout.list_element_quiz, listaQuizPref);
-            listView.setAdapter(adapter);
+            gridView.setAdapter(adapter);
         }
 
     }
