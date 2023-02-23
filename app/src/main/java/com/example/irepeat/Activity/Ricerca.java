@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.irepeat.Adapter.RicercaQuizAdapter;
@@ -36,6 +37,12 @@ public class Ricerca extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
+
         if (savedInstanceState!=null){
             filtro=savedInstanceState.getString("filtro");
             testoRicerca = savedInstanceState.getString("testoRicerca");

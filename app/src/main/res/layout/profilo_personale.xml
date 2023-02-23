@@ -104,7 +104,7 @@
     <GridView
         android:id="@+id/gridViewQuiz"
         android:layout_width="match_parent"
-        android:layout_height="345dp"
+        android:layout_height="match_parent"
         android:layout_below="@id/bio"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
