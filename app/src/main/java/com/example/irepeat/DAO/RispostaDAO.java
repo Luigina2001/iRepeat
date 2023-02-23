@@ -188,6 +188,31 @@ public class RispostaDAO {
 
     }
 
+    public boolean update(RispostaBean risposta){
+
+        ContentValues values= new ContentValues();
+        values.put(COLUMN_ID, risposta.getId());
+        values.put(COLUMN_TESTO, risposta.getTesto());
+        values.put(COLUMN_ID_DOMANDA, risposta.getDomanda().getId());
+        values.put(COLUMN_CORRETTA,risposta.getCorretta());
+
+        // es. selection="EMAIL = ?"
+        String selection;
+        selection = COLUMN_ID + " = ?";
+
+        // Specifchiamo gli argomenti per i segnaposto (ovvero i ? nella stringa selection)
+        String[] selectionArgs = {String.valueOf(risposta.getId())};
+
+        int check= database.update(TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+
+        if (check==1)
+            return true;
+        else return insert(risposta);
+    }
+
 
     private static final String TABLE_NAME = "Risposta";
     private static final String COLUMN_ID = "id";

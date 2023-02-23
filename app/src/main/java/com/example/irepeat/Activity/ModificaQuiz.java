@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -47,8 +46,9 @@ public class ModificaQuiz extends AppCompatActivity {
     private String nome, descrizione, disciplina, ore, minuti;
     private int visibilita;
     private TextView modifica;
-    ArrayList<DomandaBean> domandeQuiz = new ArrayList<>();
-    int counter = 1;
+    private ArrayList<DomandaBean> domandeQuiz = new ArrayList<>();
+    private int counter = 1;
+    private int idQuiz;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +107,9 @@ public class ModificaQuiz extends AppCompatActivity {
             minutiPicker.setMaxValue(59);
             minutiPicker.setValue(Integer.parseInt(minuti));
             count= savedInstanceState.getInt("count");
+            counter= savedInstanceState.getInt("counter");
+
+            idQuiz= savedInstanceState.getInt("idQuiz");
 
             domande= new ArrayList<>();
             ParcelableRelativeLayout[] parcelableRelativeLayouts = (ParcelableRelativeLayout[]) savedInstanceState.getSerializable("domande");
@@ -127,12 +130,12 @@ public class ModificaQuiz extends AppCompatActivity {
         }else {
 
             Intent i = getIntent();
-            int id = i.getIntExtra("id",-1);
+            idQuiz = i.getIntExtra("id",-1);
 
-            if(id>0){
+            if(idQuiz >0){
                 QuizDAO dao= new QuizDAO(new DBHelper(this));
                 dao.open();
-                QuizBean quiz = dao.select(id);
+                QuizBean quiz = dao.select(idQuiz);
                 dao.close();
 
                 nomeQuiz= findViewById(R.id.nomeQuiz);
@@ -168,22 +171,24 @@ public class ModificaQuiz extends AppCompatActivity {
 
                 ImageView aggiungi = findViewById(R.id.aggiungiDomandaButton);
 
-                for (DomandaBean d: domandeQuiz){
-                    d.setRisposte(new DBHelper(this));
-                    onClickAggiungiDomandaRisposta(aggiungi, d);
-                }
-
-                if (domande.size()>0){
-                    for (View v: domande) {
-                        ViewGroup parent = (ViewGroup) v.getParent();
-                        if (parent != null) {
-                            parent.removeView(v);
-                        }
-                        listViewCreazioneDomande.addView(v);
+                if (domandeQuiz.size()>0) {
+                    for (DomandaBean d : domandeQuiz) {
+                        d.setRisposte(new DBHelper(this));
+                        if (d.getRisposte().size()>0)
+                            onClickAggiungiDomandaRisposta(aggiungi, d);
                     }
                 }
-            }
 
+                String tempo= quiz.getDurata();
+                Log.d("DebugTempo", tempo);
+                String[] temp= tempo.split(":");
+                ore= temp[0];
+                minuti= temp[1];
+                orePicker.setValue(Integer.parseInt(ore));
+                minutiPicker.setValue(Integer.parseInt(minuti));
+
+
+            }
 
         }
 
@@ -246,15 +251,23 @@ public class ModificaQuiz extends AppCompatActivity {
             utente=dao.doRetrieveById(id);
             dao.close();
             QuizBean quiz= new QuizBean(descrizione, nome, disciplina, 0, tempo, visibilita, utente);
+            quiz.setId(idQuiz);
             QuizDAO quizDAO= new QuizDAO(new DBHelper(this));
             quizDAO.open();
-            if (quizDAO.insert(quiz)) {
+            if (quizDAO.update(quiz)) {
                 for (View v : domande) {
                     String testo = ((EditText) (v.findViewById(R.id.testoDomanda))).getText().toString();
                     if (testo.equals("")) {
                         flag=false;
                         Toast.makeText(getApplicationContext(), "Inserire il testo della domanda", Toast.LENGTH_LONG).show();
                     } else {
+                        DomandaBean domandaBean = new DomandaBean(testo, quiz);
+                        EditText testoDomandaET= (EditText)(v.findViewById(R.id.testoDomanda));
+                        if (testoDomandaET.getTag()!=null)
+                            domandaBean.setId((int)testoDomandaET.getTag());
+                        else
+                            domandaBean.setId(-1);
+
                         String temp1 = ((EditText) (v.findViewById(R.id.risposta1))).getText().toString();
                         String temp2 = ((EditText) (v.findViewById(R.id.risposta2))).getText().toString();
                         String temp3 = ((EditText) (v.findViewById(R.id.risposta3))).getText().toString();
@@ -268,33 +281,58 @@ public class ModificaQuiz extends AppCompatActivity {
                         else {
                             ArrayList<RispostaBean> listRisposte= new ArrayList<>();
                             if (!(temp1.equals(""))) {
+                                EditText rispostaET= (EditText) (v.findViewById(R.id.risposta1));
                                 RispostaBean r = new RispostaBean();
                                 r.setTesto(temp1);
                                 r.setCorretta(0);
+                                if (rispostaET.getTag()!=null)
+                                    r.setId((int)rispostaET.getTag());
+                                else
+                                    r.setId(-1);
                                 listRisposte.add(r);
                             }
                             if (!(temp2.equals(""))) {
+                                EditText rispostaET= (EditText) (v.findViewById(R.id.risposta2));
                                 RispostaBean r = new RispostaBean();
                                 r.setTesto(temp2);
                                 r.setCorretta(0);
+                                if (rispostaET.getTag()!=null)
+                                    r.setId((int)rispostaET.getTag());
+                                else
+                                    r.setId(-1);
                                 listRisposte.add(r);
                             }
                             if (!(temp3.equals(""))) {
+                                EditText rispostaET= (EditText) (v.findViewById(R.id.risposta3));
                                 RispostaBean r = new RispostaBean();
                                 r.setTesto(temp3);
                                 r.setCorretta(0);
+                                if (rispostaET.getTag()!=null)
+                                    r.setId((int)rispostaET.getTag());
+                                else
+                                    r.setId(-1);
                                 listRisposte.add(r);
                             }
                             if (!(temp4.equals(""))) {
+                                EditText rispostaET= (EditText) (v.findViewById(R.id.risposta4));
                                 RispostaBean r = new RispostaBean();
                                 r.setTesto(temp4);
                                 r.setCorretta(0);
+                                if (rispostaET.getTag()!=null)
+                                    r.setId((int)rispostaET.getTag());
+                                else
+                                    r.setId(-1);
                                 listRisposte.add(r);
                             }
                             if (!(temp5.equals(""))) {
+                                EditText rispostaET= (EditText) (v.findViewById(R.id.risposta5));
                                 RispostaBean r = new RispostaBean();
                                 r.setTesto(temp5);
                                 r.setCorretta(0);
+                                if (rispostaET.getTag()!=null)
+                                    r.setId((int)rispostaET.getTag());
+                                else
+                                    r.setId(-1);
                                 listRisposte.add(r);
                             }
 
@@ -303,15 +341,19 @@ public class ModificaQuiz extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "Inserire una risposta corretta", Toast.LENGTH_LONG).show();
                                 flag=false;
                             } else {
+                                EditText rispostaET= (EditText) (v.findViewById(R.id.rispostaCorretta));
                                 RispostaBean r = new RispostaBean();
                                 r.setTesto(rispostaCorretta);
                                 r.setCorretta(1);
+                                if (rispostaET.getTag()!=null)
+                                    r.setId((int)rispostaET.getTag());
+                                else
+                                    r.setId(-1);
                                 listRisposte.add(r);
                                 DomandaDAO domandaDAO = new DomandaDAO(new DBHelper(this));
                                 domandaDAO.open();
-                                DomandaBean domandaBean = new DomandaBean(testo, quiz);
-                                if (!(domandaDAO.insert(domandaBean))) {
-                                    Toast.makeText(getApplicationContext(), "Inserimento domanda nel DB non riuscita", Toast.LENGTH_LONG).show();
+                                if (!(domandaDAO.update(domandaBean))) {
+                                    Toast.makeText(getApplicationContext(), "Aggiornamento domanda nel DB non riuscita", Toast.LENGTH_LONG).show();
                                     flag=false;
                                 } else {
                                     domandaDAO.close();
@@ -319,8 +361,8 @@ public class ModificaQuiz extends AppCompatActivity {
                                     rispostaDAO.open();
                                     for (RispostaBean rispostaBean : listRisposte) {
                                         rispostaBean.setDomanda(domandaBean);
-                                        if (!(rispostaDAO.insert(rispostaBean))) {
-                                            Toast.makeText(getApplicationContext(), "Inserimento risposta nel DB non riuscita", Toast.LENGTH_LONG).show();
+                                        if (!(rispostaDAO.update(rispostaBean))) {
+                                            Toast.makeText(getApplicationContext(), "Aggiornamento risposta nel DB non riuscita", Toast.LENGTH_LONG).show();
                                             flag=false;
                                         }
                                     }
@@ -339,10 +381,10 @@ public class ModificaQuiz extends AppCompatActivity {
             quiz.setDomande(listDomande);
             Log.d("MYDEBUG", quiz.toString());
             if (!flag){
-                quizDAO.delete(quiz);
                 quizDAO.close();
             }
             else {
+                quizDAO.close();
                 Intent i = new Intent(this, ProfiloPersonale.class);
                 startActivity(i);
             }
@@ -415,7 +457,6 @@ public class ModificaQuiz extends AppCompatActivity {
         }
     }
 
-
     public void onClickAggiungiDomandaRisposta(View view, DomandaBean d){
 
         View temp= null;
@@ -426,37 +467,75 @@ public class ModificaQuiz extends AppCompatActivity {
         }
 
         View domandaView= temp;
+        counter=1;
 
         EditText testoDomanda = domandaView.findViewById(R.id.testoDomanda);
 
         testoDomanda.setText(d.getTesto());
+        testoDomanda.setTag(d.getId());
 
         ArrayList<RispostaBean> risposte = d.getRisposte();
         ImageView aggiungiRisposta= domandaView.findViewById(R.id.aggiungiRispostaButton);
 
 
         for (RispostaBean r:risposte){
-            aggiungiRisposta.performClick();
-            if(r.getCorretta() != 0){
+            if(r.getCorretta() == 1){
                 EditText rispostaCorretta = domandaView.findViewById(R.id.rispostaCorretta);
                 rispostaCorretta.setText(r.getTesto());
+                rispostaCorretta.setTag(r.getId());
             }else{
                 String rispostaId = "risposta";
                 rispostaId = rispostaId + counter;
                 EditText risposta = domandaView.findViewById(getResources().getIdentifier(rispostaId,"id",getPackageName()));
-
-                if (risposta.getVisibility()==View.INVISIBLE){
-                    risposta.setVisibility(View.VISIBLE);
-                    ViewGroup.LayoutParams params = risposta.getLayoutParams();
-                    params.height = 200; // l'altezza viene impostata a 160 pixel
-                    risposta.setLayoutParams(params);
-                    risposta.setText(r.getTesto());
-                }
+                risposta.setVisibility(View.VISIBLE);
+                ViewGroup.LayoutParams params = risposta.getLayoutParams();
+                params.height = 200; // l'altezza viene impostata a 160 pixel
+                risposta.setLayoutParams(params);
+                risposta.setText(r.getTesto());
+                risposta.setTag(r.getId());
                 counter++;
             }
 
-
         }
+
+        aggiungiRisposta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText risposta2= domandaView.findViewById(R.id.risposta2);
+                EditText risposta3= domandaView.findViewById(R.id.risposta3);
+                EditText risposta4= domandaView.findViewById(R.id.risposta4);
+                EditText risposta5= domandaView.findViewById(R.id.risposta5);
+
+                if (risposta2.getVisibility()==View.INVISIBLE){
+                    risposta2.setVisibility(View.VISIBLE);
+                    ViewGroup.LayoutParams params = risposta2.getLayoutParams();
+                    params.height = 200; // l'altezza viene impostata a 160 pixel
+                    risposta2.setLayoutParams(params);
+                }
+                else if (risposta3.getVisibility()==View.INVISIBLE){
+                    risposta3.setVisibility(View.VISIBLE);
+                    ViewGroup.LayoutParams params = risposta3.getLayoutParams();
+                    params.height = 200;
+                    risposta3.setLayoutParams(params);
+                }
+                else if (risposta4.getVisibility()==View.INVISIBLE){
+                    risposta4.setVisibility(View.VISIBLE);
+                    ViewGroup.LayoutParams params = risposta4.getLayoutParams();
+                    params.height = 200;
+                    risposta4.setLayoutParams(params);
+                }
+                else if (risposta5.getVisibility()==View.INVISIBLE){
+                    risposta5.setVisibility(View.VISIBLE);
+                    ViewGroup.LayoutParams params = risposta5.getLayoutParams();
+                    params.height = 200;
+                    risposta5.setLayoutParams(params);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),
+                            "È possibile aggiungere massimo 5 opzioni di risposta errata", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
         TextView idDomanda= domandaView.findViewById(R.id.idDomanda);
         count++;
@@ -508,6 +587,8 @@ public class ModificaQuiz extends AppCompatActivity {
         outState.putInt("visibilita", visibilita);
 
         outState.putInt("count", count);
+        outState.putInt("counter", counter);
+        outState.putInt("idQuiz", idQuiz);
 
         ParcelableRelativeLayout[] parcelableRelativeLayouts = new ParcelableRelativeLayout[domande.size()];
         for (int i = 0; i < domande.size(); i++) {

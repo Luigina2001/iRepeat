@@ -191,6 +191,29 @@ public class DomandaDAO {
 
     }
 
+    public boolean update(DomandaBean domanda){
+
+        ContentValues values= new ContentValues();
+        values.put(COLUMN_ID, domanda.getId());
+        values.put(COLUMN_TESTO, domanda.getTesto());
+        values.put(COLUMN_QUIZ, domanda.getQuiz().getId());
+
+        // es. selection="EMAIL = ?"
+        String selection;
+        selection = COLUMN_ID + " = ?";
+
+        // Specifchiamo gli argomenti per i segnaposto (ovvero i ? nella stringa selection)
+        String[] selectionArgs = {String.valueOf(domanda.getId())};
+
+        int check= database.update(TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+
+        if (check==1)
+            return true;
+        else return insert(domanda);
+    }
 
 
     private static final String TABLE_NAME = "Domanda";
