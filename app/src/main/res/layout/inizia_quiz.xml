@@ -86,15 +86,16 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/testoDomanda"
             android:layout_marginTop="20dp"
-            android:layout_height="400dp">
+            android:layout_height="300dp">
 
             <ListView
                 android:id="@+id/opzioniRisposte"
                 android:layout_width="match_parent"
-                android:layout_height="400dp" />
+                android:layout_height="300dp" />
         </RadioGroup>
 
         <LinearLayout
+            android:layout_marginTop="25dp"
             android:id="@+id/altraDomandaButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -131,7 +132,7 @@
     <RelativeLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:gravity="center"
         android:layout_below="@id/quiz">
