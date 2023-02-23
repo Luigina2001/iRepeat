@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.example.irepeat.Activity.IniziaQuiz;
+import com.example.irepeat.Activity.ModificaQuiz;
 import com.example.irepeat.Bean.DomandaBean;
 import com.example.irepeat.Bean.QuizBean;
 import com.example.irepeat.DAO.DBHelper;
@@ -68,6 +69,20 @@ public class QuizAdapter extends ArrayAdapter<QuizBean> {
 
         ImageView cuore = view.findViewById(R.id.cuoreButton);
         cuore.setTag(q.getId());
+
+        ImageView modifica = view.findViewById(R.id.modificaButton);
+        modifica.setTag(q.getId());
+
+        modifica.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                i.putExtra("id", (int) v.getTag());
+                i.setClass(context, ModificaQuiz.class);
+                context.startActivity(i);
+            }
+        });
+
 
         cuore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,4 +139,5 @@ public class QuizAdapter extends ArrayAdapter<QuizBean> {
 
         return view;
     }
+
 }
